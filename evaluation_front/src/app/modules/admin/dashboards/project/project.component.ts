@@ -8,14 +8,7 @@ import { UserService } from 'app/core/user/user.service';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import {
-    MsalService,
-    MsalBroadcastService,
-    MSAL_GUARD_CONFIG,
-    MsalGuardConfiguration,
-} from '@azure/msal-angular';
-import { HttpClient } from '@angular/common/http';
-import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
     selector: 'project',

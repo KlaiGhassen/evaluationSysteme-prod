@@ -197,6 +197,10 @@ export class ContactsDetailsComponent implements OnInit, OnDestroy {
         //         this._changeDetectorRef.markForCheck();
         //     });
     }
+
+    isNumber(o): boolean {
+        return !isNaN(o - 0) && o !== null && o !== '' && o !== false;
+    }
     onFilterChange(e) {
         switch (e.value) {
             case 'Teaching':
@@ -205,10 +209,12 @@ export class ContactsDetailsComponent implements OnInit, OnDestroy {
                 this._contactsService.chartStudents$
                     .pipe(takeUntil(this._unsubscribeAll))
                     .subscribe((data: any) => {
+                        console.log('data', data);
                         if (data[4] == null || isNaN(data[4])) {
                             this.moy = 0;
                         }
                         this.moy = data[4];
+                        console.log(data[5]);
 
                         this.allRates = data[5];
                         let teachingSeries = [0, 0, 0, 0, 0];
@@ -258,7 +264,7 @@ export class ContactsDetailsComponent implements OnInit, OnDestroy {
                 this._contactsService.chartStudents$
                     .pipe(takeUntil(this._unsubscribeAll))
                     .subscribe((data: any) => {
-                        if (data[4] == null || isNaN(data[4]) ) {
+                        if (data[4] == null || isNaN(data[4])) {
                             this.moy = 0;
                         }
                         this.moy = data[4];

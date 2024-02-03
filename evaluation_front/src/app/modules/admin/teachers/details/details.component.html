@@ -41,7 +41,7 @@
                         <img
                             class="object-cover w-full h-full"
                             *ngIf="contact.social_image"
-                            [src]="contact.social_image"
+                            [src]="contact.blobImage"
                         />
                         <div
                             class="flex items-center justify-center w-full h-full rounded overflow-hidden uppercase text-8xl font-bold leading-none bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200"
@@ -80,9 +80,16 @@
                     </div>
                     <div class="mr-4">
                         <p
+                            *ngIf="isNumber(moy)"
                             class="text-5xl text-center font-normal text-gray-500 dark:text-gray-400"
                         >
                             {{ moy }}
+                        </p>
+                        <p
+                            *ngIf="!isNumber(moy)"
+                            class="text-5xl text-center font-normal text-gray-500 dark:text-gray-400"
+                        >
+                            00
                         </p>
                         <div class="flex items-center mb-3">
                             <svg

@@ -81,37 +81,37 @@ exports.getStudentTeacherRatting = async (req, res, next) => {
   try {
     let id = req.payload.id;
     const allStudentRate = await knex("student_ratting")
-    .select("value")
-    .count("* as count")
-    .where("teacher_ratting_id", id)
-    .whereIn("value", [1, 2, 3, 4, 5])
-    .groupBy("value");
-  const allFramingRate = await knex("framing_ratting")
-    .select("value")
-    .count("* as count")
-    .where("teacher_rated_id", id)
-    .whereIn("value", [1, 2, 3, 4, 5])
-    .groupBy("value");
-  const allRoRatting = await knex("ro_ratting")
-    .select("value")
-    .count("* as count")
-    .where("teacher_ratting_id", id)
-    .whereIn("value", [1, 2, 3, 4, 5])
-    .groupBy("value");
-  const allRdiRate = await knex("teacher_ratting")
-    .select("value")
-    .count("* as count")
-    .where("teacher_rated_id", id)
-    .whereIn("value", [1, 2, 3, 4, 5])
-    .andWhere({ type: "RDI" })
-    .groupBy("value");
-  const allGestionRate = await knex("teacher_ratting")
-    .select("value")
-    .count("* as count")
-    .where("teacher_rated_id", id)
-    .andWhereNot({ type: "RDI" })
-    .whereIn("value", [1, 2, 3, 4, 5])
-    .groupBy("value");
+      .select("value")
+      .count("* as count")
+      .where("teacher_ratting_id", id)
+      .whereIn("value", [1, 2, 3, 4, 5])
+      .groupBy("value");
+    const allFramingRate = await knex("framing_ratting")
+      .select("value")
+      .count("* as count")
+      .where("teacher_rated_id", id)
+      .whereIn("value", [1, 2, 3, 4, 5])
+      .groupBy("value");
+    const allRoRatting = await knex("ro_ratting")
+      .select("value")
+      .count("* as count")
+      .where("teacher_ratting_id", id)
+      .whereIn("value", [1, 2, 3, 4, 5])
+      .groupBy("value");
+    const allRdiRate = await knex("teacher_ratting")
+      .select("value")
+      .count("* as count")
+      .where("teacher_rated_id", id)
+      .whereIn("value", [1, 2, 3, 4, 5])
+      .andWhere({ type: "RDI" })
+      .groupBy("value");
+    const allGestionRate = await knex("teacher_ratting")
+      .select("value")
+      .count("* as count")
+      .where("teacher_rated_id", id)
+      .andWhereNot({ type: "RDI" })
+      .whereIn("value", [1, 2, 3, 4, 5])
+      .groupBy("value");
 
     const studentRate = await knex("student_ratting")
       .select("value")
@@ -248,7 +248,7 @@ exports.getStudentTeacherRatting = async (req, res, next) => {
       rating: ratings,
       allRating: ratingsAll,
       moy: averageRating,
-      allRates: allSum,
+      allRates: allcount,
     };
     next();
   } catch (error) {
@@ -279,6 +279,7 @@ exports.getStudentTeacherRattingUser = async (req, res, next) => {
       .where("teacher_ratting_id", id)
       .whereIn("value", [1, 2, 3, 4, 5])
       .groupBy("value");
+    console.log("ahla wa sahla", studentRate);
 
     const framingRate = await knex("framing_ratting")
       .select("value")
@@ -373,6 +374,7 @@ exports.getStudentTeacherRattingUser = async (req, res, next) => {
 
     if (studentRate.length > 0) {
       studentRate.forEach((element) => {
+        console.log("element", element);
         ratings["" + element.value + "star"] += Number(element.count);
       });
     }
@@ -425,8 +427,12 @@ exports.getStudentTeacherRattingUser = async (req, res, next) => {
     let allcount = 0;
 
     for (const rating in ratingsAll) {
+      console.log(ratingsAll);
       const weight = ratingsAll[rating];
+      console.log("weight", weight);
+
       const numericRating = parseInt(rating.charAt(0));
+      console.log("numericRating", numericRating);
 
       allSum += numericRating * weight;
       allcount += weight;
@@ -444,7 +450,7 @@ exports.getStudentTeacherRattingUser = async (req, res, next) => {
     }
     const averageRating = parseFloat(sum / count).toFixed(2);
 
-    data.push(teaching, rdi, framing, Gestion, averageRating, allSum);
+    data.push(teaching, rdi, framing, Gestion, averageRating, allcount);
     // series.push(dataToSee);
     res.teachers = data;
     next();
@@ -546,7 +552,6 @@ exports.getTeachersRate = async (req, res, next) => {
       };
       data.push(rateData);
     }
-
 
     res.teachers = data;
     next();

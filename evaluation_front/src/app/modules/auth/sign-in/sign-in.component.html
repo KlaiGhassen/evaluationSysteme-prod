@@ -30,7 +30,7 @@
             <!-- Sign in form -->
             <form class="mt-8" [formGroup]="signInForm" #signInNgForm="ngForm">
                 <!-- Email field -->
-                <!-- <mat-form-field class="w-full">
+                <mat-form-field class="w-full">
                     <mat-label>Email address</mat-label>
                     <input id="email" matInput [formControlName]="'email'" />
                     <mat-error
@@ -43,10 +43,10 @@
                     >
                         Please enter a valid email address
                     </mat-error>
-                </mat-form-field> -->
+                </mat-form-field>
 
                 <!-- Password field -->
-                <!-- <mat-form-field class="w-full">
+                <mat-form-field class="w-full">
                     <mat-label>Password</mat-label>
                     <input
                         id="password"
@@ -77,10 +77,10 @@
                         ></mat-icon>
                     </button>
                     <mat-error> Password is required </mat-error>
-                </mat-form-field> -->
+                </mat-form-field>
 
                 <!-- Submit button -->
-                <!-- <button
+                <button
                     class="fuse-mat-button-large w-full mt-6"
                     mat-flat-button
                     [color]="'primary'"
@@ -93,7 +93,7 @@
                         [diameter]="24"
                         [mode]="'indeterminate'"
                     ></mat-progress-spinner>
-                </button> -->
+                </button>
 
                 <!-- Separator -->
                 <div class="flex items-center mt-8">
@@ -125,7 +125,10 @@
                         <mat-card class="cardStyle w-full">
                             <div id="buttonDiv" class="w-full"></div>
                         </mat-card>
-                        <router-outlet class="w-full self-center" *ngIf="!isIframe"></router-outlet>
+                        <router-outlet
+                            class="w-full self-center"
+                            *ngIf="!isIframe"
+                        ></router-outlet>
                     </div>
                     <!--   <button class="flex-auto" type="button" mat-stroked-button>
                         <img

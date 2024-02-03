@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { filter, map, switchMap, take, tap } from 'rxjs/operators';
 import { environment } from 'environments/environment';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
     providedIn: 'root',
@@ -33,7 +34,10 @@ export class ContactsService {
     /**
      * Constructor
      */
-    constructor(private _httpClient: HttpClient) {}
+    constructor(
+        private _httpClient: HttpClient,
+        private sanitizer: DomSanitizer
+    ) {}
 
     // -----------------------------------------------------------------------------------------------------
     // @ Accessors
@@ -168,7 +172,14 @@ export class ContactsService {
                 })
             );
     }
-
+    downloadMediaFromUser(fileName: any): Observable<Blob> {
+        return this._httpClient.get(
+            environment.apiUrl + 'user/profile-picture/' + fileName,
+            {
+                responseType: 'blob',
+            }
+        );
+    }
     /**
      * Get contacts
      */
@@ -182,6 +193,25 @@ export class ContactsService {
             })
             .pipe(
                 tap((contacts) => {
+                    console.log(contacts);
+                    contacts.forEach((teacher: any) => {
+                        if (teacher.social_image) {
+                            this.downloadMediaFromUser(
+                                teacher.social_image
+                            ).subscribe(
+                                (blob: any) => {
+                                    let objectURL = URL.createObjectURL(blob);
+                                    teacher['blobImage'] =
+                                        this.sanitizer.bypassSecurityTrustUrl(
+                                            objectURL
+                                        );
+                                },
+                                (error) => {
+                                    console.log(error);
+                                }
+                            );
+                        }
+                    });
                     this._contacts.next(contacts);
                 })
             );
@@ -200,6 +230,26 @@ export class ContactsService {
                 })
                 .pipe(
                     tap((contacts) => {
+                        contacts.forEach((teacher: any) => {
+                            if (teacher.social_image) {
+                                this.downloadMediaFromUser(
+                                    teacher.image
+                                ).subscribe(
+                                    (blob: any) => {
+                                        let objectURL =
+                                            URL.createObjectURL(blob);
+                                        teacher['blobImage'] =
+                                            this.sanitizer.bypassSecurityTrustUrl(
+                                                objectURL
+                                            );
+                                    },
+                                    (error) => {
+                                        console.log(error);
+                                    }
+                                );
+                            }
+                        });
+
                         this._contacts.next(contacts);
                     })
                 );
@@ -208,6 +258,25 @@ export class ContactsService {
                 .get<any[]>(environment.apiUrl + 'teacher/all')
                 .pipe(
                     tap((contacts) => {
+                        contacts.forEach((teacher: any) => {
+                            if (teacher.social_image) {
+                                this.downloadMediaFromUser(
+                                    teacher.social_image
+                                ).subscribe(
+                                    (blob: any) => {
+                                        let objectURL =
+                                            URL.createObjectURL(blob);
+                                        teacher['blobImage'] =
+                                            this.sanitizer.bypassSecurityTrustUrl(
+                                                objectURL
+                                            );
+                                    },
+                                    (error) => {
+                                        console.log(error);
+                                    }
+                                );
+                            }
+                        });
                         this._contacts.next(contacts);
                     })
                 );
@@ -223,6 +292,22 @@ export class ContactsService {
             .pipe(
                 map((contact) => {
                     // Update the contact
+                    if (contact.social_image) {
+                        this.downloadMediaFromUser(
+                            contact.social_image
+                        ).subscribe(
+                            (blob: any) => {
+                                let objectURL = URL.createObjectURL(blob);
+                                contact['blobImage'] =
+                                    this.sanitizer.bypassSecurityTrustUrl(
+                                        objectURL
+                                    );
+                            },
+                            (error) => {
+                                console.log(error);
+                            }
+                        );
+                    }
                     this._contact.next(contact);
                     // Return the contact
                     return contact;
