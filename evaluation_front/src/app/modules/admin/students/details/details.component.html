@@ -1,0 +1,495 @@
+<div class="flex flex-col w-full">
+    <!-- View mode -->
+    <ng-container *ngIf="!editMode">
+        <!-- Header -->
+        <div
+            class="relative w-full h-20 sm:h-22 px-8 sm:px-12 bg-accent-100 dark:bg-accent-700"
+        >
+            <!-- Background -->
+            <ng-container *ngIf="contact">
+                <img class="absolute inset-0 object-cover w-full h-full" />
+            </ng-container>
+            <!-- Close button -->
+            <div
+                class="flex items-center justify-end w-full max-w-3xl mx-auto pt-6"
+            >
+                <button
+                    mat-icon-button
+                    [matTooltip]="'Close'"
+                    (click)="closeDrawer()"
+                    [routerLink]="['../']"
+                >
+                    <mat-icon
+                        class="text-white"
+                        [svgIcon]="'heroicons_outline:x'"
+                    ></mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div
+            class="relative flex flex-col flex-auto items-center p-6 pt-0 sm:p-12 sm:pt-0"
+        >
+            <div class="w-full max-w-3xl">
+                <!-- Avatar and actions -->
+                <div class="flex flex-auto items-end -mt-16">
+                    <!-- Avatar -->
+                    <div
+                        class="flex items-center justify-center w-32 h-32 rounded-full overflow-hidden ring-4 ring-bg-card"
+                    >
+                        <img
+                            class="object-cover w-full h-full"
+                            *ngIf="contact.avatar"
+                            [src]="contact.avatar"
+                        />
+                        <div
+                            class="flex items-center justify-center w-full h-full rounded overflow-hidden uppercase text-8xl font-bold leading-none bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200"
+                            *ngIf="!contact.avatar"
+                        >
+                            {{ contact.first_name.charAt(0) }}
+                        </div>
+                    </div>
+                    <!-- Actions -->
+                    <div class="flex items-center ml-auto mb-1">
+                        <button
+                            mat-stroked-button
+                            (click)="toggleEditMode(true)"
+                        >
+                            <mat-icon
+                                class="icon-size-5"
+                                [svgIcon]="'heroicons_solid:pencil-alt'"
+                            ></mat-icon>
+                            <span class="ml-2">Edit</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Name -->
+                <div class="mt-3 text-4xl font-bold truncate">
+                    {{ contact.first_name }} {{ contact.last_name }}
+                </div>
+                <div class="flex flex-wrap items-center mt-2">
+                    <!-- Tag -->
+                    <div
+                        class="flex items-center justify-center py-1 px-3 mr-3 mb-3 rounded-full leading-normal text-gray-500 bg-gray-100 dark:text-gray-300 dark:bg-gray-700"
+                    >
+                        <span class="text-sm font-medium whitespace-nowrap">{{
+                            contact.role
+                        }}</span>
+                    </div>
+                    <div
+                        class="flex items-center justify-center py-1 px-3 mr-3 mb-3 rounded-full leading-normal text-gray-500 bg-gray-100 dark:text-gray-300 dark:bg-gray-700"
+                    >
+                        <span class="text-sm font-medium whitespace-nowrap">{{
+                            contact.name_class
+                        }}</span>
+                    </div>
+                </div>
+                <div class="flex flex-col mt-4 pt-6 border-t space-y-8">
+                    <!-- Title -->
+                    <ng-container *ngIf="contact.title">
+                        <div class="flex sm:items-center">
+                            <mat-icon
+                                [svgIcon]="'heroicons_outline:briefcase'"
+                            ></mat-icon>
+                            <div class="ml-6 leading-6">
+                                {{ contact.title }}
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <!-- Company -->
+                    <ng-container *ngIf="contact.company">
+                        <div class="flex sm:items-center">
+                            <mat-icon
+                                [svgIcon]="'heroicons_outline:office-building'"
+                            ></mat-icon>
+                            <div class="ml-6 leading-6">
+                                {{ contact.company }}
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <!-- Emails -->
+                    <ng-container *ngIf="contact.email">
+                        <div class="flex">
+                            <mat-icon
+                                [svgIcon]="'heroicons_outline:mail'"
+                            ></mat-icon>
+
+                            <div class="min-w-0 ml-6 space-y-1">
+                                <div class="flex items-center leading-6">
+                                    <a
+                                        class="hover:underline text-primary-500"
+                                        [href]="'mailto:' + contact.email"
+                                        target="_blank"
+                                    >
+                                        {{ contact.email }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <!-- Emails -->
+                    <ng-container *ngIf="contact.phone">
+                        <div class="flex">
+                            <mat-icon
+                                [svgIcon]="'heroicons_outline:mail'"
+                            ></mat-icon>
+                            <div class="min-w-0 ml-6 space-y-1">
+                                <div class="flex items-center leading-6">
+                                    {{ contact.phone }}
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <!-- Address -->
+                    <ng-container *ngIf="contact.address">
+                        <div class="flex sm:items-center">
+                            <mat-icon
+                                [svgIcon]="'heroicons_outline:location-marker'"
+                            ></mat-icon>
+                            <div class="ml-6 leading-6">
+                                {{ contact.address }}
+                            </div>
+                        </div>
+                    </ng-container>
+                    <!-- Budget details -->
+
+                    <!-- Notes -->
+                    <ng-container *ngIf="contact.notes">
+                        <div class="flex">
+                            <mat-icon
+                                [svgIcon]="'heroicons_outline:menu-alt-2'"
+                            ></mat-icon>
+                            <div
+                                class="max-w-none ml-6 prose prose-sm"
+                                [innerHTML]="contact.notes"
+                            ></div>
+                        </div>
+                    </ng-container>
+                </div>
+                <div
+                    *ngIf="contact.framing"
+                    class="flex flex-col mt-4 pt-6 border-t space-y-8"
+                >
+                    <div>Supervisor:</div>
+                    <div class="flex">
+                        <div class="min-w-0 ml-6 space-y-1">
+                            <div class="flex items-center leading-6">
+                                Full Name :
+
+                                {{ contact.framer.first_name }}
+                                {{ contact.framer.last_name }}
+                            </div>
+                        </div>
+                    </div>
+                    <ng-container>
+                        <div class="flex">
+                            <div class="min-w-0 ml-6 space-y-1">
+                                <div class="flex items-center leading-6">
+                                    <mat-icon
+                                        [svgIcon]="'heroicons_outline:mail'"
+                                    ></mat-icon>
+                                    email :
+                                    <a
+                                        class="hover:underline text-primary-500"
+                                        [href]="'mailto:' + contact.email"
+                                        target="_blank"
+                                    >
+                                        {{ contact.framer.email }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- Edit mode -->
+    <ng-container *ngIf="editMode">
+        <!-- Header -->
+        <div
+            class="relative w-full  h-20 sm:h-22 px-8 sm:px-12 bg-accent-100 dark:bg-accent-700"
+        >
+            <!-- Background -->
+            <ng-container *ngIf="contact.background">
+                <img
+                    class="absolute inset-0 object-cover w-full h-full"
+                    [src]="contact.background"
+                />
+            </ng-container>
+            <!-- Close button -->
+            <div
+                class="flex items-center justify-end w-full max-w-3xl mx-auto pt-6"
+            >
+                <button
+                    mat-icon-button
+                    (click)="closeDrawer()"
+                    [matTooltip]="'Close'"
+                    [routerLink]="['../']"
+                >
+                    <mat-icon
+                        class="text-white"
+                        [svgIcon]="'heroicons_outline:x'"
+                    ></mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <!-- Contact form -->
+        <div
+            class="relative flex flex-col flex-auto items-center px-6 sm:px-12"
+        >
+            <div class="w-full max-w-3xl">
+                <form [formGroup]="contactForm">
+                    <!-- Avatar -->
+                    <div class="flex flex-auto items-end -mt-16">
+                        <div
+                            class="relative flex items-center justify-center w-32 h-32 rounded-full overflow-hidden ring-4 ring-bg-card"
+                        >
+                            <!-- Upload / Remove avatar -->
+                            <div
+                                class="absolute inset-0 bg-black bg-opacity-50 z-10"
+                            ></div>
+                            <div
+                                class="absolute inset-0 flex items-center justify-center z-20"
+                            >
+                                <div>
+                                    <input
+                                        id="avatar-file-input"
+                                        class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
+                                        type="file"
+                                        [multiple]="false"
+                                        [accept]="'image/jpeg, image/png'"
+                                        (change)="
+                                            uploadAvatar(avatarFileInput.files)
+                                        "
+                                        #avatarFileInput
+                                    />
+                                    <label
+                                        class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-hover"
+                                        for="avatar-file-input"
+                                        matRipple
+                                    >
+                                        <mat-icon
+                                            class="text-white"
+                                            [svgIcon]="
+                                                'heroicons_outline:camera'
+                                            "
+                                        ></mat-icon>
+                                    </label>
+                                </div>
+                                <div>
+                                    <button
+                                        mat-icon-button
+                                        (click)="removeAvatar()"
+                                    >
+                                        <mat-icon
+                                            class="text-white"
+                                            [svgIcon]="
+                                                'heroicons_outline:trash'
+                                            "
+                                        ></mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Image/Letter -->
+                            <img
+                                class="object-cover w-full h-full"
+                                *ngIf="contact.avatar"
+                                [src]="contact.avatar"
+                            />
+                            <div
+                                class="flex items-center justify-center w-full h-full rounded overflow-hidden uppercase text-8xl font-bold leading-none bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200"
+                                *ngIf="!contact.avatar"
+                            >
+                                {{ contact.first_name.charAt(0) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Name -->
+                    <div class="mt-8">
+                        <mat-form-field class="fuse-mat-no-subscript w-full">
+                            <mat-label>First Name</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"
+                            ></mat-icon>
+                            <input
+                                matInput
+                                [formControlName]="'first_name'"
+                                [placeholder]="'Name'"
+                                [spellcheck]="false"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <!-- Name -->
+                    <div class="mt-8">
+                        <mat-form-field class="fuse-mat-no-subscript w-full">
+                            <mat-label>Last Name</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"
+                            ></mat-icon>
+                            <input
+                                matInput
+                                [formControlName]="'last_name'"
+                                [placeholder]="'Name'"
+                                [spellcheck]="false"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <!-- Emails -->
+                    <div class="mt-8">
+                        <div class="space-y-4">
+                            <div class="flex">
+                                <mat-form-field
+                                    class="fuse-mat-no-subscript flex-auto"
+                                >
+                                    <mat-label>Email</mat-label>
+                                    <mat-icon
+                                        matPrefix
+                                        class="hidden sm:flex icon-size-5"
+                                        [svgIcon]="'heroicons_solid:mail'"
+                                    ></mat-icon>
+                                    <input
+                                        matInput
+                                        [formControlName]="'email'"
+                                        [placeholder]="'Email address'"
+                                        [spellcheck]="false"
+                                    />
+                                </mat-form-field>
+                                <!-- Remove email -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phone numbers -->
+                    <div class="mt-8">
+                        <div class="space-y-4">
+                            <div class="relative flex">
+                                <mat-form-field
+                                    class="fuse-mat-no-subscript flex-auto"
+                                >
+                                    <mat-label>Phone</mat-label>
+                                    <mat-icon
+                                        class="icon-size-5"
+                                        [svgIcon]="'heroicons_solid:phone'"
+                                        matPrefix
+                                    ></mat-icon>
+                                    <input
+                                        matInput
+                                        [formControlName]="'phone'"
+                                        [placeholder]="'Phone'"
+                                    />
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="mt-8">
+                        <mat-form-field class="fuse-mat-no-subscript w-full">
+                            <mat-label>Address</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:location-marker'"
+                            ></mat-icon>
+                            <input
+                                matInput
+                                [formControlName]="'address'"
+                                [placeholder]="'Address'"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <!-- Phone numbers -->
+                    <div
+                        class="mt-8"
+                        *ngIf="contact.name_class.startsWith('5')"
+                    >
+                        <mat-label> Supervisor :</mat-label>
+                        <div class="flex flex-row gt-xs:flex-col">
+                            <mat-form-field class="flex-auto gt-xs:pr-3 mr-2">
+                                <mat-select
+                                    [value]="framingId"
+                                    (selectionChange)="changeClassRoom($event)"
+                                    [placeholder]="'Supervisor'"
+                                >
+                                    <ng-container
+                                        *ngFor="
+                                            let classroom of classRooms;
+                                            trackBy: trackByFn
+                                        "
+                                    >
+                                        <mat-option [value]="classroom.id"
+                                            >{{ classroom.first_name }}
+                                            {{ classroom.last_name }}
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div
+                            *ngIf="addButton"
+                            class="group inline-flex items-center -ml-4 py-2 px-4 rounded cursor-pointer"
+                            (click)="affectationFramer(contact)"
+                        >
+                            <mat-icon
+                                class="icon-size-5"
+                                [svgIcon]="'heroicons_solid:plus-circle'"
+                            ></mat-icon>
+                            <span
+                                class="ml-2 font-medium text-secondary group-hover:underline"
+                                >add assignment</span
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div
+                        class="flex items-center mt-10 -mx-6 sm:-mx-12 py-4 pr-4 pl-1 sm:pr-12 sm:pl-7 border-t bg-gray-50 dark:bg-transparent"
+                    >
+                        <!-- Delete -->
+                        <button
+                            mat-button
+                            [color]="'warn'"
+                            [matTooltip]="'Delete'"
+                            (click)="deleteContact()"
+                        >
+                            Delete
+                        </button>
+                        <!-- Cancel -->
+                        <button
+                            class="ml-auto"
+                            mat-button
+                            [matTooltip]="'Cancel'"
+                            (click)="toggleEditMode(false)"
+                        >
+                            Cancel
+                        </button>
+                        <!-- Save -->
+                        <button
+                            class="ml-2"
+                            mat-flat-button
+                            [color]="'primary'"
+                            [disabled]="!contactForm.valid || !contactForm.dirty"
+                            [matTooltip]="'Save'"
+                            (click)="updateContact()"
+                        >
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </ng-container>
+</div>

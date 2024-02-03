@@ -1,0 +1,16 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Import/write your custom styles here.
+/*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
+/* ----------------------------------------------------------------------------------------------------- */
+
+label.star {
+    padding: 4px !important;
+}
+
+@media (min-width: 965px) {
+    /* Adjust the breakpoint as per your requirements */
+
+    label.star {
+        font-size: 1.8rem !important;
+    }
+}

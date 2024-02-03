@@ -1,0 +1,89 @@
+<div class="w-full max-w-3xl">
+    <!-- Form -->
+    <form>
+        <!-- Section -->
+        <!-- Section -->
+        <div class="w-full">
+            <div class="text-xl">Token Management</div>
+            <div class="text-secondary">
+                if there is no token in your wallet then create one with the
+                instructions below
+            </div>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-6 w-full mt-8">
+            <!-- Plan -->
+            <div class="sm:col-span-3">
+                <fuse-alert [appearance]="'outline'" [type]="'info'">
+                    if there is no Balance Section .Click on the box bellow.
+                </fuse-alert>
+            </div>
+            <ng-container *ngIf="balance">
+                <ng-container *ngFor="let plan of plans; trackBy: trackByFn">
+                    <div
+                        class="relative flex flex-col items-start justify-start p-6 rounded-md shadow bg-card"
+                    >
+                        <ng-container>
+                            <mat-icon
+                                class="absolute top-0 right-0 mt-3 mr-3 icon-size-7 text-primary"
+                                [svgIcon]="'heroicons_solid:check-circle'"
+                            ></mat-icon>
+                        </ng-container>
+                        <div class="font-medium">{{ plan.label }}</div>
+                        <div class="mt-1 whitespace-normal text-secondary">
+                            {{ plan.details }}
+                        </div>
+                        <div class="flex-auto"></div>
+                        <div class="mt-8 text-lg">
+                            <span>{{ plan.price }}</span>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="!balance">
+                <div
+                    class="relative flex flex-col items-start justify-start p-6 cursor-pointer rounded-md shadow bg-card"
+                    (click)="createToken()"
+                >
+                    <ng-container>
+                        <mat-icon
+                            *ngIf="step1"
+                            class="absolute top-0 right-0 mt-3 mr-3 icon-size-7 text-primary"
+                            [svgIcon]="'heroicons_solid:check-circle'"
+                        ></mat-icon>
+                    </ng-container>
+                    <div class="font-medium">Create Token</div>
+                    <div class="mt-1 whitespace-normal text-secondary">
+                        Genrate Token From your wallet
+                    </div>
+                    <div class="flex-auto"></div>
+                    <div class="mt-8 text-lg"></div>
+                </div>
+                <div
+                    *ngIf="step1"
+                    class="relative flex flex-col items-start justify-start p-6 rounded-md cursor-pointer shadow bg-card"
+                    (click)="mintToken()"
+                >
+                    <ng-container>
+                        <mat-icon
+                            *ngIf="step2"
+                            class="absolute top-0 right-0 mt-3 mr-3 icon-size-7 text-primary"
+                            [svgIcon]="'heroicons_solid:check-circle'"
+                        ></mat-icon>
+                    </ng-container>
+                    <div class="font-medium">Mint Token</div>
+                    <div class="mt-1 whitespace-normal text-secondary">
+                        Mint 10 billion Token
+                    </div>
+                    <div class="flex-auto"></div>
+                    <div class="mt-8 text-lg"></div>
+                </div>
+            </ng-container>
+        </div>
+
+        <!-- Divider -->
+        <div class="mt-12 mb-10 border-t"></div>
+
+        <!-- Divider -->
+        <div class="mt-11 mb-10 border-t"></div>
+    </form>
+</div>

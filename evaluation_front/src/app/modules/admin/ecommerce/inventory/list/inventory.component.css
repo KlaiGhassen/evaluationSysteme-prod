@@ -1,0 +1,26 @@
+.inventory-grid {
+  -ms-grid-columns: 0px auto 40px;
+      grid-template-columns: 0px auto 40px;
+}
+
+@screen sm {
+  .inventory-grid {
+    -ms-grid-columns: 0px auto auto 72px;
+        grid-template-columns: 0px auto auto 72px;
+  }
+}
+
+@screen md {
+  .inventory-grid {
+    -ms-grid-columns: 0px 112px auto auto 72px;
+        grid-template-columns: 0px 112px auto auto 72px;
+  }
+}
+
+@screen lg {
+  .inventory-grid {
+    -ms-grid-columns: 0px 112px auto auto 96px 96px 72px;
+        grid-template-columns: 0px 112px auto auto 96px 96px 72px;
+  }
+}
+/*# sourceMappingURL=inventory.component.css.map */

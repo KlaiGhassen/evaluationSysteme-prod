@@ -1,0 +1,1613 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <!-- Main -->
+    <div class="flex-auto mt-4 sm:mt-6">
+        <div class="w-full max-w-screen-xl mx-auto">
+            <!-- Tabs -->
+            <mat-tab-group class="sm:px-2" [animationDuration]="'0'">
+                <!-- Home -->
+                <!-- <mat-tab label="Home">
+                    <ng-template matTabContent>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0"> -->
+                <!-- Summary -->
+                <!-- <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                                <div class="flex items-start justify-between">
+                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Summary</div>
+                                    <div class="ml-2 -mt-2 -mr-3">
+                                        <button
+                                            mat-icon-button
+                                            [matMenuTriggerFor]="summaryMenu">
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+                                        </button>
+                                        <mat-menu #summaryMenu="matMenu">
+                                            <button mat-menu-item>Yesterday</button>
+                                            <button mat-menu-item>2 days ago</button>
+                                            <button mat-menu-item>3 days ago</button>
+                                        </mat-menu>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center mt-2">
+                                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500">21</div>
+                                    <div class="text-lg font-medium text-blue-600 dark:text-blue-500">Due Tasks</div>
+                                    <div class="flex items-center justify-center w-full mt-5 text-secondary">
+                                        <div class="text-md font-medium truncate">Completed:</div>
+                                        <div class="ml-1.5 text-lg font-semibold">13</div>
+                                    </div>
+                                </div>
+                            </div> -->
+                <!-- Overdue -->
+                <!-- <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                                <div class="flex items-start justify-between">
+                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Overdue</div>
+                                    <div class="ml-2 -mt-2 -mr-3">
+                                        <button
+                                            mat-icon-button
+                                            [matMenuTriggerFor]="overdueMenu">
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+                                        </button>
+                                        <mat-menu #overdueMenu="matMenu">
+                                            <button mat-menu-item>Yesterday</button>
+                                            <button mat-menu-item>2 days ago</button>
+                                            <button mat-menu-item>3 days ago</button>
+                                        </mat-menu>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center mt-2">
+                                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-red-500">17</div>
+                                    <div class="text-lg font-medium text-red-600 dark:text-red-500">Tasks</div>
+                                    <div class="flex items-center justify-center w-full mt-5 text-secondary">
+                                        <div class="text-md font-medium truncate">From yesterday:</div>
+                                        <div class="ml-1.5 text-lg font-semibold">9</div>
+                                    </div>
+                                </div>
+                            </div> -->
+                <!-- Issues -->
+                <!-- <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                                <div class="flex items-start justify-between">
+                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Issues</div>
+                                    <div class="ml-2 -mt-2 -mr-3">
+                                        <button
+                                            mat-icon-button
+                                            [matMenuTriggerFor]="issuesMenu">
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+                                        </button>
+                                        <mat-menu #issuesMenu="matMenu">
+                                            <button mat-menu-item>Yesterday</button>
+                                            <button mat-menu-item>2 days ago</button>
+                                            <button mat-menu-item>3 days ago</button>
+                                        </mat-menu>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center mt-2">
+                                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-amber-500">24</div>
+                                    <div class="text-lg font-medium text-amber-600 dark:text-amber-500">Open</div>
+                                    <div class="flex items-center justify-center w-full mt-5 text-secondary">
+                                        <div class="text-md font-medium truncate">Closed today:</div>
+                                        <div class="ml-1.5 text-lg font-semibold">19</div>
+                                    </div>
+                                </div>
+                            </div> -->
+                <!-- Features -->
+                <!-- <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                                <div class="flex items-start justify-between">
+                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Features</div>
+                                    <div class="ml-2 -mt-2 -mr-3">
+                                        <button
+                                            mat-icon-button
+                                            [matMenuTriggerFor]="featuresMenu">
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+                                        </button>
+                                        <mat-menu #featuresMenu="matMenu">
+                                            <button mat-menu-item>Yesterday</button>
+                                            <button mat-menu-item>2 days ago</button>
+                                            <button mat-menu-item>3 days ago</button>
+                                        </mat-menu>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center mt-2">
+                                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-green-500">38</div>
+                                    <div class="text-lg font-medium text-green-600 dark:text-green-500">Proposals</div>
+                                    <div class="flex items-center justify-center w-full mt-5 text-secondary">
+                                        <div class="text-md font-medium truncate">Implemented:</div>
+                                        <div class="ml-1.5 text-lg font-semibold">16</div>
+                                    </div>
+                                </div>
+                            </div> -->
+                <!-- Github issues summary -->
+                <!-- <div class="sm:col-span-2 md:col-span-4 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                                <div class="flex flex-col sm:flex-row items-start justify-between">
+                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Github Issues Summary</div>
+                                    <div class="mt-3 sm:mt-0 sm:ml-2">
+                                        <mat-button-toggle-group
+                                            value="this-week"
+                                            #githubIssuesWeekSelector="matButtonToggleGroup">
+                                            <mat-button-toggle value="last-week">Last Week</mat-button-toggle>
+                                            <mat-button-toggle value="this-week">This Week</mat-button-toggle>
+                                        </mat-button-toggle-group>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-1 lg:grid-cols-2 grid-flow-row gap-6 w-full mt-8 sm:mt-4"> -->
+                <!-- New vs. Closed -->
+                <!-- <div class="flex flex-col flex-auto">
+                                        <div class="font-medium text-secondary">New vs. Closed</div>
+                                        <div class="flex flex-col flex-auto">
+                                            <apx-chart
+                                                class="flex-auto w-full h-80"
+                                                [chart]="chartGithubIssues.chart"
+                                                [colors]="chartGithubIssues.colors"
+                                                [dataLabels]="chartGithubIssues.dataLabels"
+                                                [grid]="chartGithubIssues.grid"
+                                                [labels]="chartGithubIssues.labels"
+                                                [legend]="chartGithubIssues.legend"
+                                                [plotOptions]="chartGithubIssues.plotOptions"
+                                                [series]="chartGithubIssues.series[githubIssuesWeekSelector.value]"
+                                                [states]="chartGithubIssues.states"
+                                                [stroke]="chartGithubIssues.stroke"
+                                                [tooltip]="chartGithubIssues.tooltip"
+                                                [xaxis]="chartGithubIssues.xaxis"
+                                                [yaxis]="chartGithubIssues.yaxis"></apx-chart>
+                                        </div>
+                                    </div> -->
+                <!-- Overview -->
+                <!-- <div class="flex flex-col">
+                                        <div class="font-medium text-secondary">Overview</div>
+                                        <div class="flex-auto grid grid-cols-4 gap-4 mt-6"> -->
+                <!-- New issues -->
+                <!-- <div class="col-span-2 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-indigo-50 text-indigo-800 dark:bg-white dark:bg-opacity-5 dark:text-indigo-400">
+                                                <div class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight">
+                                                    {{data.githubIssues.overview[githubIssuesWeekSelector.value]['new-issues']}}
+                                                </div>
+                                                <div class="mt-1 text-sm sm:text-lg font-medium">New Issues</div>
+                                            </div> -->
+                <!-- Closed -->
+                <!-- <div class="col-span-2 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-green-50 text-green-800 dark:bg-white dark:bg-opacity-5 dark:text-green-500">
+                                                <div class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight">
+                                                    {{data.githubIssues.overview[githubIssuesWeekSelector.value]['closed-issues']}}
+                                                </div>
+                                                <div class="mt-1 text-sm sm:text-lg font-medium">Closed</div>
+                                            </div> -->
+                <!-- Fixed -->
+                <!-- <div class="col-span-2 sm:col-span-1 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-gray-100 text-secondary dark:bg-white dark:bg-opacity-5">
+                                                <div class="text-5xl font-semibold leading-none tracking-tight">
+                                                    {{data.githubIssues.overview[githubIssuesWeekSelector.value]['fixed']}}
+                                                </div>
+                                                <div class="mt-1 text-sm font-medium text-center">Fixed</div>
+                                            </div> -->
+                <!-- Won't fix -->
+                <!-- <div class="col-span-2 sm:col-span-1 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-gray-100 text-secondary dark:bg-white dark:bg-opacity-5">
+                                                <div class="text-5xl font-semibold leading-none tracking-tight">
+                                                    {{data.githubIssues.overview[githubIssuesWeekSelector.value]['wont-fix']}}
+                                                </div>
+                                                <div class="mt-1 text-sm font-medium text-center">Won't Fix</div>
+                                            </div> -->
+                <!-- Re-opened -->
+                <!-- <div class="col-span-2 sm:col-span-1 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-gray-100 text-secondary dark:bg-white dark:bg-opacity-5">
+                                                <div class="text-5xl font-semibold leading-none tracking-tight">
+                                                    {{data.githubIssues.overview[githubIssuesWeekSelector.value]['re-opened']}}
+                                                </div>
+                                                <div class="mt-1 text-sm font-medium text-center">Re-opened</div>
+                                            </div> -->
+                <!-- Needs triage -->
+                <!-- <div class="col-span-2 sm:col-span-1 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-gray-100 text-secondary dark:bg-white dark:bg-opacity-5">
+                                                <div class="text-5xl font-semibold leading-none tracking-tight">
+                                                    {{data.githubIssues.overview[githubIssuesWeekSelector.value]['needs-triage']}}
+                                                </div>
+                                                <div class="mt-1 text-sm font-medium text-center">Needs Triage</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                <!-- Task distribution -->
+                <!-- <div class="sm:col-span-2 md:col-span-4 lg:col-span-2 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                                <div class="flex flex-col sm:flex-row items-start justify-between">
+                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Task Distribution</div>
+                                    <div class="mt-3 sm:mt-0 sm:ml-2">
+                                        <mat-button-toggle-group
+                                            value="this-week"
+                                            #taskDistributionWeekSelector="matButtonToggleGroup">
+                                            <mat-button-toggle value="last-week">Last Week</mat-button-toggle>
+                                            <mat-button-toggle value="this-week">This Week</mat-button-toggle>
+                                        </mat-button-toggle-group>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col flex-auto mt-6">
+                                    <apx-chart
+                                        class="flex-auto w-full h-80"
+                                        [chart]="chartTaskDistribution.chart"
+                                        [labels]="chartTaskDistribution.labels"
+                                        [legend]="chartTaskDistribution.legend"
+                                        [plotOptions]="chartTaskDistribution.plotOptions"
+                                        [series]="chartTaskDistribution.series[taskDistributionWeekSelector.value]"
+                                        [states]="chartTaskDistribution.states"
+                                        [stroke]="chartTaskDistribution.stroke"
+                                        [theme]="chartTaskDistribution.theme"
+                                        [tooltip]="chartTaskDistribution.tooltip"
+                                        [yaxis]="chartTaskDistribution.yaxis"></apx-chart>
+                                </div>
+                                <div class="grid grid-cols-2 border-t divide-x -m-6 mt-4 bg-gray-50 dark:bg-transparent">
+                                    <div class="flex flex-col items-center justify-center p-6 sm:p-8">
+                                        <div class="text-5xl font-semibold leading-none tracking-tighter">
+                                            {{data.taskDistribution.overview[taskDistributionWeekSelector.value]['new']}}
+                                        </div>
+                                        <div class="mt-1 text-center text-secondary">New tasks</div>
+                                    </div>
+                                    <div class="flex flex-col items-center justify-center p-6 sm:p-8">
+                                        <div class="text-5xl font-semibold leading-none tracking-tighter">
+                                            {{data.taskDistribution.overview[taskDistributionWeekSelector.value]['completed']}}
+                                        </div>
+                                        <div class="mt-1 text-center text-secondary">Completed tasks</div>
+                                    </div>
+                                </div>
+                            </div> -->
+                <!-- Schedule -->
+                <!-- <div class="sm:col-span-2 md:col-span-4 lg:col-span-2 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                                <div class="flex flex-col sm:flex-row items-start justify-between">
+                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Schedule</div>
+                                    <div class="mt-3 sm:mt-0 sm:ml-2">
+                                        <mat-button-toggle-group
+                                            value="today"
+                                            #scheduleDaySelector="matButtonToggleGroup">
+                                            <mat-button-toggle value="today">Today</mat-button-toggle>
+                                            <mat-button-toggle value="tomorrow">Tomorrow</mat-button-toggle>
+                                        </mat-button-toggle-group>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col mt-2 divide-y">
+                                    <ng-container *ngFor="let scheduleItem of data.schedule[scheduleDaySelector.value]; trackBy: trackByFn">
+                                        <div class="flex flex-row items-center justify-between py-4 px-0.5">
+                                            <div class="flex flex-col">
+                                                <div class="font-medium">{{scheduleItem.title}}</div>
+                                                <div class="flex flex-col sm:flex-row sm:items-center -ml-0.5 mt-2 sm:mt-1 space-y-1 sm:space-y-0 sm:space-x-3">
+                                                    <ng-container *ngIf="scheduleItem.time">
+                                                        <div class="flex items-center">
+                                                            <mat-icon
+                                                                class="icon-size-5 text-hint"
+                                                                [svgIcon]="'heroicons_solid:clock'"></mat-icon>
+                                                            <div class="ml-1.5 text-md text-secondary">{{scheduleItem.time}}</div>
+                                                        </div>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="scheduleItem.location">
+                                                        <div class="flex items-center">
+                                                            <mat-icon
+                                                                class="icon-size-5 text-hint"
+                                                                [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                                                            <div class="ml-1.5 text-md text-secondary">{{scheduleItem.location}}</div>
+                                                        </div>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+                                            <button mat-icon-button>
+                                                <mat-icon [svgIcon]="'heroicons_solid:chevron-right'"></mat-icon>
+                                            </button>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </mat-tab> -->
+
+                <!-- Budget -->
+                <mat-tab label="Dashboard">
+                    <ng-template matTabContent>
+                        <!-- Github issues summary -->
+                        <div
+                            class="sm:col-span-2 md:col-span-4 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden mb-8"
+                        >
+                            <div
+                                class="grid grid-cols-1 lg:grid-cols-2 grid-flow-row gap-6 w-full mt-8 sm:mt-4"
+                            >
+                                <!-- New vs. Closed -->
+                                <div class="flex flex-col flex-auto">
+                                    <div
+                                        class="flex flex-col sm:flex-row items-start justify-between"
+                                    >
+                                        <div
+                                            class="text-lg font-medium tracking-tight leading-6 truncate"
+                                        >
+                                            Evaluation Chart
+                                        </div>
+
+                                      
+
+                                        <div class="mt-3 sm:mt-0 sm:ml-2">
+                                            <button
+                                                *ngIf="
+                                                    user.reclamation ==
+                                                    'DEFAULT'
+                                                "
+                                                class="rounded mr-6"
+                                                (click)="claimResult()"
+                                            >
+                                                <fuse-alert
+                                                    [type]="'warn'"
+                                                    [appearance]="'outline'"
+                                                >
+                                                    <span fuseAlertTitle
+                                                        >Reclaim</span
+                                                    >
+                                                </fuse-alert>
+                                            </button>
+                                            <div
+                                                *ngIf="
+                                                    user.reclamation !==
+                                                    'DEFAULT'
+                                                "
+                                                class="rounded mr-6"
+                                            >
+                                                <fuse-alert
+                                                    [type]="'info'"
+                                                    [appearance]="'outline'"
+                                                >
+                                                    <span fuseAlertTitle
+                                                        >Reclaim send with
+                                                        success</span
+                                                    >
+                                                </fuse-alert>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col flex-auto">
+                                        <!-- class="flex-auto w-full h-80" -->
+
+                                        <!-- <apx-chart
+                                        class="flex-auto w-full h-80"
+
+                                            [chart]="chartGithubIssues.chart"
+                                            [colors]="chartGithubIssues.colors"
+                                            [dataLabels]="
+                                                chartGithubIssues.dataLabels
+                                            "
+                                            [grid]="chartGithubIssues.grid"
+                                            [labels]="chartGithubIssues.labels"
+                                            [legend]="chartGithubIssues.legend"
+                                            [plotOptions]="
+                                                chartGithubIssues.plotOptions
+                                            "
+                                            [series]="chartGithubIssues.series"
+                                            [states]="chartGithubIssues.states"
+                                            [stroke]="chartGithubIssues.stroke"
+                                            [xaxis]="chartGithubIssues.xaxis"
+                                            [yaxis]="chartGithubIssues.yaxis"
+                                        ></apx-chart> -->
+                                        <div
+                                            class="flex flex-row justify-center items-center h-full w-full"
+                                        >
+                                            <div class="mr-4">
+                                                <p
+                                                    *ngIf="
+                                                        isNumber(ratings.moy)
+                                                    "
+                                                    class="text-5xl text-center font-normal text-gray-500 dark:text-gray-400"
+                                                >
+                                                    {{ ratings.moy }}
+                                                </p>
+                                                <p
+                                                    *ngIf="
+                                                        !isNumber(ratings.moy)
+                                                    "
+                                                    class="text-5xl text-center font-normal text-gray-500 dark:text-gray-400"
+                                                >
+                                                    00
+                                                </p>
+
+                                                <div
+                                                    class="flex items-center mb-3"
+                                                >
+                                                    <svg
+                                                        aria-hidden="true"
+                                                        class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                                                        [ngClass]="{
+                                                            'text-yellow-400':
+                                                                ratings.moy >= 1
+                                                        }"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 20 20"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <title>
+                                                            First star
+                                                        </title>
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                                        ></path>
+                                                    </svg>
+                                                    <svg
+                                                        aria-hidden="true"
+                                                        class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                                                        [ngClass]="{
+                                                            'text-yellow-400':
+                                                                ratings.moy >= 2
+                                                        }"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 20 20"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <title>
+                                                            Second star
+                                                        </title>
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                                        ></path>
+                                                    </svg>
+                                                    <svg
+                                                        aria-hidden="true"
+                                                        class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                                                        [ngClass]="{
+                                                            'text-yellow-400':
+                                                                ratings.moy >= 3
+                                                        }"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 20 20"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <title>
+                                                            Third star
+                                                        </title>
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                                        ></path>
+                                                    </svg>
+                                                    <svg
+                                                        aria-hidden="true"
+                                                        class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                                                        [ngClass]="{
+                                                            'text-yellow-400':
+                                                                ratings.moy >= 4
+                                                        }"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 20 20"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <title>
+                                                            Fourth star
+                                                        </title>
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                                        ></path>
+                                                    </svg>
+                                                    <svg
+                                                        aria-hidden="true"
+                                                        class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                                                        [ngClass]="{
+                                                            'text-yellow-400':
+                                                                ratings.moy >= 5
+                                                        }"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 20 20"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <title>
+                                                            Fifth star
+                                                        </title>
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                                        ></path>
+                                                    </svg>
+                                                </div>
+                                                <p
+                                                    class="text-l text-center font-normal text-gray-500 dark:text-gray-400"
+                                                >
+                                                    from
+                                                    <span
+                                                        class="text-l text-center font-normal text-blue-700 dark:text-blue-400"
+                                                    >
+                                                        {{ ratings.allRates }}
+                                                    </span>
+
+                                                    Rates
+                                                </p>
+                                            </div>
+                                            <div class="w-full">
+                                                <div
+                                                    class="flex items-center mt-4"
+                                                >
+                                                    <span
+                                                        class="w-20 text-sm font-medium text-blue-600 dark:text-blue-500"
+                                                        >5 star</span
+                                                    >
+                                                    <div
+                                                        class="w-full h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700"
+                                                    >
+                                                        <div
+                                                            class="h-5 bg-yellow-400 rounded"
+                                                            [ngStyle]="{
+                                                                'width.%':
+                                                                    (ratings
+                                                                        .rating[
+                                                                        '5star'
+                                                                    ] /
+                                                                        ratings
+                                                                            .allRating[
+                                                                            '5star'
+                                                                        ]) *
+                                                                    100
+                                                                        ? (
+                                                                              (ratings
+                                                                                  .rating[
+                                                                                  '5star'
+                                                                              ] /
+                                                                                  ratings
+                                                                                      .allRating[
+                                                                                      '5star'
+                                                                                  ]) *
+                                                                              100
+                                                                          ).toFixed(
+                                                                              0
+                                                                          )
+                                                                        : 0
+                                                            }"
+                                                        ></div>
+                                                    </div>
+                                                    <span
+                                                        class="text-sm min-w-12 font-medium text-blue-600 dark:text-blue-500"
+                                                    >
+                                                        {{
+                                                            (ratings.rating[
+                                                                "5star"
+                                                            ] /
+                                                                ratings
+                                                                    .allRating[
+                                                                    "5star"
+                                                                ]) *
+                                                            100
+                                                                ? (
+                                                                      (ratings
+                                                                          .rating[
+                                                                          "5star"
+                                                                      ] /
+                                                                          ratings
+                                                                              .allRating[
+                                                                              "5star"
+                                                                          ]) *
+                                                                      100
+                                                                  ).toFixed(0)
+                                                                : 0
+                                                        }}%</span
+                                                    >
+                                                </div>
+                                                <div
+                                                    class="flex items-center mt-4"
+                                                >
+                                                    <span
+                                                        class="w-20 text-sm font-medium text-blue-600 dark:text-blue-500"
+                                                        >4 star</span
+                                                    >
+                                                    <div
+                                                        class="w-full h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700"
+                                                    >
+                                                        <div
+                                                            class="h-5 bg-yellow-400 rounded"
+                                                            [ngStyle]="{
+                                                                'width.%':
+                                                                    (ratings
+                                                                        .rating[
+                                                                        '4star'
+                                                                    ] /
+                                                                        ratings
+                                                                            .allRating[
+                                                                            '4star'
+                                                                        ]) *
+                                                                    100
+                                                                        ? (
+                                                                              (ratings
+                                                                                  .rating[
+                                                                                  '4star'
+                                                                              ] /
+                                                                                  ratings
+                                                                                      .allRating[
+                                                                                      '4star'
+                                                                                  ]) *
+                                                                              100
+                                                                          ).toFixed(
+                                                                              0
+                                                                          )
+                                                                        : 0
+                                                            }"
+                                                        ></div>
+                                                    </div>
+                                                    <span
+                                                        class="text-sm min-w-12 font-medium text-blue-600 dark:text-blue-500"
+                                                    >
+                                                        {{
+                                                            (ratings.rating[
+                                                                "4star"
+                                                            ] /
+                                                                ratings
+                                                                    .allRating[
+                                                                    "4star"
+                                                                ]) *
+                                                            100
+                                                                ? (
+                                                                      (ratings
+                                                                          .rating[
+                                                                          "4star"
+                                                                      ] /
+                                                                          ratings
+                                                                              .allRating[
+                                                                              "4star"
+                                                                          ]) *
+                                                                      100
+                                                                  ).toFixed(0)
+                                                                : 0
+                                                        }}%</span
+                                                    >
+                                                </div>
+                                                <div
+                                                    class="flex items-center mt-4"
+                                                >
+                                                    <span
+                                                        class="w-20 text-sm font-medium text-blue-600 dark:text-blue-500"
+                                                        >3 star</span
+                                                    >
+                                                    <div
+                                                        class="w-full h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700"
+                                                    >
+                                                        <div
+                                                            class="h-5 bg-yellow-400 rounded"
+                                                            [ngStyle]="{
+                                                                'width.%':
+                                                                    (ratings
+                                                                        .rating[
+                                                                        '3star'
+                                                                    ] /
+                                                                        ratings
+                                                                            .allRating[
+                                                                            '3star'
+                                                                        ]) *
+                                                                    100
+                                                                        ? (
+                                                                              (ratings
+                                                                                  .rating[
+                                                                                  '3star'
+                                                                              ] /
+                                                                                  ratings
+                                                                                      .allRating[
+                                                                                      '3star'
+                                                                                  ]) *
+                                                                              100
+                                                                          ).toFixed(
+                                                                              0
+                                                                          )
+                                                                        : 0
+                                                            }"
+                                                        ></div>
+                                                    </div>
+                                                    <span
+                                                        class="text-sm min-w-12 font-medium text-blue-600 dark:text-blue-500"
+                                                    >
+                                                        {{
+                                                            (ratings.rating[
+                                                                "3star"
+                                                            ] /
+                                                                ratings
+                                                                    .allRating[
+                                                                    "3star"
+                                                                ]) *
+                                                            100
+                                                                ? (
+                                                                      (ratings
+                                                                          .rating[
+                                                                          "3star"
+                                                                      ] /
+                                                                          ratings
+                                                                              .allRating[
+                                                                              "3star"
+                                                                          ]) *
+                                                                      100
+                                                                  ).toFixed(0)
+                                                                : 0
+                                                        }}%</span
+                                                    >
+                                                </div>
+                                                <div
+                                                    class="flex items-center mt-4"
+                                                >
+                                                    <span
+                                                        class="w-20 text-sm font-medium text-blue-600 dark:text-blue-500"
+                                                        >2 star</span
+                                                    >
+                                                    <div
+                                                        class="w-full h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700"
+                                                    >
+                                                        <div
+                                                            class="h-5 bg-yellow-400 rounded"
+                                                            [ngStyle]="{
+                                                                'width.%':
+                                                                    (ratings
+                                                                        .rating[
+                                                                        '2star'
+                                                                    ] /
+                                                                        ratings
+                                                                            .allRating[
+                                                                            '2star'
+                                                                        ]) *
+                                                                    100
+                                                                        ? (
+                                                                              (ratings
+                                                                                  .rating[
+                                                                                  '2star'
+                                                                              ] /
+                                                                                  ratings
+                                                                                      .allRating[
+                                                                                      '2star'
+                                                                                  ]) *
+                                                                              100
+                                                                          ).toFixed(
+                                                                              0
+                                                                          )
+                                                                        : 0
+                                                            }"
+                                                        ></div>
+                                                    </div>
+                                                    <span
+                                                        class="text-sm min-w-12 font-medium text-blue-600 dark:text-blue-500"
+                                                    >
+                                                        {{
+                                                            (ratings.rating[
+                                                                "2star"
+                                                            ] /
+                                                                ratings
+                                                                    .allRating[
+                                                                    "2star"
+                                                                ]) *
+                                                            100
+                                                                ? (
+                                                                      (ratings
+                                                                          .rating[
+                                                                          "2star"
+                                                                      ] /
+                                                                          ratings
+                                                                              .allRating[
+                                                                              "2star"
+                                                                          ]) *
+                                                                      100
+                                                                  ).toFixed(0)
+                                                                : 0
+                                                        }}%
+                                                    </span>
+                                                </div>
+                                                <div
+                                                    class="flex items-center mt-4"
+                                                >
+                                                    <span
+                                                        class="w-20 text-sm font-medium text-blue-600 dark:text-blue-500"
+                                                        >1 star</span
+                                                    >
+                                                    <div
+                                                        class="w-full h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700"
+                                                    >
+                                                        <div
+                                                            class="h-5 bg-yellow-400 rounded"
+                                                            [ngStyle]="{
+                                                                'width.%':
+                                                                    (ratings
+                                                                        .rating[
+                                                                        '1star'
+                                                                    ] /
+                                                                        ratings
+                                                                            .allRating[
+                                                                            '1star'
+                                                                        ]) *
+                                                                    100
+                                                                        ? (
+                                                                              (ratings
+                                                                                  .rating[
+                                                                                  '1star'
+                                                                              ] /
+                                                                                  ratings
+                                                                                      .allRating[
+                                                                                      '1star'
+                                                                                  ]) *
+                                                                              100
+                                                                          ).toFixed(
+                                                                              0
+                                                                          )
+                                                                        : 0
+                                                            }"
+                                                        ></div>
+                                                    </div>
+                                                    <span
+                                                        class="text-sm min-w-12 font-medium text-blue-600 dark:text-blue-500"
+                                                    >
+                                                        {{
+                                                            (ratings.rating[
+                                                                "1star"
+                                                            ] /
+                                                                ratings
+                                                                    .allRating[
+                                                                    "1star"
+                                                                ]) *
+                                                            100
+                                                                ? (
+                                                                      (ratings
+                                                                          .rating[
+                                                                          "1star"
+                                                                      ] /
+                                                                          ratings
+                                                                              .allRating[
+                                                                              "1star"
+                                                                          ]) *
+                                                                      100
+                                                                  ).toFixed(0)
+                                                                : 0
+                                                        }}%</span
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Overview -->
+                                <div class="flex flex-col">
+                                    <div class="font-medium text-secondary">
+                                        Overview
+                                    </div>
+                                    <div
+                                        class="flex-auto grid grid-cols-4 gap-4 mt-6"
+                                    >
+                                        <!-- New issues -->
+                                        <div
+                                            class="col-span-2 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-indigo-50 text-indigo-800 dark:bg-white dark:bg-opacity-5 dark:text-indigo-400"
+                                        >
+                                            <div
+                                                class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight"
+                                                *ngIf="studentsNumber"
+                                            >
+                                                {{
+                                                    studentsNumber.studentNumber
+                                                }}
+                                            </div>
+                                            <div
+                                                class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight"
+                                                *ngIf="!studentsNumber"
+                                            >
+                                                0
+                                            </div>
+                                            <div
+                                                class="mt-1 text-sm sm:text-lg font-medium"
+                                            >
+                                                Students
+                                            </div>
+                                        </div>
+                                        <!-- Closed -->
+                                        <div
+                                            class="col-span-2 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-green-50 text-green-800 dark:bg-white dark:bg-opacity-5 dark:text-green-500"
+                                        >
+                                            <div
+                                                class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight"
+                                                *ngIf="studentsNumber"
+                                            >
+                                                {{
+                                                    studentsNumber.studentRatedNumber
+                                                }}
+                                            </div>
+                                            <div
+                                                class="mt-1 text-sm sm:text-lg font-medium"
+                                            >
+                                                student Rated
+                                            </div>
+                                            <div
+                                                class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight"
+                                                *ngIf="!studentsNumber"
+                                            >
+                                                0
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="col-span-2 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-green-50 text-green-800 dark:bg-white dark:bg-opacity-5 dark:text-green-500"
+                                        >
+                                            <div
+                                                class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight"
+                                                *ngIf="studentsNumber"
+                                            >
+                                                {{
+                                                    studentsNumber.classRoomsNumbaer
+                                                }}
+                                            </div>
+                                            <div
+                                                class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight"
+                                                *ngIf="!studentsNumber"
+                                            >
+                                                0
+                                            </div>
+                                            <div
+                                                class="mt-1 text-sm sm:text-lg font-medium"
+                                            >
+                                                ClassRooms
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="col-span-2 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-indigo-50 text-indigo-800 dark:bg-white dark:bg-opacity-5 dark:text-indigo-400"
+                                        >
+                                            <div
+                                                class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight"
+                                                *ngIf="studentsNumber"
+                                            >
+                                                {{
+                                                    studentsNumber.moduleNumber
+                                                }}
+                                            </div>
+                                            <div
+                                                class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight"
+                                                *ngIf="!studentsNumber"
+                                            >
+                                                0
+                                            </div>
+                                            <div
+                                                class="mt-1 text-sm sm:text-lg font-medium"
+                                            >
+                                                Modules
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="grid grid-cols-1 sm:grid-cols-6 gap-6 w-full min-w-0"
+                        >
+                            <!-- Budget details -->
+                            <div
+                                class="sm:col-span-6 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden"
+                            >
+                                <div
+                                    class="text-lg font-medium tracking-tight leading-6 truncate"
+                                >
+                                    Teaching
+                                </div>
+                                <div
+                                    *ngIf="dataTeaching.length > 0"
+                                    class="flex flex-col flex-auto mt-2 overflow-x-auto"
+                                >
+                                    <table
+                                        class="min-w-240 overflow-y-visible"
+                                        mat-table
+                                        [dataSource]="dataTeaching"
+                                    >
+                                        <!-- class name -->
+                                        <ng-container
+                                            matColumnDef="name_class"
+                                            sticky
+                                        >
+                                            <th
+                                                mat-header-cell
+                                                *matHeaderCellDef
+                                            >
+                                                Class Rooms
+                                            </th>
+                                            <td
+                                                mat-cell
+                                                *matCellDef="let budget"
+                                            >
+                                                <span class="flex items-center">
+                                                    <span
+                                                        class="w-2 h-2 rounded-full"
+                                                        [ngClass]="{
+                                                            'text-blue-800 bg-blue-100 dark:text-blue-50 dark:bg-blue-500':
+                                                                budget.name_class.includes(
+                                                                    '1'
+                                                                ),
+                                                            'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500':
+                                                                budget.name_class.includes(
+                                                                    '2'
+                                                                ),
+                                                            'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500':
+                                                                budget.name_class.includes(
+                                                                    '3'
+                                                                ),
+                                                            'text-pink-800 bg-pink-100 dark:text-pink-50 dark:bg-pink-500':
+                                                                budget.name_class.includes(
+                                                                    '4'
+                                                                ),
+                                                            'text-amber-800 bg-amber-100 dark:text-amber-50 dark:bg-amber-500':
+                                                                budget.name_class.includes(
+                                                                    '5'
+                                                                )
+                                                        }"
+                                                    ></span>
+                                                    <span
+                                                        class="ml-3 leading-4"
+                                                        >{{
+                                                            budget.name_class
+                                                        }}</span
+                                                    >
+                                                </span>
+                                            </td>
+                                        </ng-container>
+
+                                        <!-- students number  -->
+                                        <ng-container
+                                            matColumnDef="num_students"
+                                        >
+                                            <th
+                                                mat-header-cell
+                                                *matHeaderCellDef
+                                            >
+                                                Students Number
+                                            </th>
+                                            <td
+                                                mat-cell
+                                                *matCellDef="let budget"
+                                            >
+                                                <span
+                                                    class="font-medium text-right"
+                                                >
+                                                    {{ budget.num_students }}
+                                                </span>
+                                            </td>
+                                        </ng-container>
+
+                                        <!-- num_students_rated amount -->
+                                        <ng-container
+                                            matColumnDef="num_students_rated"
+                                        >
+                                            <th
+                                                mat-header-cell
+                                                *matHeaderCellDef
+                                            >
+                                                Students Rated
+                                            </th>
+                                            <td
+                                                mat-cell
+                                                *matCellDef="let budget"
+                                            >
+                                                {{ budget.num_students_rated }}
+                                            </td>
+                                        </ng-container>
+                                        <!-- university_year-->
+                                        <ng-container
+                                            matColumnDef="name_module"
+                                        >
+                                            <th
+                                                mat-header-cell
+                                                *matHeaderCellDef
+                                            >
+                                                Module
+                                            </th>
+                                            <td
+                                                mat-cell
+                                                *matCellDef="let budget"
+                                            >
+                                                {{ budget.name_module }}
+                                            </td>
+                                        </ng-container>
+                                        <!-- university_year-->
+                                        <ng-container
+                                            matColumnDef="university_year"
+                                        >
+                                            <th
+                                                mat-header-cell
+                                                *matHeaderCellDef
+                                            >
+                                                University Year
+                                            </th>
+                                            <td
+                                                mat-cell
+                                                *matCellDef="let budget"
+                                            >
+                                                {{
+                                                    budget.university_year
+                                                        | date : "yyyy"
+                                                }}
+                                            </td>
+                                        </ng-container>
+
+                                        <tr
+                                            mat-header-row
+                                            *matHeaderRowDef="tabelColumns"
+                                        ></tr>
+                                        <tr
+                                            mat-row
+                                            *matRowDef="
+                                                let row;
+                                                columns: tabelColumns
+                                            "
+                                        ></tr>
+                                    </table>
+                                </div>
+                                <div
+                                    *ngIf="!dataTeaching.length > 0"
+                                    class="sm:col-span-3"
+                                >
+                                    <fuse-alert
+                                        [appearance]="'outline'"
+                                        [type]="'info'"
+                                    >
+                                        Pending
+                                    </fuse-alert>
+                                </div>
+                            </div>
+                            <!-- RDI -->
+                            <div
+                                class="sm:col-span-6 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden"
+                            >
+                                <div
+                                    class="text-lg font-medium tracking-tight leading-6 truncate"
+                                >
+                                    RDI
+                                    <fuse-alert
+                                        [appearance]="'outline'"
+                                        [type]="'info'"
+                                    >
+                                        Pending
+                                    </fuse-alert>
+                                </div>
+
+                                <div class="sm:col-span-3"></div>
+
+                                <div
+                                    *ngIf="false"
+                                    class="text-lg font-medium tracking-tight leading-6 truncate"
+                                >
+                                    RDI
+                                </div>
+
+                                <!-- <div
+                                    class="flex flex-col flex-auto mt-2 overflow-x-auto"
+                                >
+                                    <table
+                                        class="min-w-240 overflow-y-visible"
+                                        mat-table
+                                        [dataSource]="dataTeaching"
+                                    > -->
+                                <!-- class name -->
+                                <!-- <ng-container
+                                            matColumnDef="name_class"
+                                            sticky
+                                        >
+                                            <th
+                                                mat-header-cell
+                                                *matHeaderCellDef
+                                            >
+                                                Class Rooms
+                                            </th>
+                                            <td
+                                                mat-cell
+                                                *matCellDef="let budget"
+                                            >
+                                                <span class="flex items-center">
+                                                    <span
+                                                        class="w-2 h-2 rounded-full"
+                                                        [ngClass]="{
+                                                            'bg-blue-500':
+                                                                budget.name_class.includes(
+                                                                    '3A'
+                                                                ),
+                                                            'bg-red-500':
+                                                                budget.name_class.includes(
+                                                                    '4GMX'
+                                                                ),
+                                                            'bg-green-500':
+                                                                budget.name_class.includes(
+                                                                    '3B'
+                                                                ),
+                                                            'bg-amber-500':
+                                                                budget.name_class.includes(
+                                                                    '4SIM'
+                                                                )
+                                                        }"
+                                                    ></span>
+                                                    <span
+                                                        class="ml-3 leading-4"
+                                                        >{{
+                                                            budget.name_class
+                                                        }}</span
+                                                    >
+                                                </span>
+                                            </td>
+                                        </ng-container> -->
+
+                                <!-- students number  -->
+                                <!-- <ng-container
+                                            matColumnDef="num_students"
+                                        >
+                                            <th
+                                                mat-header-cell
+                                                *matHeaderCellDef
+                                            >
+                                                Students Number
+                                            </th>
+                                            <td
+                                                mat-cell
+                                                *matCellDef="let budget"
+                                            >
+                                                <span
+                                                    class="font-medium text-right"
+                                                >
+                                                    {{ budget.num_students }}
+                                                </span>
+                                            </td>
+                                        </ng-container> -->
+
+                                <!-- num_students_rated amount -->
+                                <!-- <ng-container
+                                            matColumnDef="num_students_rated"
+                                        >
+                                            <th
+                                                mat-header-cell
+                                                *matHeaderCellDef
+                                            >
+                                                students rated
+                                            </th>
+                                            <td
+                                                mat-cell
+                                                *matCellDef="let budget"
+                                            >
+                                                {{ budget.num_students_rated }}
+                                            </td>
+                                        </ng-container> -->
+                                <!-- university_year-->
+                                <!-- <ng-container
+                                            matColumnDef="name_module"
+                                        >
+                                            <th
+                                                mat-header-cell
+                                                *matHeaderCellDef
+                                            >
+                                                Module
+                                            </th>
+                                            <td
+                                                mat-cell
+                                                *matCellDef="let budget"
+                                            >
+                                                {{ budget.name_module }}
+                                            </td>
+                                        </ng-container> -->
+                                <!-- university_year-->
+                                <!-- <ng-container
+                                            matColumnDef="university_year"
+                                        >
+                                            <th
+                                                mat-header-cell
+                                                *matHeaderCellDef
+                                            >
+                                                University Year
+                                            </th>
+                                            <td
+                                                mat-cell
+                                                *matCellDef="let budget"
+                                            >
+                                                {{
+                                                    budget.university_year
+                                                        | date : "yyyy"
+                                                }}
+                                            </td>
+                                        </ng-container>
+
+                                        <tr
+                                            mat-header-row
+                                            *matHeaderRowDef="tabelColumns"
+                                        ></tr>
+                                        <tr
+                                            mat-row
+                                            *matRowDef="
+                                                let row;
+                                                columns: tabelColumns
+                                            "
+                                        ></tr>
+                                    </table> -->
+                                <!-- </div> -->
+                            </div>
+                            <!-- Framing-->
+                            <div
+                                class="sm:col-span-6 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden"
+                            >
+                                <div
+                                    class="text-lg font-medium tracking-tight leading-6 truncate"
+                                >
+                                    Supervising
+                                </div>
+                                <div
+                                    *ngIf="framingData.length > 0"
+                                    class="flex flex-col flex-auto mt-2 overflow-x-auto"
+                                >
+                                    <table
+                                        class="min-w-240 overflow-y-visible"
+                                        mat-table
+                                        [dataSource]="framingData"
+                                    >
+                                        <!-- class name -->
+                                        <ng-container
+                                            matColumnDef="name_class"
+                                            sticky
+                                        >
+                                            <th
+                                                mat-header-cell
+                                                *matHeaderCellDef
+                                            >
+                                                Class Rooms
+                                            </th>
+                                            <td
+                                                mat-cell
+                                                *matCellDef="let budget"
+                                            >
+                                                <span class="flex items-center">
+                                                    <span
+                                                        class="w-2 h-2 rounded-full"
+                                                        [ngClass]="{
+                                                            'text-blue-800 bg-blue-100 dark:text-blue-50 dark:bg-blue-500':
+                                                                budget.name_class.includes(
+                                                                    '1'
+                                                                ),
+                                                            'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500':
+                                                                budget.name_class.includes(
+                                                                    '2'
+                                                                ),
+                                                            'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500':
+                                                                budget.name_class.includes(
+                                                                    '3'
+                                                                ),
+                                                            'text-pink-800 bg-pink-100 dark:text-pink-50 dark:bg-pink-500':
+                                                                budget.name_class.includes(
+                                                                    '4'
+                                                                ),
+                                                            'text-amber-800 bg-amber-100 dark:text-amber-50 dark:bg-amber-500':
+                                                                budget.name_class.includes(
+                                                                    '5'
+                                                                )
+                                                        }"
+                                                    ></span>
+                                                    <span
+                                                        class="ml-3 leading-4"
+                                                        >{{
+                                                            budget.name_class
+                                                        }}</span
+                                                    >
+                                                </span>
+                                            </td>
+                                        </ng-container>
+
+                                        <!-- students number  -->
+                                        <ng-container
+                                            matColumnDef="num_students"
+                                        >
+                                            <th
+                                                mat-header-cell
+                                                *matHeaderCellDef
+                                            >
+                                                Student
+                                            </th>
+                                            <td
+                                                mat-cell
+                                                *matCellDef="let budget"
+                                            >
+                                                <span
+                                                    class="font-medium text-right"
+                                                >
+                                                    {{ budget.first_name }}
+                                                    {{ budget.last_name }}
+                                                </span>
+                                            </td>
+                                        </ng-container>
+
+                                        <!-- num_students_rated amount -->
+                                        <ng-container
+                                            matColumnDef="num_students_rated"
+                                        >
+                                            <th
+                                                mat-header-cell
+                                                *matHeaderCellDef
+                                            >
+                                                Students Rated
+                                            </th>
+                                            <td
+                                                mat-cell
+                                                *matCellDef="let budget"
+                                            >
+                                                {{ budget.num_students_rated }}
+                                            </td>
+                                        </ng-container>
+                                        <!-- university_year-->
+                                        <ng-container
+                                            matColumnDef="name_module"
+                                        >
+                                            <th
+                                                mat-header-cell
+                                                *matHeaderCellDef
+                                            >
+                                                Email
+                                            </th>
+                                            <td
+                                                mat-cell
+                                                *matCellDef="let budget"
+                                            >
+                                                {{ budget.email }}
+                                            </td>
+                                        </ng-container>
+                                        <!-- university_year-->
+                                        <ng-container
+                                            matColumnDef="university_year"
+                                        >
+                                            <th
+                                                mat-header-cell
+                                                *matHeaderCellDef
+                                            >
+                                                University Year
+                                            </th>
+                                            <td
+                                                mat-cell
+                                                *matCellDef="let budget"
+                                            >
+                                                {{
+                                                    budget.university_year
+                                                        | date : "yyyy"
+                                                }}
+                                            </td>
+                                        </ng-container>
+
+                                        <tr
+                                            mat-header-row
+                                            *matHeaderRowDef="tabelColumns"
+                                        ></tr>
+                                        <tr
+                                            mat-row
+                                            *matRowDef="
+                                                let row;
+                                                columns: tabelColumns
+                                            "
+                                        ></tr>
+                                    </table>
+                                </div>
+                                <div
+                                    *ngIf="!framingData.length > 0"
+                                    class="sm:col-span-3"
+                                >
+                                    <fuse-alert
+                                        [appearance]="'outline'"
+                                        [type]="'info'"
+                                    >
+                                        Pending
+                                    </fuse-alert>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </mat-tab>
+
+                <!-- Team -->
+                <mat-tab label="Team">
+                    <ng-template matTabContent>
+                        <div
+                            class="flex flex-col sm:flex-row items-center justify-between w-full max-w-xs sm:max-w-none"
+                        >
+                            <mat-slide-toggle
+                                class="sm:mt-0 sm:ml-auto sm:mb-2"
+                                [color]="'primary'"
+                                (change)="toggleCompleted($event)"
+                            >
+                                Hide Rated
+                            </mat-slide-toggle>
+                        </div>
+
+                        <div
+                            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full mt-6 md:mt-8"
+                        >
+                            <ng-container
+                                *ngFor="
+                                    let member of filtredTichers;
+                                    let i = index
+                                "
+                            >
+                                <div
+                                    class="flex flex-col flex-auto items-center bg-card shadow rounded-2xl overflow-hidden"
+                                >
+                                    <div
+                                        class="flex p-2 w-full items-center justify-between"
+                                    >
+                                        <div
+                                            class="py-0.5 px-3 rounded-full text-sm font-semibold text-amber-800 bg-amber-100 dark:text-amber-50 dark:bg-amber-500"
+                                        >
+                                            {{ member.role }}
+                                        </div>
+                                        <div
+                                            class="py-0.5 px-3 rounded-full text-sm font-semibold items-end text-blue-800 bg-blue-100 dark:text-blue-50 dark:bg-blue-500'"
+                                        >
+                                            {{ member.up }}
+                                        </div>
+                                    </div>
+
+                                    <!-- Avatar & Info -->
+                                    <div
+                                        class="flex flex-col flex-auto w-full p-4 text-center"
+                                    >
+                                        <div
+                                            class="w-32 h-32 mx-auto rounded-full overflow-hidden"
+                                        >
+                                            <img
+                                                *ngIf="!member.social_image"
+                                                class="w-full h-full object-contain hover:object-scale-down"
+                                                [src]="member.blobImage"
+                                            />
+                                            <img
+                                                *ngIf="member.social_image"
+                                                class="w-full h-full object-contain hover:object-scale-down"
+                                                [src]="member.blobImage"
+                                            />
+                                        </div>
+                                        <div class="mt-6 font-medium">
+                                            {{ member.first_name }}
+                                            {{ member.last_name }}
+                                        </div>
+                                        <div class="text-secondary">
+                                            {{ member.email }}
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="flex items-center w-full border-t divide-x"
+                                    >
+                                        <div
+                                            class="flex p-2 w-full items-center justify-between"
+                                            *ngIf="
+                                                !member.beforeRate &&
+                                                member.value == null
+                                            "
+                                        >
+                                            <div
+                                                class="stars w-full items-center flex justify-center"
+                                            >
+                                                <ngx-star-rating
+                                                    (click)="onRate(member)"
+                                                    [(ngModel)]="member.value"
+                                                    [id]="'rating-' + i"
+                                                ></ngx-star-rating>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="flex items-center w-full border-t divide-x"
+                                        *ngIf="
+                                            member.value != null &&
+                                            member.confirmRate
+                                        "
+                                    >
+                                        <button
+                                            class="flex flex-auto items-center justify-center py-4 hover:bg-hover"
+                                            (click)="
+                                                confirmRateTeaching(member)
+                                            "
+                                        >
+                                            <mat-icon
+                                                class="icon-size-5 text-hint"
+                                                [svgIcon]="
+                                                    'heroicons_solid:check'
+                                                "
+                                            ></mat-icon>
+                                            <span class="ml-2">confirm</span>
+                                        </button>
+                                        <button
+                                            class="flex flex-auto items-center justify-center py-4 hover:bg-hover"
+                                            (click)="cancelRateTeaching(member)"
+                                        >
+                                            <mat-icon
+                                                class="icon-size-5 text-hint"
+                                                [svgIcon]="'heroicons_solid:x'"
+                                            ></mat-icon>
+                                            <span class="ml-2">cancel</span>
+                                        </button>
+                                    </div>
+                                    <div
+                                        class="w-full items-center flex justify-center"
+                                        *ngIf="member.beforeRate"
+                                    >
+                                        <span> Rated </span>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,391 @@
+<div
+    class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto"
+    cdkScrollable
+>
+    <!-- Header -->
+
+    <!-- Main -->
+    <div class="flex flex-auto p-6 sm:p-10">
+        <div
+            class="flex flex-col flex-auto w-full max-w-xs sm:max-w-5xl mx-auto"
+        >
+            <!-- Filters -->
+            <div
+                class="flex flex-col sm:flex-row items-start md:items-start sm:items-center sm:justify-between py-8 px-6 md:px-8"
+            >
+                <mat-form-field class="fuse-mat-no-subscript w-full sm:w-36">
+                    <mat-select
+                        [value]="'all'"
+                        (selectionChange)="filterByCategory($event)"
+                    >
+                        <mat-option [value]="'all'">All</mat-option>
+
+                        <ng-container
+                            *ngFor="
+                                let category of categories;
+                                trackBy: trackByFn
+                            "
+                        >
+                            <mat-option [value]="category.class_name_class">{{
+                                category.class_name_class
+                            }}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field
+                    class="fuse-mat-no-subscript w-full sm:w-72 mt-4 sm:mt-0 sm:ml-4"
+                    [floatLabel]="'always'"
+                >
+                    <mat-icon
+                        matPrefix
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:search'"
+                    ></mat-icon>
+                    <input
+                        (input)="filterByQuery(query.value)"
+                        placeholder="Search by title or Description"
+                        matInput
+                        #query
+                    />
+                </mat-form-field>
+                <div class="ml-2 grid items-end mt-8 sm:mt-0 sm:ml-auto">
+                    <button
+                        class="mr-4 w-full mb-4 sm:mb-4"
+                        mat-flat-button
+                        [color]="'primary'"
+                        (click)="addModule()"
+                        [matTooltip]="'add Module'"
+                    >
+                        <mat-icon
+                            [svgIcon]="'heroicons_outline:plus'"
+                        ></mat-icon>
+                        <span class="ml-2 mr-1">Add Module</span>
+                    </button>
+                    <button
+                        class="w-full"
+                        mat-flat-button
+                        [color]="'accent'"
+                        (click)="addUE()"
+                        [matTooltip]="'add Ue'"
+                    >
+                        <mat-icon
+                            [svgIcon]="'heroicons_outline:plus'"
+                        ></mat-icon>
+                        <span class="ml-2 mr-1">Add UE</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Courses -->
+            <ng-container *ngIf="this.filteredCourses.length; else noCourses">
+                <div
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 sm:mt-10"
+                >
+                    <ng-container
+                        *ngFor="
+                            let course of filteredCourses;
+                            let index = index;
+                            trackBy: trackByFn
+                        "
+                    >
+                        <!-- Course -->
+                        <div
+                            class="flex flex-col h-96 shadow rounded-2xl overflow-hidden bg-card"
+                        >
+                            <div class="flex flex-col p-6">
+                                <div class="flex items-center justify-between">
+                                    <!-- Course category -->
+                                    <ng-container
+                                        *ngIf="
+                                            course.class
+                                                | fuseFindByKey
+                                                    : 'class_name_class'
+                                                    : categories as class
+                                        "
+                                    >
+                                        <div
+                                            class="py-0.5 px-3 rounded-full text-sm font-semibold"
+                                            [ngClass]="{
+                                                'text-blue-800 bg-blue-100 dark:text-blue-50 dark:bg-blue-500':
+                                                    class.class_name_class.includes(
+                                                        '1'
+                                                    ),
+                                                'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500':
+                                                    class.class_name_class.includes(
+                                                        '2'
+                                                    ),
+                                                'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500':
+                                                    class.class_name_class.includes(
+                                                        '3'
+                                                    ),
+                                                'text-pink-800 bg-pink-100 dark:text-pink-50 dark:bg-pink-500':
+                                                    class.class_name_class.includes(
+                                                        '4'
+                                                    ),
+                                                'text-amber-800 bg-amber-100 dark:text-amber-50 dark:bg-amber-500':
+                                                    class.class_name_class.includes(
+                                                        '5'
+                                                    )
+                                            }"
+                                        >
+                                            {{ class.class_name_class }}
+                                        </div>
+                                    </ng-container>
+                                    <!-- Completed at least once -->
+                                    <div class="flex items-center">
+                                        <!-- check if completed -->
+                                        <ng-container *ngIf="course.is_done">
+                                            <mat-icon
+                                                class="icon-size-5 text-green-600"
+                                                [svgIcon]="
+                                                    'heroicons_solid:badge-check'
+                                                "
+                                                [matTooltip]="
+                                                    'You completed this course at least once'
+                                                "
+                                            ></mat-icon>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                <!-- Course title & Description -->
+                                <div
+                                    class="mt-4 text-md font-medium"
+                                    *ngIf="course.name_ue"
+                                >
+                                    {{ course.name_ue }}
+                                </div>
+                                <div
+                                    class="mt-4 text-md font-medium"
+                                    *ngIf="!course.name_ue"
+                                >
+                                    No Ue assigned
+                                </div>
+                                <div
+                                    class="mt-0.5 line-clamp-2 text-secondary"
+                                    *ngIf="course.name_module"
+                                >
+                                    {{ course.name_module }}
+                                </div>
+                                <div
+                                    class="mt-0.5 line-clamp-2 text-secondary"
+                                    *ngIf="!course.name_module"
+                                >
+                                    No Module assigned
+                                </div>
+
+                                <div class="w-full h-1 mt-4 border-t-2"></div>
+                                <!-- Course time -->
+                                <!-- <mat-form-field [floatLabel]="'always'">
+                                    <mat-icon
+                                        matPrefix
+                                        [svgIcon]="'heroicons_solid:search'"
+                                    ></mat-icon>
+                                    <input
+                                        (input)="
+                                            filterByQueryIndex(
+                                                index,
+                                                queryCLASS.value
+                                            )
+                                        "
+                                        placeholder="Search class room"
+                                        matInput
+                                        #queryCLASS
+                                    />
+                                </mat-form-field> -->
+
+                                <div
+                                    class="flex items-center leading-5 text-md text-secondary"
+                                ></div>
+
+                                <div
+                                    fuseScrollbar
+                                    [fuseScrollbarOptions]="{
+                                        wheelPropagation: inner,
+                                        suppressScrollX: true
+                                    }"
+                                    class="pr-4 h-30"
+                                >
+                                    <ng-container
+                                        *ngFor="
+                                            let classroom of course.classRooms;
+                                            trackBy: trackByFn
+                                        "
+                                    >
+                                        <div
+                                            class="mb-1.5 flex p-2 w-full items-center justify-between"
+                                            *ngIf="
+                                                course.classRooms;
+                                                else noCourses
+                                            "
+                                        >
+                                            <div
+                                                class="flex items-center leading-5 text-md text-secondary"
+                                            >
+                                                <mat-icon
+                                                    class="icon-size-5 text-hint"
+                                                    [svgIcon]="
+                                                        'heroicons_solid:academic-cap'
+                                                    "
+                                                ></mat-icon>
+
+                                                <div class="ml-1.5">
+                                                    {{ classroom.classroom }}
+                                                </div>
+                                                <div class="ml-1.5">
+                                                    {{ classroom.name_module }}
+                                                </div>
+                                            </div>
+
+                                            <div
+                                                *ngIf="classroom.classroomRate"
+                                            >
+                                                {{
+                                                    classroom.classroomRate
+                                                        .num_students_rated
+                                                }}
+                                                /
+                                                <span
+                                                    *ngIf="
+                                                        classroom.classroomRate
+                                                            .num_students
+                                                    "
+                                                >
+                                                    {{
+                                                        classroom.classroomRate
+                                                            .num_students
+                                                    }}
+                                                </span>
+                                                <span
+                                                    *ngIf="
+                                                        !classroom.classroomRate
+                                                            .num_students
+                                                    "
+                                                >
+                                                    0
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <!-- Footer -->
+                            <div class="flex flex-col w-full mt-auto">
+                                <!-- Course progress -->
+                                <div class="relative h-0.5">
+                                    <div
+                                        class="z-10 absolute inset-x-0 h-6 -mt-3"
+                                        [matTooltip]="
+                                            course.currentStep /
+                                                course.totalSteps | percent
+                                        "
+                                        [matTooltipPosition]="'above'"
+                                        [matTooltipClass]="'-mb-0.5'"
+                                    ></div>
+                                    <mat-progress-bar
+                                        class="h-0.5"
+                                        [value]="
+                                            (100 * course.currentStep) /
+                                            course.totalSteps
+                                        "
+                                    ></mat-progress-bar>
+                                </div>
+
+                                <!-- Course launch button -->
+                                <ng-container
+                                    *ngIf="
+                                        course.class
+                                            | fuseFindByKey
+                                                : 'class_name_class'
+                                                : categories as class
+                                    "
+                                >
+                                    <div
+                                        class="px-6 py-4 text-right dark:bg-transparent"
+                                        [ngClass]="{
+                                            'text-blue-800 bg-blue-100 dark:text-blue-50 dark:bg-blue-500':
+                                                class.class_name_class.includes(
+                                                    '1'
+                                                ),
+                                            'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500':
+                                                class.class_name_class.includes(
+                                                    '2'
+                                                ),
+                                            'text-green-800 bg-green-100 dark:text-green-50 dark:bg-green-500':
+                                                class.class_name_class.includes(
+                                                    '3'
+                                                ),
+                                            'text-pink-800 bg-pink-100 dark:text-pink-50 dark:bg-pink-500':
+                                                class.class_name_class.includes(
+                                                    '4'
+                                                ),
+                                            'text-amber-800 bg-amber-100 dark:text-amber-50 dark:bg-amber-500':
+                                                class.class_name_class.includes(
+                                                    '5'
+                                                )
+                                        }"
+                                    >
+                                        <button
+                                            class="bg-gray-50"
+                                            mat-stroked-button
+                                            (click)="launchRate(course)"
+                                            *ngIf="!course.rate"
+                                        >
+                                            <span
+                                                class="inline-flex items-center"
+                                            >
+                                                launch Rate
+                                                <!-- Not started -->
+                                                <!-- <ng-container *ngIf="course.progress.currentStep === 0"> -->
+                                                <!-- Never completed -->
+
+                                                <mat-icon
+                                                    class="ml-1.5 icon-size-5"
+                                                    [svgIcon]="
+                                                        'heroicons_solid:arrow-sm-right'
+                                                    "
+                                                ></mat-icon>
+                                            </span>
+                                        </button>
+
+                                        <button
+                                            class="bg-gray-50"
+                                            mat-stroked-button
+                                            (click)="launchRate(course)"
+                                            *ngIf="course.rate"
+                                        >
+                                            <span
+                                                class="inline-flex items-center"
+                                            >
+                                                Remind ClassRooms
+                                                <!-- Not started -->
+                                                <!-- <ng-container *ngIf="course.progress.currentStep === 0"> -->
+                                                <!-- Never completed -->
+                                            </span>
+                                        </button>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+
+            <!-- No courses -->
+            <ng-template #noCourses>
+                <div
+                    class="flex flex-auto flex-col items-center justify-center bg-gray-100 dark:bg-transparent"
+                >
+                    <mat-icon
+                        class="icon-size-20"
+                        [svgIcon]="'iconsmind:file_search'"
+                    ></mat-icon>
+                    <div
+                        class="mt-6 text-2xl font-semibold tracking-tight text-secondary"
+                    >
+                        No courses found!
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

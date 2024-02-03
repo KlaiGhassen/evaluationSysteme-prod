@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,eAAe,CAAC;EACZ,qBAAqB,EAAE,aAAa;CAavC;;AAXG,OAAO,CAAP,EAAO;EAHX,AAAA,eAAe,CAAf;IAIQ,qBAAqB,EAAE,kBAAkB;GAUhD;;;AAPG,OAAO,CAAP,EAAO;EAPX,AAAA,eAAe,CAAf;IAQQ,qBAAqB,EAAE,wBAAwB;GAMtD;;;AAHG,OAAO,CAAP,EAAO;EAXX,AAAA,eAAe,CAAf;IAYQ,qBAAqB,EAAE,kCAAkC;GAEhE",
+    "sources": [
+        "inventory.component.scss"
+    ],
+    "names": [],
+    "file": "inventory.component.css"
+}

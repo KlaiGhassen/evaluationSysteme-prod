@@ -1,0 +1,309 @@
+<div class="flex flex-col max-w-240 md:min-w-160 -m-6">
+    <!-- Header -->
+    <div
+        class="flex flex-0 items-center justify-between h-16 pr-3 sm:pr-5 pl-6 sm:pl-8 bg-primary text-on-primary"
+    >
+        <div class="text-lg font-medium">Add A Module</div>
+        <button mat-icon-button (click)="discard()" [tabIndex]="-1">
+            <mat-icon
+                class="text-current"
+                [svgIcon]="'heroicons_outline:x'"
+            ></mat-icon>
+        </button>
+    </div>
+
+    <!-- Compose form -->
+    <form
+        class="flex flex-col flex-auto p-6 sm:p-8 overflow-y-auto"
+        [formGroup]="userForm"
+    >
+        <!-- Subject -->
+
+        <mat-form-field>
+            <mat-label>Name Module</mat-label>
+            <input matInput [formControlName]="'name_module'" />
+        </mat-form-field>
+
+        <div class="grid gap-4 grid-cols-2 flex-wrap">
+            <mat-form-field class="flex-auto gt-xs:pr-3 mr-2">
+                <mat-label>Semester</mat-label>
+
+                <mat-select
+                    [formControlName]="'semester'"
+                    [placeholder]="'Semester'"
+                >
+                    <mat-option [value]="'semester1'"> semester1 </mat-option>
+                    <mat-option [value]="'semester2'"> semester2</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>duration</mat-label>
+                <input type="number" matInput [formControlName]="'duration'" />
+            </mat-form-field>
+        </div>
+        <div class="grid gap-4 grid-cols-3 flex-wrap">
+            <mat-form-field>
+                <mat-label>p1</mat-label>
+                <input type="number" matInput [formControlName]="'p1'" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>p2</mat-label>
+                <input type="number" matInput [formControlName]="'p2'" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>ETC</mat-label>
+                <input type="number" matInput [formControlName]="'ETC'" />
+            </mat-form-field>
+        </div>
+        <div class="grid gap-4 grid-cols-2 flex-wrap">
+            <mat-form-field class="flex-auto gt-xs:pr-3 mr-2">
+                <mat-label>UE</mat-label>
+                <mat-select [formControlName]="'UE'" [placeholder]="'UE'">
+                    <ng-container *ngFor="let ue of listUe; trackBy: trackByFn">
+                        <mat-option [value]="ue.name_ue">
+                            {{ ue.name_ue }}
+                        </mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="flex-auto gt-xs:pr-3 mr-2">
+                <mat-label>RO</mat-label>
+
+                <mat-select
+                    [formControlName]="'module_ro'"
+                    [placeholder]="'RO Module'"
+                >
+                    <ng-container *ngFor="let ro of listRo; trackBy: trackByFn">
+                        <mat-option [value]="ro.id">
+                            {{ ro.first_name }} {{ ro.last_name }}
+                        </mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+            <!-- <mat-form-field class="flex-auto gt-xs:pr-3 mr-2">
+                <mat-label>Class</mat-label>
+                <mat-select
+                    [formControlName]="'class'"
+                    [placeholder]="'RO Module'"
+                >
+                    <ng-container
+                        *ngFor="let category of categories; trackBy: trackByFn"
+                    >
+                        <mat-option [value]="category.class_name_class">{{
+                            category.class_name_class
+                        }}</mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field> -->
+        </div>
+        <!-- <div> -->
+        <!-- <div class="font-medium mb-1.5">Class Rooms :</div>
+            <div class="flex flex-wrap items-center -m-1.5"> -->
+        <!-- Tags -->
+        <!-- here where the class rooms show after adding them  -->
+        <!-- <ng-container *ngIf="addedTags.length">
+                    <ng-container
+                        *ngFor="
+                            let tag of addedTags
+                                | fuseFindByKey : 'classroom_id' : tags;
+                            trackBy: trackByFn
+                        "
+                    >
+                        <div
+                            class="flex items-center justify-center px-4 m-1.5 rounded-full leading-9 text-gray-500 bg-gray-100 dark:text-gray-300 dark:bg-gray-700"
+                        >
+                            <span
+                                class="text-md font-medium whitespace-nowrap"
+                                >{{ tag.name_class }}</span
+                            >
+                        </div>
+                    </ng-container>
+                </ng-container>
+                <div
+                    class="flex items-center justify-center px-4 m-1.5 rounded-full leading-9 cursor-pointer text-gray-500 bg-gray-100 dark:text-gray-300 dark:bg-gray-700"
+                    (click)="openTagsPanel()"
+                    #tagsPanelOrigin
+                > -->
+        <!-- <ng-container *ngIf="addedTags.length">
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:pencil-alt'"
+                        ></mat-icon>
+
+                        <span
+                            class="ml-1.5 text-md font-medium whitespace-nowrap"
+                            >Edit
+                        </span>
+                    </ng-container>
+
+                    <ng-container *ngIf="!addedTags.length">
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:plus-circle'"
+                        ></mat-icon>
+                        <span
+                            class="ml-1.5 text-md font-medium whitespace-nowrap"
+                            >Add</span
+                        >
+                    </ng-container> -->
+
+        <!-- Tags panel -->
+        <!-- <ng-template #tagsPanel>
+                        <div class="w-72 rounded border shadow-md bg-card"> -->
+        <!-- Tags panel header -->
+        <!-- <div class="flex items-center m-3 mr-2">
+                                <mat-form-field
+                                    class="fuse-mat-no-subscript w-22 p-0"
+                                >
+                                    <mat-select
+                                        [value]="'all'"
+                                        (selectionChange)="
+                                            filterByCategory($event)
+                                        "
+                                    >
+                                        <mat-option [value]="'all'"
+                                            >All</mat-option
+                                        >
+                                        <ng-container
+                                            *ngFor="
+                                                let category of categories;
+                                                trackBy: trackByFn
+                                            "
+                                        >
+                                            <mat-option
+                                                [value]="
+                                                    category.class_name_class
+                                                "
+                                                >{{
+                                                    category.class_name_class
+                                                }}</mat-option
+                                            >
+                                        </ng-container>
+                                    </mat-select>
+                                </mat-form-field>
+                                <div class="flex items-center">
+                                    <div class="ml-2">
+                                        <input
+                                            class="w-full min-w-0 py-1 border-0"
+                                            type="text"
+                                            placeholder="Enter classRoom Name"
+                                            (input)="filterTags($event)"
+                                            (keydown)="
+                                                filterTagsInputKeyDown($event)
+                                            "
+                                            [maxLength]="30"
+                                            #newTagInput
+                                        />
+                                    </div>
+                                </div>
+                            </div> -->
+        <!-- <div
+                                class="flex flex-col max-h-64 py-2 border-t overflow-y-auto"
+                            > -->
+        <!-- Tags -->
+        <!-- <ng-container *ngIf="!tagsEditMode">
+                                    <ng-container
+                                        *ngFor="
+                                            let tag of filteredTags;
+                                            trackBy: trackByFn
+                                        "
+                                    >
+                                        <div
+                                            class="flex items-center h-10 min-h-10 px-4 cursor-pointer hover:bg-hover"
+                                            (click)="toggleTaskTag(tag)"
+                                            matRipple
+                                        >
+                                            <mat-checkbox
+                                                class="flex items-center h-10 min-h-10"
+                                                [color]="'primary'"
+                                                [checked]="
+                                                    addedTags.includes(
+                                                        tag.classroom_id
+                                                    )
+                                                "
+                                            >
+                                            </mat-checkbox>
+                                            <div class="ml-1">
+                                                {{ tag.name_class }}
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container> -->
+        <!-- Tags editing -->
+        <!-- <ng-container *ngIf="tagsEditMode">
+                                    <div class="py-2 space-y-2">
+                                        <ng-container
+                                            *ngFor="
+                                                let tag of filteredTags;
+                                                trackBy: trackByFn
+                                            "
+                                        >
+                                            <div class="flex items-center">
+                                                <mat-form-field
+                                                    class="fuse-mat-dense fuse-mat-no-subscript w-full mx-4"
+                                                >
+                                                    <input
+                                                        matInput
+                                                        [value]="tag.name_class"
+                                                        (input)="
+                                                            updateTagTitle(
+                                                                tag,
+                                                                $event
+                                                            )
+                                                        "
+                                                    />
+                                                    <button
+                                                        mat-icon-button
+                                                        (click)="deleteTag(tag)"
+                                                        matSuffix
+                                                    >
+                                                        <mat-icon
+                                                            class="icon-size-5 ml-2"
+                                                            [svgIcon]="
+                                                                'heroicons_solid:trash'
+                                                            "
+                                                        ></mat-icon>
+                                                    </button>
+                                                </mat-form-field>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </ng-container> -->
+        <!-- Create tag -->
+        <!-- </div> -->
+        <!-- </div>
+                    </ng-template> -->
+        <!-- </div>
+            </div> -->
+        <!-- Actions -->
+        <!-- </div> -->
+
+        <!-- Body -->
+
+        <!-- Actions -->
+        <div
+            class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6"
+        >
+            <!-- Discard -->
+            <button
+                class="order-first sm:order-last"
+                mat-button
+                (click)="discard()"
+            >
+                Discard
+            </button>
+            <!-- Save as draft -->
+            <!-- Send -->
+            <button
+                class="order-first sm:order-last"
+                mat-flat-button
+                [color]="'primary'"
+                [disabled]="!userForm.valid || !userForm.dirty"
+                (click)="addModule()"
+            >
+                Save
+            </button>
+        </div>
+    </form>
+</div>

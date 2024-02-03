@@ -1,0 +1,186 @@
+<div class="flex flex-col max-w-240 md:min-w-160 -m-6">
+    <!-- Header -->
+    <div
+        class="flex flex-0 items-center justify-between h-16 pr-3 sm:pr-5 pl-6 sm:pl-8 bg-primary text-on-primary"
+    >
+        <div class="text-lg font-medium">Add A Teacher</div>
+        <button mat-icon-button (click)="discard()" [tabIndex]="-1">
+            <mat-icon
+                class="text-current"
+                [svgIcon]="'heroicons_outline:x'"
+            ></mat-icon>
+        </button>
+    </div>
+    <mat-slide-toggle
+        class="flex flex-col flex-auto pt-6 pr-6 pl-6 sm:pt-8 sm:pr-8 sm:l-8 items-end"
+        *ngIf="!data"
+        [color]="'primary'"
+        (change)="toggleCompleted($event)"
+    >
+        Import from File
+    </mat-slide-toggle>
+
+    <!-- Compose form -->
+    <div
+        *ngIf="fromFile"
+        class="sm:col-span-2 pt-6 pr-6 pl-6 sm:pt-8 sm:pr-8 sm:l-8"
+    >
+        <div class="max-w-2/4 m-auto">
+            <div
+                class="justify-center"
+                ngx-dropzone
+                accept="application/pdf,.txt,.doc,.docx,.xls,.xlsx"
+                (change)="uploadData($event)"
+            >
+                <ngx-dropzone-label>
+                    <div class="aspect-w-9 aspect-h-6">
+                        <div class="flex items-center justify-center">
+                            <!-- Icons -->
+                            <div class="relative">
+                                <mat-icon
+                                    class="icon-size-14 text-hint"
+                                    [svgIcon]="'iconsmind:file'"
+                                ></mat-icon>
+                                <div
+                                    class="absolute left-0 bottom-0 px-1.5 rounded text-sm font-semibold leading-5 text-white"
+                                    [class.bg-red-600]="file.type === 'PDF'"
+                                    [class.bg-blue-600]="file.type === 'DOC'"
+                                    [class.bg-green-600]="file.type === 'XLS'"
+                                    [class.bg-gray-600]="file.type === 'TXT'"
+                                    [class.bg-amber-600]="file.type === 'JPG'"
+                                >
+                                    {{ file.type.toUpperCase() }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ngx-dropzone-label>
+                <ngx-dropzone-preview
+                    *ngFor="let f of files"
+                    [removable]="true"
+                    (removed)="onRemove(f)"
+                >
+                    <ngx-dropzone-label
+                        ><div class="aspect-w-9 aspect-h-6">
+                            <div class="flex items-center justify-center">
+                                <!-- Icons -->
+                                <div class="relative">
+                                    <mat-icon
+                                        class="icon-size-14 text-hint"
+                                        [svgIcon]="'iconsmind:file'"
+                                    ></mat-icon>
+                                    <div
+                                        class="absolute left-0 bottom-0 px-1.5 rounded text-sm font-semibold leading-5 text-white"
+                                        [class.bg-red-600]="file.type === 'PDF'"
+                                        [class.bg-blue-600]="
+                                            file.type === 'DOC'
+                                        "
+                                        [class.bg-green-600]="
+                                            file.type === 'XLS'
+                                        "
+                                        [class.bg-gray-600]="
+                                            file.type === 'TXT'
+                                        "
+                                        [class.bg-amber-600]="
+                                            file.type === 'JPG'
+                                        "
+                                    >
+                                        {{ file.type.toUpperCase() }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div></ngx-dropzone-label
+                    >
+                </ngx-dropzone-preview>
+            </div>
+        </div>
+
+        <mat-progress-bar
+            class="mt-2"
+            [value]="progresDetail"
+        ></mat-progress-bar>
+    </div>
+    <form
+        *ngIf="!fromFile"
+        class="flex flex-col flex-auto p-6 sm:p-8 overflow-y-auto"
+        [formGroup]="userForm"
+    >
+        <!-- Subject -->
+
+        <div class="grid gap-4 grid-cols-2 flex-wrap">
+            <mat-form-field>
+                <mat-label>First Name</mat-label>
+                <input matInput [formControlName]="'first_name'" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Last Name</mat-label>
+                <input matInput [formControlName]="'last_name'" />
+            </mat-form-field>
+        </div>
+        <mat-form-field>
+            <mat-label>email</mat-label>
+            <input matInput [formControlName]="'email'" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>up</mat-label>
+            <input matInput [formControlName]="'up'" />
+        </mat-form-field>
+        <mat-label>Role</mat-label>
+        <mat-form-field class="flex-auto gt-xs:pr-3 mr-2">
+            <mat-select [formControlName]="'role'" [placeholder]="'Role'">
+                <ng-container *ngFor="let roleName of role; trackBy: trackByFn">
+                    <mat-option [value]="roleName">{{ roleName }}</mat-option>
+                </ng-container>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field *ngIf="userForm.get('role').value == 'RO'">
+            <mat-label>Option</mat-label>
+            <input matInput [formControlName]="'option'" />
+        </mat-form-field>
+        <div class="sm:col-span-2">
+            <mat-form-field class="fuse-mat-no-subscript w-full">
+                <mat-label>Phone</mat-label>
+                <mat-icon
+                    class="icon-size-5"
+                    [svgIcon]="'heroicons_solid:phone'"
+                    matPrefix
+                ></mat-icon>
+                <input [formControlName]="'phone'" matInput />
+            </mat-form-field>
+        </div>
+
+        <!-- Body -->
+
+        <!-- Actions -->
+    </form>
+    <div
+        class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6 p-6 sm:p-8"
+    >
+        <!-- Discard -->
+        <button
+            [disabled]="buttonDisabled"
+            class="order-first sm:order-last"
+            mat-button
+            (click)="discard()"
+        >
+            Discard
+        </button>
+        <div class="order-first sm:order-last">
+            <mat-spinner [diameter]="30" *ngIf="buttonDisabled"></mat-spinner>
+
+            <button
+                *ngIf="!buttonDisabled"
+                mat-flat-button
+                [color]="'primary'"
+                [disabled]="!userForm.valid || !userForm.dirty"
+                (click)="send()"
+            >
+                <span> Save</span>
+            </button>
+        </div>
+
+        <!-- Save as draft -->
+        <!-- Send -->
+    </div>
+</div>

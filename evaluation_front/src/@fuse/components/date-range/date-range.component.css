@@ -1,0 +1,304 @@
+/* Variables */
+fuse-date-range {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+fuse-date-range .range {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 48px;
+  min-height: 48px;
+  max-height: 48px;
+  cursor: pointer;
+}
+
+fuse-date-range .range .start,
+fuse-date-range .range .end {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  padding: 0 16px;
+  border-radius: 6px;
+  border-width: 1px;
+  line-height: 1;
+  @apply shadow-sm border-gray-300 dark:bg-black dark:bg-opacity-5 dark:border-gray-500;
+}
+
+fuse-date-range .range .start .date,
+fuse-date-range .range .end .date {
+  white-space: nowrap;
+}
+
+fuse-date-range .range .start .date + .time,
+fuse-date-range .range .end .date + .time {
+  margin-left: 8px;
+}
+
+fuse-date-range .range .start .time,
+fuse-date-range .range .end .time {
+  white-space: nowrap;
+}
+
+fuse-date-range .range .separator {
+  margin: 0 2px;
+}
+
+@screen sm {
+  fuse-date-range .range .separator {
+    margin: 0 12px;
+  }
+}
+
+.fuse-date-range-panel {
+  border-radius: 4px;
+  padding: 24px;
+  @apply shadow-2xl bg-card;
+}
+
+.fuse-date-range-panel .start,
+.fuse-date-range-panel .end {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.fuse-date-range-panel .start .month,
+.fuse-date-range-panel .end .month {
+  max-width: 196px;
+  min-width: 196px;
+  width: 196px;
+}
+
+.fuse-date-range-panel .start .month .month-header,
+.fuse-date-range-panel .end .month .month-header {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 32px;
+  margin-bottom: 16px;
+}
+
+.fuse-date-range-panel .start .month .month-header .previous-button,
+.fuse-date-range-panel .start .month .month-header .next-button,
+.fuse-date-range-panel .end .month .month-header .previous-button,
+.fuse-date-range-panel .end .month .month-header .next-button {
+  position: absolute;
+  width: 24px !important;
+  height: 24px !important;
+  min-height: 24px !important;
+  max-height: 24px !important;
+  line-height: 24px !important;
+}
+
+.fuse-date-range-panel .start .month .month-header .previous-button .mat-icon,
+.fuse-date-range-panel .start .month .month-header .next-button .mat-icon,
+.fuse-date-range-panel .end .month .month-header .previous-button .mat-icon,
+.fuse-date-range-panel .end .month .month-header .next-button .mat-icon {
+  @apply icon-size-5;
+}
+
+.fuse-date-range-panel .start .month .month-header .previous-button,
+.fuse-date-range-panel .end .month .month-header .previous-button {
+  left: 0;
+}
+
+.fuse-date-range-panel .start .month .month-header .next-button,
+.fuse-date-range-panel .end .month .month-header .next-button {
+  right: 0;
+}
+
+.fuse-date-range-panel .start .month .month-header .month-label,
+.fuse-date-range-panel .end .month .month-header .month-label {
+  font-weight: 500;
+  @apply text-secondary;
+}
+
+.fuse-date-range-panel .start .month mat-month-view,
+.fuse-date-range-panel .end .month mat-month-view {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 188px;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr[aria-hidden=true],
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr[aria-hidden=true] {
+  display: none !important;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr:first-child td:first-child[aria-hidden=true],
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr:first-child td:first-child[aria-hidden=true] {
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.fuse-date-range:before,
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td:hover.fuse-date-range:before,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.fuse-date-range:before,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td:hover.fuse-date-range:before {
+  @apply bg-primary-200;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.fuse-date-range .mat-calendar-body-cell-content,
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td:hover.fuse-date-range .mat-calendar-body-cell-content,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.fuse-date-range .mat-calendar-body-cell-content,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td:hover.fuse-date-range .mat-calendar-body-cell-content {
+  background-color: transparent;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.fuse-date-range-start .mat-calendar-body-cell-content, .fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.fuse-date-range-end .mat-calendar-body-cell-content,
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td:hover.fuse-date-range-start .mat-calendar-body-cell-content,
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td:hover.fuse-date-range-end .mat-calendar-body-cell-content,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.fuse-date-range-start .mat-calendar-body-cell-content,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.fuse-date-range-end .mat-calendar-body-cell-content,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td:hover.fuse-date-range-start .mat-calendar-body-cell-content,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td:hover.fuse-date-range-end .mat-calendar-body-cell-content {
+  @apply bg-primary text-on-primary;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td .mat-calendar-body-today,
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td:hover .mat-calendar-body-today,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td .mat-calendar-body-today,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td:hover .mat-calendar-body-today {
+  border: none;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell {
+  width: 28px !important;
+  height: 28px !important;
+  padding: 2px !important;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range {
+  position: relative;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range:before,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range:before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  right: 0;
+  bottom: 2px;
+  left: 0;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range.fuse-date-range-start:before,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range.fuse-date-range-start:before {
+  left: 2px;
+  border-radius: 999px 0 0 999px;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range.fuse-date-range-start.fuse-date-range-end:before, .fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range.fuse-date-range-start:last-child:before,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range.fuse-date-range-start.fuse-date-range-end:before,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range.fuse-date-range-start:last-child:before {
+  right: 2px;
+  border-radius: 999px;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range.fuse-date-range-end:before,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range.fuse-date-range-end:before {
+  right: 2px;
+  border-radius: 0 999px 999px 0;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range.fuse-date-range-end:first-child:before,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range.fuse-date-range-end:first-child:before {
+  left: 2px;
+  border-radius: 999px;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range:first-child:before,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range:first-child:before {
+  border-radius: 999px 0 0 999px;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range:last-child:before,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell.fuse-date-range:last-child:before {
+  border-radius: 0 999px 999px 0;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell .mat-calendar-body-cell-content,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-cell .mat-calendar-body-cell-content {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-label + td.mat-calendar-body-cell.fuse-date-range:before,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-label + td.mat-calendar-body-cell.fuse-date-range:before {
+  border-radius: 999px 0 0 999px;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-label + td.mat-calendar-body-cell.fuse-date-range.fuse-date-range-start.fuse-date-range-end,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-label + td.mat-calendar-body-cell.fuse-date-range.fuse-date-range-start.fuse-date-range-end {
+  border-radius: 999px;
+}
+
+.fuse-date-range-panel .start .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-label + td.mat-calendar-body-cell.fuse-date-range.fuse-date-range-end:before,
+.fuse-date-range-panel .end .month mat-month-view .mat-calendar-table tbody tr td.mat-calendar-body-label + td.mat-calendar-body-cell.fuse-date-range.fuse-date-range-end:before {
+  left: 2px;
+  border-radius: 999px;
+}
+
+.fuse-date-range-panel .start .time,
+.fuse-date-range-panel .end .time {
+  width: 100%;
+  max-width: 196px;
+}
+
+.fuse-date-range-panel .start {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin-right: 20px;
+}
+
+.fuse-date-range-panel .start .month .month-label {
+  margin-left: 8px;
+}
+
+.fuse-date-range-panel .end {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin-left: 20px;
+}
+
+.fuse-date-range-panel .end .month .month-label {
+  margin-right: 8px;
+}
+/*# sourceMappingURL=date-range.component.css.map */

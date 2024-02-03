@@ -1,0 +1,105 @@
+<div class="flex flex-col max-w-240 md:min-w-160 -m-6">
+    <!-- Header -->
+    <div
+        class="flex flex-0 items-center justify-between h-16 pr-3 sm:pr-5 pl-6 sm:pl-8 bg-primary text-on-primary"
+    >
+        <div *ngIf="!beforeRating" class="text-lg font-medium">
+            Connect your wallet
+        </div>
+        <div *ngIf="beforeRating" class="text-lg font-medium">
+            Ratting Teachers
+        </div>
+        <button mat-icon-button (click)="discard()" [tabIndex]="-1">
+            <mat-icon
+                class="text-current"
+                [svgIcon]="'heroicons_outline:x'"
+            ></mat-icon>
+        </button>
+    </div>
+
+    <!-- Compose form -->
+    <div class="flex flex-col flex-auto p-6 sm:p-8 overflow-y-auto">
+        <!-- Subject -->
+        <div *ngIf="!beforeRating">
+            connect your wallet by clicking on the connect wallet button !
+        </div>
+        <div *ngIf="beforeRating">
+            <span>
+                By selecting stars your gonna rate your teachers By a certain
+                cretears and your gonna get some tokens in your wallet
+            </span>
+            <h5 class="text-lg leading-5 text-blue-700">
+                1 - Clarity of instruction:
+            </h5>
+            <p class="text-md leading-5 text-secondary">
+                Does the teacher clearly explain concepts and provide examples
+                to help students understand?
+            </p>
+            <h5 class="text-lg leading-5 text-blue-700">2 - Engagement:</h5>
+            <p class="text-md leading-5 text-secondary">
+                Does the teacher actively engage students in the learning
+                process, encouraging participation and asking questions?
+            </p>
+            <h5 class="text-lg leading-5 text-blue-700">
+                3 - Availability and accessibility:
+            </h5>
+            <p class="text-md leading-5 text-secondary">
+                Is the teacher available outside of class to provide extra help
+                or answer questions, and are they approachable and willing to
+                listen to student concerns?
+            </p>
+            <h5 class="text-lg leading-5 text-blue-700">
+                4 - Support for diverse learning styles:
+            </h5>
+            <p class="text-md leading-5 text-secondary">
+                Does the teacher use a variety of teaching methods and
+                accommodate different learning styles in the classroom?
+            </p>
+            <h5 class="text-lg leading-5 text-blue-700">5 - Fairness:</h5>
+            <p class="text-md leading-5 text-secondary">
+                Does the teacher treat all students equally and fairly, and do
+                they hold high expectations for all students?
+            </p>
+            <h5 class="text-lg leading-5 text-blue-700">
+                6 - Professionalism:
+            </h5>
+            <p class="text-md leading-5 text-secondary">
+                Does the teacher show up on time and prepared for class, and do
+                they maintain a positive and respectful classroom environment?
+            </p>
+        </div>
+        <!-- Actions -->
+        <div
+            class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6"
+        >
+            <!-- Discard -->
+            <button
+                class="order-first sm:order-last"
+                mat-button
+                (click)="discard()"
+            >
+                Discard
+            </button>
+            <!-- Save as draft -->
+            <!-- Send -->
+            <button
+                *ngIf="!beforeRating"
+                class="order-first sm:order-last"
+                mat-flat-button
+                [color]="'primary'"
+                (click)="connectWallet()"
+            >
+                connect your Wallet
+            </button>
+            <button
+                *ngIf="beforeRating"
+                class="order-first sm:order-last"
+                mat-flat-button
+                [color]="'primary'"
+                (click)="ok()"
+            >
+                Ok
+            </button>
+        </div>
+    </div>
+</div>

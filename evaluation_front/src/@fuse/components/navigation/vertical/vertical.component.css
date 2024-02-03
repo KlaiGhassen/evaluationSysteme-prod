@@ -1,0 +1,997 @@
+/* Variables */
+fuse-vertical-navigation {
+  position: -webkit-sticky;
+  position: sticky;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+  top: 0;
+  width: 280px;
+  min-width: 280px;
+  max-width: 280px;
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  z-index: 200;
+  /* ----------------------------------------------------------------------------------------------------- */
+  /* @ Navigation Drawer
+    /* ----------------------------------------------------------------------------------------------------- */
+  /* Animations */
+  /* Over mode */
+  /* Left position */
+  /* Right position */
+  /* Inner mode */
+  /* Wrapper */
+  /* Aside wrapper */
+  /* ----------------------------------------------------------------------------------------------------- */
+  /* @ Navigation Items
+    /* ----------------------------------------------------------------------------------------------------- */
+  /* Navigation items common */
+  /* Aside, Basic, Collapsable, Group */
+  /* Aside, Basic, Collapsable */
+  /* Aside */
+  /* Basic */
+  /* Collapsable */
+  /* Divider */
+  /* Group */
+  /* Spacer */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-animations-enabled {
+  -webkit-transition-duration: 400ms;
+          transition-duration: 400ms;
+  -webkit-transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+          transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  -webkit-transition-property: visibility, margin-left, margin-right, width, max-width, min-width, -webkit-transform;
+  transition-property: visibility, margin-left, margin-right, width, max-width, min-width, -webkit-transform;
+  transition-property: visibility, margin-left, margin-right, transform, width, max-width, min-width;
+  transition-property: visibility, margin-left, margin-right, transform, width, max-width, min-width, -webkit-transform;
+  /* Wrapper */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-animations-enabled .fuse-vertical-navigation-wrapper {
+  -webkit-transition-duration: 400ms;
+          transition-duration: 400ms;
+  -webkit-transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+          transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  -webkit-transition-property: width, max-width, min-width;
+  transition-property: width, max-width, min-width;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-mode-over {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-position-left {
+  /* Side mode */
+  /* Over mode */
+  /* Wrapper */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-position-left.fuse-vertical-navigation-mode-side {
+  margin-left: -280px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-position-left.fuse-vertical-navigation-mode-side.fuse-vertical-navigation-opened {
+  margin-left: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-position-left.fuse-vertical-navigation-mode-over {
+  left: 0;
+  -webkit-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0);
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-position-left.fuse-vertical-navigation-mode-over.fuse-vertical-navigation-opened {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-position-left .fuse-vertical-navigation-wrapper {
+  left: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-position-right {
+  /* Side mode */
+  /* Over mode */
+  /* Wrapper */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-position-right.fuse-vertical-navigation-mode-side {
+  margin-right: -280px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-position-right.fuse-vertical-navigation-mode-side.fuse-vertical-navigation-opened {
+  margin-right: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-position-right.fuse-vertical-navigation-mode-over {
+  right: 0;
+  -webkit-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-position-right.fuse-vertical-navigation-mode-over.fuse-vertical-navigation-opened {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-position-right .fuse-vertical-navigation-wrapper {
+  right: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-inner {
+  position: relative;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-inner .fuse-vertical-navigation-wrapper {
+  position: relative;
+  overflow: visible;
+  height: auto;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-inner .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content {
+  overflow: visible !important;
+}
+
+fuse-vertical-navigation .fuse-vertical-navigation-wrapper {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 10;
+  background: inherit;
+  -webkit-box-shadow: inset -1px 0 0 var(--fuse-border);
+          box-shadow: inset -1px 0 0 var(--fuse-border);
+  /* Header */
+  /* Content */
+  /* Footer */
+}
+
+fuse-vertical-navigation .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* Divider */
+  /* Group */
+}
+
+fuse-vertical-navigation .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-divider-item {
+  margin: 24px 0;
+}
+
+fuse-vertical-navigation .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-group-item {
+  margin-top: 24px;
+}
+
+fuse-vertical-navigation .fuse-vertical-navigation-aside-wrapper {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  top: 0;
+  bottom: 0;
+  left: 280px;
+  width: 280px;
+  height: 100%;
+  z-index: 5;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transition-duration: 400ms;
+          transition-duration: 400ms;
+  -webkit-transition-property: left, right;
+  transition-property: left, right;
+  -webkit-transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+          transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  background: inherit;
+}
+
+fuse-vertical-navigation .fuse-vertical-navigation-aside-wrapper > fuse-vertical-navigation-aside-item {
+  padding: 24px 0;
+  /* First item of the aside */
+}
+
+fuse-vertical-navigation .fuse-vertical-navigation-aside-wrapper > fuse-vertical-navigation-aside-item > .fuse-vertical-navigation-item-wrapper {
+  display: none !important;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-position-right .fuse-vertical-navigation-aside-wrapper {
+  left: auto;
+  right: 280px;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-aside-item,
+fuse-vertical-navigation fuse-vertical-navigation-basic-item,
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item,
+fuse-vertical-navigation fuse-vertical-navigation-divider-item,
+fuse-vertical-navigation fuse-vertical-navigation-group-item,
+fuse-vertical-navigation fuse-vertical-navigation-spacer-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item,
+fuse-vertical-navigation fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item,
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item,
+fuse-vertical-navigation fuse-vertical-navigation-divider-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item,
+fuse-vertical-navigation fuse-vertical-navigation-group-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item,
+fuse-vertical-navigation fuse-vertical-navigation-spacer-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+  border-radius: 6px;
+  /* Disabled state */
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item.fuse-vertical-navigation-item-disabled,
+fuse-vertical-navigation fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item.fuse-vertical-navigation-item-disabled,
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item.fuse-vertical-navigation-item-disabled,
+fuse-vertical-navigation fuse-vertical-navigation-divider-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item.fuse-vertical-navigation-item-disabled,
+fuse-vertical-navigation fuse-vertical-navigation-group-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item.fuse-vertical-navigation-item-disabled,
+fuse-vertical-navigation fuse-vertical-navigation-spacer-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item.fuse-vertical-navigation-item-disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation fuse-vertical-navigation-divider-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation fuse-vertical-navigation-group-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation fuse-vertical-navigation-spacer-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon {
+  margin-right: 16px;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-subtitle,
+fuse-vertical-navigation fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-subtitle,
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-subtitle,
+fuse-vertical-navigation fuse-vertical-navigation-divider-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-subtitle,
+fuse-vertical-navigation fuse-vertical-navigation-group-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-subtitle,
+fuse-vertical-navigation fuse-vertical-navigation-spacer-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-subtitle {
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge,
+fuse-vertical-navigation fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge,
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge,
+fuse-vertical-navigation fuse-vertical-navigation-divider-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge,
+fuse-vertical-navigation fuse-vertical-navigation-group-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge,
+fuse-vertical-navigation fuse-vertical-navigation-spacer-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge {
+  margin-left: auto;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge .fuse-vertical-navigation-item-badge-content,
+fuse-vertical-navigation fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge .fuse-vertical-navigation-item-badge-content,
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge .fuse-vertical-navigation-item-badge-content,
+fuse-vertical-navigation fuse-vertical-navigation-divider-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge .fuse-vertical-navigation-item-badge-content,
+fuse-vertical-navigation fuse-vertical-navigation-group-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge .fuse-vertical-navigation-item-badge-content,
+fuse-vertical-navigation fuse-vertical-navigation-spacer-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge .fuse-vertical-navigation-item-badge-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+  height: 20px;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-aside-item > .fuse-vertical-navigation-item-wrapper,
+fuse-vertical-navigation fuse-vertical-navigation-basic-item > .fuse-vertical-navigation-item-wrapper,
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper,
+fuse-vertical-navigation fuse-vertical-navigation-group-item > .fuse-vertical-navigation-item-wrapper {
+  margin: 0 12px;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-aside-item,
+fuse-vertical-navigation fuse-vertical-navigation-basic-item,
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item {
+  margin-bottom: 4px;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item,
+fuse-vertical-navigation fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item,
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item {
+  cursor: pointer;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item {
+  /* 1st level */
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge + .fuse-vertical-navigation-item-arrow {
+  margin-left: 8px;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-arrow {
+  height: 20px;
+  line-height: 20px;
+  margin-left: auto;
+  -webkit-transition: color 375ms cubic-bezier(0.25, 0.8, 0.25, 1), -webkit-transform 300ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: color 375ms cubic-bezier(0.25, 0.8, 0.25, 1), -webkit-transform 300ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: transform 300ms cubic-bezier(0.25, 0.8, 0.25, 1), color 375ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: transform 300ms cubic-bezier(0.25, 0.8, 0.25, 1), color 375ms cubic-bezier(0.25, 0.8, 0.25, 1), -webkit-transform 300ms cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item.fuse-vertical-navigation-item-expanded > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-arrow {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-children {
+  margin-top: 6px;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-children > *:last-child {
+  padding-bottom: 6px;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-children > *:last-child > .fuse-vertical-navigation-item-children > *:last-child {
+  padding-bottom: 0;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item {
+  padding: 10px 16px;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-children {
+  overflow: hidden;
+  /* 2nd level */
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item {
+  padding-left: 56px;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item-children {
+  /* 3rd level */
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item {
+  padding-left: 72px;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item-children {
+  /* 4th level */
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item {
+  padding-left: 88px;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item {
+  padding-left: 104px;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-divider-item {
+  margin: 12px 0;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-divider-item .fuse-vertical-navigation-item-wrapper {
+  height: 1px;
+  -webkit-box-shadow: 0 1px 0 0;
+          box-shadow: 0 1px 0 0;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-group-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge,
+fuse-vertical-navigation fuse-vertical-navigation-group-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon {
+  display: none !important;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-group-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+fuse-vertical-navigation fuse-vertical-navigation-spacer-item {
+  margin: 6px 0;
+}
+
+/* ----------------------------------------------------------------------------------------------------- */
+/* @ Overlay
+/* ----------------------------------------------------------------------------------------------------- */
+.fuse-vertical-navigation-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 170;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.fuse-vertical-navigation-overlay + .fuse-vertical-navigation-aside-overlay {
+  background-color: transparent;
+}
+
+/* ----------------------------------------------------------------------------------------------------- */
+/* @ Aside overlay
+/* ----------------------------------------------------------------------------------------------------- */
+.fuse-vertical-navigation-aside-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 169;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* ----------------------------------------------------------------------------------------------------- */
+/* @ Navigation Items Colors
+/* ----------------------------------------------------------------------------------------------------- */
+/* Navigation items common */
+fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item,
+fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item,
+fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item,
+fuse-vertical-navigation-group-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item {
+  color: currentColor;
+}
+
+fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation-group-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon {
+  @apply text-current opacity-60;
+}
+
+fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-title,
+fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-title,
+fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-title,
+fuse-vertical-navigation-group-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-title {
+  @apply text-current opacity-80;
+}
+
+fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-subtitle,
+fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-subtitle,
+fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-subtitle,
+fuse-vertical-navigation-group-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-subtitle {
+  @apply text-current opacity-50;
+}
+
+/* Aside, Basic, Collapsable */
+fuse-vertical-navigation-aside-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item,
+fuse-vertical-navigation-basic-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item,
+fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item {
+  /* Active state */
+  /* Hover state */
+}
+
+fuse-vertical-navigation-aside-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active, fuse-vertical-navigation-aside-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active-forced,
+fuse-vertical-navigation-basic-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active,
+fuse-vertical-navigation-basic-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active-forced,
+fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active,
+fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active-forced {
+  @apply bg-gray-800 bg-opacity-5 dark:bg-white dark:bg-opacity-12;
+}
+
+fuse-vertical-navigation-aside-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active .fuse-vertical-navigation-item-icon, fuse-vertical-navigation-aside-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active-forced .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation-basic-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation-basic-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active-forced .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active-forced .fuse-vertical-navigation-item-icon {
+  @apply opacity-100;
+}
+
+fuse-vertical-navigation-aside-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active .fuse-vertical-navigation-item-title, fuse-vertical-navigation-aside-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active-forced .fuse-vertical-navigation-item-title,
+fuse-vertical-navigation-basic-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active .fuse-vertical-navigation-item-title,
+fuse-vertical-navigation-basic-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active-forced .fuse-vertical-navigation-item-title,
+fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active .fuse-vertical-navigation-item-title,
+fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active-forced .fuse-vertical-navigation-item-title {
+  @apply opacity-100;
+}
+
+fuse-vertical-navigation-aside-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active .fuse-vertical-navigation-item-subtitle, fuse-vertical-navigation-aside-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active-forced .fuse-vertical-navigation-item-subtitle,
+fuse-vertical-navigation-basic-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active .fuse-vertical-navigation-item-subtitle,
+fuse-vertical-navigation-basic-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active-forced .fuse-vertical-navigation-item-subtitle,
+fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active .fuse-vertical-navigation-item-subtitle,
+fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled).fuse-vertical-navigation-item-active-forced .fuse-vertical-navigation-item-subtitle {
+  @apply opacity-100;
+}
+
+fuse-vertical-navigation-aside-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-active-forced):not(.fuse-vertical-navigation-item-active):not(.fuse-vertical-navigation-item-disabled):hover,
+fuse-vertical-navigation-basic-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-active-forced):not(.fuse-vertical-navigation-item-active):not(.fuse-vertical-navigation-item-disabled):hover,
+fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-active-forced):not(.fuse-vertical-navigation-item-active):not(.fuse-vertical-navigation-item-disabled):hover {
+  @apply bg-gray-800 bg-opacity-5 dark:bg-white dark:bg-opacity-12;
+}
+
+fuse-vertical-navigation-aside-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-active-forced):not(.fuse-vertical-navigation-item-active):not(.fuse-vertical-navigation-item-disabled):hover .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation-basic-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-active-forced):not(.fuse-vertical-navigation-item-active):not(.fuse-vertical-navigation-item-disabled):hover .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-active-forced):not(.fuse-vertical-navigation-item-active):not(.fuse-vertical-navigation-item-disabled):hover .fuse-vertical-navigation-item-icon {
+  @apply opacity-100;
+}
+
+fuse-vertical-navigation-aside-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-active-forced):not(.fuse-vertical-navigation-item-active):not(.fuse-vertical-navigation-item-disabled):hover .fuse-vertical-navigation-item-title,
+fuse-vertical-navigation-aside-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-active-forced):not(.fuse-vertical-navigation-item-active):not(.fuse-vertical-navigation-item-disabled):hover .fuse-vertical-navigation-item-arrow,
+fuse-vertical-navigation-basic-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-active-forced):not(.fuse-vertical-navigation-item-active):not(.fuse-vertical-navigation-item-disabled):hover .fuse-vertical-navigation-item-title,
+fuse-vertical-navigation-basic-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-active-forced):not(.fuse-vertical-navigation-item-active):not(.fuse-vertical-navigation-item-disabled):hover .fuse-vertical-navigation-item-arrow,
+fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-active-forced):not(.fuse-vertical-navigation-item-active):not(.fuse-vertical-navigation-item-disabled):hover .fuse-vertical-navigation-item-title,
+fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-active-forced):not(.fuse-vertical-navigation-item-active):not(.fuse-vertical-navigation-item-disabled):hover .fuse-vertical-navigation-item-arrow {
+  @apply opacity-100;
+}
+
+fuse-vertical-navigation-aside-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-active-forced):not(.fuse-vertical-navigation-item-active):not(.fuse-vertical-navigation-item-disabled):hover .fuse-vertical-navigation-item-subtitle,
+fuse-vertical-navigation-basic-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-active-forced):not(.fuse-vertical-navigation-item-active):not(.fuse-vertical-navigation-item-disabled):hover .fuse-vertical-navigation-item-subtitle,
+fuse-vertical-navigation-collapsable-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-active-forced):not(.fuse-vertical-navigation-item-active):not(.fuse-vertical-navigation-item-disabled):hover .fuse-vertical-navigation-item-subtitle {
+  @apply opacity-100;
+}
+
+/* Collapsable */
+fuse-vertical-navigation-collapsable-item {
+  /* Expanded state */
+}
+
+fuse-vertical-navigation-collapsable-item.fuse-vertical-navigation-item-expanded > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon {
+  @apply opacity-100;
+}
+
+fuse-vertical-navigation-collapsable-item.fuse-vertical-navigation-item-expanded > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title,
+fuse-vertical-navigation-collapsable-item.fuse-vertical-navigation-item-expanded > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-arrow {
+  @apply opacity-100;
+}
+
+fuse-vertical-navigation-collapsable-item.fuse-vertical-navigation-item-expanded > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-subtitle {
+  @apply opacity-100;
+}
+
+/* Group */
+fuse-vertical-navigation-group-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-title {
+  @apply opacity-100 text-primary-600 dark:text-primary-400;
+}
+
+/* Variables */
+fuse-vertical-navigation {
+  /* Compact appearance overrides */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact {
+  width: 112px;
+  min-width: 112px;
+  max-width: 112px;
+  /* Left positioned */
+  /* Right positioned */
+  /* Wrapper */
+  /* Aside wrapper */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact.fuse-vertical-navigation-position-left {
+  /* Side mode */
+  /* Opened */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact.fuse-vertical-navigation-position-left.fuse-vertical-navigation-mode-side {
+  margin-left: -112px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact.fuse-vertical-navigation-position-left.fuse-vertical-navigation-opened {
+  margin-left: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact.fuse-vertical-navigation-position-right {
+  /* Side mode */
+  /* Opened */
+  /* Aside wrapper */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact.fuse-vertical-navigation-position-right.fuse-vertical-navigation-mode-side {
+  margin-right: -112px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact.fuse-vertical-navigation-position-right.fuse-vertical-navigation-opened {
+  margin-right: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact.fuse-vertical-navigation-position-right .fuse-vertical-navigation-aside-wrapper {
+  left: auto;
+  right: 112px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper {
+  /* Content */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper {
+  margin: 4px 8px 0 8px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon {
+  margin-right: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper {
+  margin-top: 8px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-title,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-title {
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 16px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-subtitle,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-subtitle {
+  display: none !important;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge {
+  position: absolute;
+  top: 12px;
+  left: 64px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item > fuse-vertical-navigation-collapsable-item,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item > fuse-vertical-navigation-collapsable-item {
+  display: none;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item > fuse-vertical-navigation-group-item > .fuse-vertical-navigation-item-wrapper,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item > fuse-vertical-navigation-group-item > .fuse-vertical-navigation-item-wrapper {
+  display: none;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-compact .fuse-vertical-navigation-aside-wrapper {
+  left: 112px;
+}
+
+/* Variables */
+fuse-vertical-navigation {
+  /* Dense appearance overrides */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense {
+  /* Wrapper */
+  /* Aside wrapper */
+  /* Hover */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-mode-over) {
+  width: 80px;
+  min-width: 80px;
+  max-width: 80px;
+  /* Left positioned */
+  /* Right positioned */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-mode-over).fuse-vertical-navigation-position-left {
+  /* Side mode */
+  /* Opened */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-mode-over).fuse-vertical-navigation-position-left.fuse-vertical-navigation-mode-side {
+  margin-left: -80px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-mode-over).fuse-vertical-navigation-position-left.fuse-vertical-navigation-opened {
+  margin-left: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-mode-over).fuse-vertical-navigation-position-right {
+  /* Side mode */
+  /* Opened */
+  /* Aside wrapper */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-mode-over).fuse-vertical-navigation-position-right.fuse-vertical-navigation-mode-side {
+  margin-right: -80px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-mode-over).fuse-vertical-navigation-position-right.fuse-vertical-navigation-opened {
+  margin-right: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-mode-over).fuse-vertical-navigation-position-right .fuse-vertical-navigation-aside-wrapper {
+  left: auto;
+  right: 80px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-mode-over).fuse-vertical-navigation-position-right.fuse-vertical-navigation-hover .fuse-vertical-navigation-aside-wrapper {
+  left: auto;
+  right: 280px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper {
+  /* Content */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-group-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item {
+  width: 280px-24px;
+  min-width: 280px-24px;
+  max-width: 280px-24px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-arrow,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-arrow,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-arrow,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-group-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-arrow,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-group-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-group-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper {
+  -webkit-transition: opacity 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: opacity 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-group-item:first-of-type {
+  margin-top: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-hover):not(.fuse-vertical-navigation-mode-over) {
+  /* Wrapper */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-hover):not(.fuse-vertical-navigation-mode-over) .fuse-vertical-navigation-wrapper {
+  /* Content */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-hover):not(.fuse-vertical-navigation-mode-over) .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item {
+  padding: 10px 16px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-hover):not(.fuse-vertical-navigation-mode-over) .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-arrow,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-hover):not(.fuse-vertical-navigation-mode-over) .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-hover):not(.fuse-vertical-navigation-mode-over) .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper {
+  white-space: nowrap;
+  opacity: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-hover):not(.fuse-vertical-navigation-mode-over) .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-collapsable-item .fuse-vertical-navigation-item-children {
+  display: none;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense:not(.fuse-vertical-navigation-hover):not(.fuse-vertical-navigation-mode-over) .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content fuse-vertical-navigation-group-item > .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item:before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  width: 23px;
+  border-top-width: 2px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense .fuse-vertical-navigation-aside-wrapper {
+  left: 80px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense.fuse-vertical-navigation-hover .fuse-vertical-navigation-wrapper {
+  width: 280px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense.fuse-vertical-navigation-hover .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-arrow,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense.fuse-vertical-navigation-hover .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense.fuse-vertical-navigation-hover .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper {
+  white-space: nowrap;
+  -webkit-animation: removeWhiteSpaceNoWrap 1ms linear 350ms;
+          animation: removeWhiteSpaceNoWrap 1ms linear 350ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-dense.fuse-vertical-navigation-hover .fuse-vertical-navigation-aside-wrapper {
+  left: 280px;
+}
+
+@-webkit-keyframes removeWhiteSpaceNoWrap {
+  0% {
+    white-space: nowrap;
+  }
+  99% {
+    white-space: nowrap;
+  }
+  100% {
+    white-space: normal;
+  }
+}
+
+@keyframes removeWhiteSpaceNoWrap {
+  0% {
+    white-space: nowrap;
+  }
+  99% {
+    white-space: nowrap;
+  }
+  100% {
+    white-space: normal;
+  }
+}
+
+/* Variables */
+fuse-vertical-navigation {
+  /* Thin appearance overrides */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin {
+  width: 80px;
+  min-width: 80px;
+  max-width: 80px;
+  /* Left positioned */
+  /* Right positioned */
+  /* Wrapper */
+  /* Aside wrapper */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin.fuse-vertical-navigation-position-left.fuse-vertical-navigation-mode-side {
+  margin-left: -80px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin.fuse-vertical-navigation-position-left.fuse-vertical-navigation-opened {
+  margin-left: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin.fuse-vertical-navigation-position-right.fuse-vertical-navigation-mode-side {
+  margin-right: -80px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin.fuse-vertical-navigation-position-right.fuse-vertical-navigation-opened {
+  margin-right: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin.fuse-vertical-navigation-position-right .fuse-vertical-navigation-aside-wrapper {
+  left: auto;
+  right: 80px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper {
+  /* Content */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 64px;
+  min-height: 64px;
+  max-height: 64px;
+  padding: 0 16px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon {
+  margin: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-arrow,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge-content,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-arrow,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge-content,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper {
+  display: none;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-collapsable-item {
+  display: none;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-group-item > .fuse-vertical-navigation-item-wrapper {
+  display: none;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-aside-wrapper {
+  left: 80px;
+}
+/*# sourceMappingURL=vertical.component.css.map */

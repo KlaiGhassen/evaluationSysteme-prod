@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,2GAA2G;AAC3G;;2GAE2G;AAC3G,SAAS,CAAT,8BAAS",
+    "sources": [
+        "tailwind-config.scss"
+    ],
+    "names": [],
+    "file": "tailwind-config.css"
+}

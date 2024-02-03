@@ -1,0 +1,1225 @@
+:host {
+  display: block;
+  /* Common */
+  /* Dismissible */
+  /* Border */
+  /* Fill */
+  /* Outline */
+  /* Soft */
+}
+
+:host .fuse-alert-container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1;
+  /* All icons */
+  /* Icon */
+  /* Content */
+  /* Dismiss button */
+}
+
+:host .fuse-alert-container .mat-icon {
+  color: currentColor !important;
+}
+
+:host .fuse-alert-container .fuse-alert-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+:host .fuse-alert-container .fuse-alert-icon .fuse-alert-custom-icon,
+:host .fuse-alert-container .fuse-alert-icon .fuse-alert-default-icon {
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 50%;
+}
+
+:host .fuse-alert-container .fuse-alert-icon .fuse-alert-custom-icon:not(:empty),
+:host .fuse-alert-container .fuse-alert-icon .fuse-alert-default-icon:not(:empty) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 12px;
+}
+
+:host .fuse-alert-container .fuse-alert-icon .fuse-alert-default-icon .mat-icon {
+  @apply icon-size-5;
+}
+
+:host .fuse-alert-container .fuse-alert-icon .fuse-alert-custom-icon {
+  display: none;
+}
+
+:host .fuse-alert-container .fuse-alert-icon .fuse-alert-custom-icon:not(:empty) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+:host .fuse-alert-container .fuse-alert-icon .fuse-alert-custom-icon:not(:empty) + .fuse-alert-default-icon {
+  display: none;
+}
+
+:host .fuse-alert-container .fuse-alert-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  line-height: 1;
+  /* Title */
+  /* Alert */
+}
+
+:host .fuse-alert-container .fuse-alert-content .fuse-alert-title {
+  display: none;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+:host .fuse-alert-container .fuse-alert-content .fuse-alert-title:not(:empty) {
+  display: block;
+  /* Alert that comes after the title */
+}
+
+:host .fuse-alert-container .fuse-alert-content .fuse-alert-title:not(:empty) + .fuse-alert-message:not(:empty) {
+  margin-top: 4px;
+}
+
+:host .fuse-alert-container .fuse-alert-content .fuse-alert-message {
+  display: none;
+  line-height: 20px;
+}
+
+:host .fuse-alert-container .fuse-alert-content .fuse-alert-message:not(:empty) {
+  display: block;
+}
+
+:host .fuse-alert-container .fuse-alert-dismiss-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px !important;
+  min-width: 32px !important;
+  height: 32px !important;
+  min-height: 32px !important;
+  line-height: 32px !important;
+}
+
+:host .fuse-alert-container .fuse-alert-dismiss-button .mat-icon {
+  @apply icon-size-4;
+}
+
+:host.fuse-alert-dismissible .fuse-alert-container .fuse-alert-content {
+  margin-right: 32px;
+}
+
+:host:not(.fuse-alert-dismissible) .fuse-alert-container .fuse-alert-dismiss-button {
+  display: none !important;
+}
+
+:host.fuse-alert-appearance-border {
+  /* Primary */
+  /* Accent */
+  /* Warn */
+  /* Basic */
+  /* Info */
+  /* Success */
+  /* Warning */
+  /* Error */
+}
+
+:host.fuse-alert-appearance-border .fuse-alert-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  @apply shadow-md bg-card;
+}
+
+:host.fuse-alert-appearance-border .fuse-alert-container .fuse-alert-border {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+}
+
+:host.fuse-alert-appearance-border .fuse-alert-container .fuse-alert-message {
+  @apply text-gray-600;
+}
+
+:host.fuse-alert-appearance-border.fuse-alert-type-primary .fuse-alert-container .fuse-alert-border {
+  @apply bg-primary;
+}
+
+:host.fuse-alert-appearance-border.fuse-alert-type-primary .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-border.fuse-alert-type-primary .fuse-alert-container .fuse-alert-icon {
+  @apply text-primary;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-primary .fuse-alert-container {
+  @apply bg-gray-700;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-primary .fuse-alert-container .fuse-alert-border {
+  @apply bg-primary-400;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-primary .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-primary .fuse-alert-container .fuse-alert-icon {
+  @apply text-primary-400;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-primary .fuse-alert-container .fuse-alert-message {
+  @apply text-gray-300;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-primary .fuse-alert-container code {
+  @apply bg-gray-400 text-gray-800;
+}
+
+:host.fuse-alert-appearance-border.fuse-alert-type-accent .fuse-alert-container .fuse-alert-border {
+  @apply bg-accent;
+}
+
+:host.fuse-alert-appearance-border.fuse-alert-type-accent .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-border.fuse-alert-type-accent .fuse-alert-container .fuse-alert-icon {
+  @apply text-accent;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-accent .fuse-alert-container {
+  @apply bg-gray-700;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-accent .fuse-alert-container .fuse-alert-border {
+  @apply bg-accent-400;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-accent .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-accent .fuse-alert-container .fuse-alert-icon {
+  @apply text-accent-400;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-accent .fuse-alert-container .fuse-alert-message {
+  @apply text-gray-300;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-accent .fuse-alert-container code {
+  @apply bg-gray-400 text-gray-800;
+}
+
+:host.fuse-alert-appearance-border.fuse-alert-type-warn .fuse-alert-container .fuse-alert-border {
+  @apply bg-warn;
+}
+
+:host.fuse-alert-appearance-border.fuse-alert-type-warn .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-border.fuse-alert-type-warn .fuse-alert-container .fuse-alert-icon {
+  @apply text-warn;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-warn .fuse-alert-container {
+  @apply bg-gray-700;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-warn .fuse-alert-container .fuse-alert-border {
+  @apply bg-warn-400;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-warn .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-warn .fuse-alert-container .fuse-alert-icon {
+  @apply text-warn-400;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-warn .fuse-alert-container .fuse-alert-message {
+  @apply text-gray-300;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-warn .fuse-alert-container code {
+  @apply bg-gray-400 text-gray-800;
+}
+
+:host.fuse-alert-appearance-border.fuse-alert-type-basic .fuse-alert-container .fuse-alert-border {
+  @apply bg-gray-600;
+}
+
+:host.fuse-alert-appearance-border.fuse-alert-type-basic .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-border.fuse-alert-type-basic .fuse-alert-container .fuse-alert-icon {
+  @apply text-gray-600;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-basic .fuse-alert-container {
+  @apply bg-gray-700;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-basic .fuse-alert-container .fuse-alert-border {
+  @apply bg-gray-400;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-basic .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-basic .fuse-alert-container .fuse-alert-icon {
+  @apply text-gray-400;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-basic .fuse-alert-container .fuse-alert-message {
+  @apply text-gray-300;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-basic .fuse-alert-container code {
+  @apply bg-gray-400 text-gray-800;
+}
+
+:host.fuse-alert-appearance-border.fuse-alert-type-info .fuse-alert-container .fuse-alert-border {
+  @apply bg-blue-600;
+}
+
+:host.fuse-alert-appearance-border.fuse-alert-type-info .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-border.fuse-alert-type-info .fuse-alert-container .fuse-alert-icon {
+  @apply text-blue-700;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-info .fuse-alert-container {
+  @apply bg-gray-700;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-info .fuse-alert-container .fuse-alert-border {
+  @apply bg-blue-400;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-info .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-info .fuse-alert-container .fuse-alert-icon {
+  @apply text-blue-400;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-info .fuse-alert-container .fuse-alert-message {
+  @apply text-gray-300;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-info .fuse-alert-container code {
+  @apply bg-gray-400 text-gray-800;
+}
+
+:host.fuse-alert-appearance-border.fuse-alert-type-success .fuse-alert-container .fuse-alert-border {
+  @apply bg-green-500;
+}
+
+:host.fuse-alert-appearance-border.fuse-alert-type-success .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-border.fuse-alert-type-success .fuse-alert-container .fuse-alert-icon {
+  @apply text-green-500;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-success .fuse-alert-container {
+  @apply bg-gray-700;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-success .fuse-alert-container .fuse-alert-border {
+  @apply bg-green-400;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-success .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-success .fuse-alert-container .fuse-alert-icon {
+  @apply text-green-400;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-success .fuse-alert-container .fuse-alert-message {
+  @apply text-gray-300;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-success .fuse-alert-container code {
+  @apply bg-gray-400 text-gray-800;
+}
+
+:host.fuse-alert-appearance-border.fuse-alert-type-warning .fuse-alert-container .fuse-alert-border {
+  @apply bg-amber-500;
+}
+
+:host.fuse-alert-appearance-border.fuse-alert-type-warning .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-border.fuse-alert-type-warning .fuse-alert-container .fuse-alert-icon {
+  @apply text-amber-500;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-warning .fuse-alert-container {
+  @apply bg-gray-700;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-warning .fuse-alert-container .fuse-alert-border {
+  @apply bg-amber-400;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-warning .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-warning .fuse-alert-container .fuse-alert-icon {
+  @apply text-amber-400;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-warning .fuse-alert-container .fuse-alert-message {
+  @apply text-gray-300;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-warning .fuse-alert-container code {
+  @apply bg-gray-400 text-gray-800;
+}
+
+:host.fuse-alert-appearance-border.fuse-alert-type-error .fuse-alert-container .fuse-alert-border {
+  @apply bg-red-600;
+}
+
+:host.fuse-alert-appearance-border.fuse-alert-type-error .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-border.fuse-alert-type-error .fuse-alert-container .fuse-alert-icon {
+  @apply text-red-700;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-error .fuse-alert-container {
+  @apply bg-gray-700;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-error .fuse-alert-container .fuse-alert-border {
+  @apply bg-red-400;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-error .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-error .fuse-alert-container .fuse-alert-icon {
+  @apply text-red-400;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-error .fuse-alert-container .fuse-alert-message {
+  @apply text-gray-300;
+}
+
+.dark :host.fuse-alert-appearance-border.fuse-alert-type-error .fuse-alert-container code {
+  @apply bg-gray-400 text-gray-800;
+}
+
+:host.fuse-alert-appearance-fill {
+  /* Primary */
+  /* Accent */
+  /* Warn */
+  /* Basic */
+  /* Info */
+  /* Success */
+  /* Warning */
+  /* Error */
+}
+
+:host.fuse-alert-appearance-fill .fuse-alert-container {
+  border-radius: 6px;
+}
+
+:host.fuse-alert-appearance-fill .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-primary .fuse-alert-container {
+  @apply bg-primary-600;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-primary .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-primary .fuse-alert-container .fuse-alert-title {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-primary .fuse-alert-container .fuse-alert-message {
+  @apply text-primary-100;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-primary .fuse-alert-container code {
+  @apply text-primary-800 bg-primary-200;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-accent .fuse-alert-container {
+  @apply bg-accent-600;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-accent .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-accent .fuse-alert-container .fuse-alert-title {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-accent .fuse-alert-container .fuse-alert-message {
+  @apply text-accent-100;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-accent .fuse-alert-container code {
+  @apply text-accent-800 bg-accent-200;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-warn .fuse-alert-container {
+  @apply bg-warn-600;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-warn .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-warn .fuse-alert-container .fuse-alert-title {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-warn .fuse-alert-container .fuse-alert-message {
+  @apply text-warn-100;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-warn .fuse-alert-container code {
+  @apply text-warn-800 bg-warn-200;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-basic .fuse-alert-container {
+  @apply bg-gray-600;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-basic .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-basic .fuse-alert-container .fuse-alert-title {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-basic .fuse-alert-container .fuse-alert-message {
+  @apply text-gray-100;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-basic .fuse-alert-container code {
+  @apply bg-gray-200 text-gray-800;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-info .fuse-alert-container {
+  @apply bg-blue-600;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-info .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-info .fuse-alert-container .fuse-alert-title {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-info .fuse-alert-container .fuse-alert-message {
+  @apply text-blue-100;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-info .fuse-alert-container code {
+  @apply bg-blue-200 text-blue-800;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-success .fuse-alert-container {
+  @apply bg-green-600;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-success .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-success .fuse-alert-container .fuse-alert-title {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-success .fuse-alert-container .fuse-alert-message {
+  @apply text-green-100;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-success .fuse-alert-container code {
+  @apply bg-green-200 text-gray-800;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-warning .fuse-alert-container {
+  @apply bg-amber-500;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-warning .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-warning .fuse-alert-container .fuse-alert-title {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-warning .fuse-alert-container .fuse-alert-message {
+  @apply text-amber-100;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-warning .fuse-alert-container code {
+  @apply bg-amber-200 text-amber-800;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-error .fuse-alert-container {
+  @apply bg-red-600;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-error .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-error .fuse-alert-container .fuse-alert-title {
+  @apply text-white;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-error .fuse-alert-container .fuse-alert-message {
+  @apply text-red-100;
+}
+
+:host.fuse-alert-appearance-fill.fuse-alert-type-error .fuse-alert-container code {
+  @apply bg-red-200 text-red-800;
+}
+
+:host.fuse-alert-appearance-outline {
+  /* Primary */
+  /* Accent */
+  /* Warn */
+  /* Basic */
+  /* Info */
+  /* Success */
+  /* Warning */
+  /* Error */
+}
+
+:host.fuse-alert-appearance-outline .fuse-alert-container {
+  border-radius: 6px;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-primary .fuse-alert-container {
+  @apply bg-primary-50 ring-1 ring-primary-400 ring-inset;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-primary .fuse-alert-container .fuse-alert-icon {
+  @apply text-primary-600;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-primary .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-outline.fuse-alert-type-primary .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-primary-900;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-primary .fuse-alert-container .fuse-alert-message {
+  @apply text-primary-700;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-primary .fuse-alert-container code {
+  @apply text-primary-800 bg-primary-200;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-primary .fuse-alert-container {
+  @apply bg-primary-600;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-primary .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-primary .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-primary .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-primary .fuse-alert-container .fuse-alert-message {
+  @apply text-primary-200;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-accent .fuse-alert-container {
+  @apply bg-accent-100 ring-1 ring-accent-400 ring-inset;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-accent .fuse-alert-container .fuse-alert-icon {
+  @apply text-accent-600;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-accent .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-outline.fuse-alert-type-accent .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-accent-900;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-accent .fuse-alert-container .fuse-alert-message {
+  @apply text-accent-700;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-accent .fuse-alert-container code {
+  @apply text-accent-800 bg-accent-200;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-accent .fuse-alert-container {
+  @apply bg-accent-600;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-accent .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-accent .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-accent .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-accent .fuse-alert-container .fuse-alert-message {
+  @apply text-accent-200;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-warn .fuse-alert-container {
+  @apply bg-warn-50 ring-1 ring-warn-400 ring-inset;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-warn .fuse-alert-container .fuse-alert-icon {
+  @apply text-warn-600;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-warn .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-outline.fuse-alert-type-warn .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-warn-900;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-warn .fuse-alert-container .fuse-alert-message {
+  @apply text-warn-700;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-warn .fuse-alert-container code {
+  @apply text-warn-800 bg-warn-200;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-warn .fuse-alert-container {
+  @apply bg-warn-600;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-warn .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-warn .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-warn .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-warn .fuse-alert-container .fuse-alert-message {
+  @apply text-warn-200;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-basic .fuse-alert-container {
+  @apply bg-gray-100 ring-1 ring-gray-400 ring-inset;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-basic .fuse-alert-container .fuse-alert-icon {
+  @apply text-gray-600;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-basic .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-outline.fuse-alert-type-basic .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-gray-900;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-basic .fuse-alert-container .fuse-alert-message {
+  @apply text-gray-700;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-basic .fuse-alert-container code {
+  @apply bg-gray-200 text-gray-800;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-basic .fuse-alert-container {
+  @apply bg-gray-600;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-basic .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-basic .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-basic .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-basic .fuse-alert-container .fuse-alert-message {
+  @apply text-gray-200;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-info .fuse-alert-container {
+  @apply bg-blue-50 ring-1 ring-blue-400 ring-inset;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-info .fuse-alert-container .fuse-alert-icon {
+  @apply text-blue-600;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-info .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-outline.fuse-alert-type-info .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-blue-900;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-info .fuse-alert-container .fuse-alert-message {
+  @apply text-blue-700;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-info .fuse-alert-container code {
+  @apply bg-blue-200 text-blue-800;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-info .fuse-alert-container {
+  @apply bg-blue-600;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-info .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-info .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-info .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-info .fuse-alert-container .fuse-alert-message {
+  @apply text-blue-200;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-success .fuse-alert-container {
+  @apply bg-green-50 ring-1 ring-green-400 ring-inset;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-success .fuse-alert-container .fuse-alert-icon {
+  @apply text-green-600;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-success .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-outline.fuse-alert-type-success .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-green-900;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-success .fuse-alert-container .fuse-alert-message {
+  @apply text-green-700;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-success .fuse-alert-container code {
+  @apply bg-green-200 text-green-800;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-success .fuse-alert-container {
+  @apply bg-green-600;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-success .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-success .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-success .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-success .fuse-alert-container .fuse-alert-message {
+  @apply text-green-200;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-warning .fuse-alert-container {
+  @apply bg-amber-50 ring-1 ring-amber-400 ring-inset;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-warning .fuse-alert-container .fuse-alert-icon {
+  @apply text-amber-600;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-warning .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-outline.fuse-alert-type-warning .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-amber-900;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-warning .fuse-alert-container .fuse-alert-message {
+  @apply text-amber-700;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-warning .fuse-alert-container code {
+  @apply bg-amber-200 text-amber-800;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-warning .fuse-alert-container {
+  @apply bg-amber-600;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-warning .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-warning .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-warning .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-warning .fuse-alert-container .fuse-alert-message {
+  @apply text-amber-200;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-error .fuse-alert-container {
+  @apply bg-red-50 ring-1 ring-red-400 ring-inset;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-error .fuse-alert-container .fuse-alert-icon {
+  @apply text-red-600;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-error .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-outline.fuse-alert-type-error .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-red-900;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-error .fuse-alert-container .fuse-alert-message {
+  @apply text-red-700;
+}
+
+:host.fuse-alert-appearance-outline.fuse-alert-type-error .fuse-alert-container code {
+  @apply bg-red-200 text-red-800;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-error .fuse-alert-container {
+  @apply bg-red-600;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-error .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-error .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-error .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-outline.fuse-alert-type-error .fuse-alert-container .fuse-alert-message {
+  @apply text-red-200;
+}
+
+:host.fuse-alert-appearance-soft {
+  /* Primary */
+  /* Accent */
+  /* Warn */
+  /* Basic */
+  /* Info */
+  /* Success */
+  /* Warning */
+  /* Error */
+}
+
+:host.fuse-alert-appearance-soft .fuse-alert-container {
+  border-radius: 6px;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-primary .fuse-alert-container {
+  @apply bg-primary-50;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-primary .fuse-alert-container .fuse-alert-icon {
+  @apply text-primary-600;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-primary .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-soft.fuse-alert-type-primary .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-primary-900;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-primary .fuse-alert-container .fuse-alert-message {
+  @apply text-primary-700;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-primary .fuse-alert-container code {
+  @apply text-primary-800 bg-primary-200;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-primary .fuse-alert-container {
+  @apply bg-primary-600;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-primary .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-primary .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-primary .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-primary .fuse-alert-container .fuse-alert-message {
+  @apply text-primary-200;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-accent .fuse-alert-container {
+  @apply bg-accent-100;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-accent .fuse-alert-container .fuse-alert-icon {
+  @apply text-accent-600;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-accent .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-soft.fuse-alert-type-accent .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-accent-900;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-accent .fuse-alert-container .fuse-alert-message {
+  @apply text-accent-700;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-accent .fuse-alert-container code {
+  @apply text-accent-800 bg-accent-200;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-accent .fuse-alert-container {
+  @apply bg-accent-600;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-accent .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-accent .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-accent .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-accent .fuse-alert-container .fuse-alert-message {
+  @apply text-accent-200;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-warn .fuse-alert-container {
+  @apply bg-warn-50;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-warn .fuse-alert-container .fuse-alert-icon {
+  @apply text-warn-600;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-warn .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-soft.fuse-alert-type-warn .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-warn-900;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-warn .fuse-alert-container .fuse-alert-message {
+  @apply text-warn-700;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-warn .fuse-alert-container code {
+  @apply text-warn-800 bg-warn-200;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-warn .fuse-alert-container {
+  @apply bg-warn-600;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-warn .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-warn .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-warn .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-warn .fuse-alert-container .fuse-alert-message {
+  @apply text-warn-200;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-basic .fuse-alert-container {
+  @apply bg-gray-100;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-basic .fuse-alert-container .fuse-alert-icon {
+  @apply text-gray-600;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-basic .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-soft.fuse-alert-type-basic .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-gray-900;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-basic .fuse-alert-container .fuse-alert-message {
+  @apply text-gray-700;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-basic .fuse-alert-container code {
+  @apply bg-gray-200 text-gray-800;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-basic .fuse-alert-container {
+  @apply bg-gray-600;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-basic .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-basic .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-basic .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-basic .fuse-alert-container .fuse-alert-message {
+  @apply text-gray-200;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-info .fuse-alert-container {
+  @apply bg-blue-50;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-info .fuse-alert-container .fuse-alert-icon {
+  @apply text-blue-600;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-info .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-soft.fuse-alert-type-info .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-blue-900;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-info .fuse-alert-container .fuse-alert-message {
+  @apply text-blue-700;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-info .fuse-alert-container code {
+  @apply bg-blue-200 text-blue-800;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-info .fuse-alert-container {
+  @apply bg-blue-600;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-info .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-info .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-info .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-info .fuse-alert-container .fuse-alert-message {
+  @apply text-blue-200;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-success .fuse-alert-container {
+  @apply bg-green-50;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-success .fuse-alert-container .fuse-alert-icon {
+  @apply text-green-600;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-success .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-soft.fuse-alert-type-success .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-green-900;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-success .fuse-alert-container .fuse-alert-message {
+  @apply text-green-700;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-success .fuse-alert-container code {
+  @apply bg-green-200 text-green-800;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-success .fuse-alert-container {
+  @apply bg-green-600;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-success .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-success .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-success .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-success .fuse-alert-container .fuse-alert-message {
+  @apply text-green-200;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-warning .fuse-alert-container {
+  @apply bg-amber-50;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-warning .fuse-alert-container .fuse-alert-icon {
+  @apply text-amber-600;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-warning .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-soft.fuse-alert-type-warning .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-amber-900;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-warning .fuse-alert-container .fuse-alert-message {
+  @apply text-amber-700;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-warning .fuse-alert-container code {
+  @apply bg-amber-200 text-amber-800;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-warning .fuse-alert-container {
+  @apply bg-amber-600;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-warning .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-warning .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-warning .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-warning .fuse-alert-container .fuse-alert-message {
+  @apply text-amber-200;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-error .fuse-alert-container {
+  @apply bg-red-50;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-error .fuse-alert-container .fuse-alert-icon {
+  @apply text-red-600;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-error .fuse-alert-container .fuse-alert-title,
+:host.fuse-alert-appearance-soft.fuse-alert-type-error .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-red-900;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-error .fuse-alert-container .fuse-alert-message {
+  @apply text-red-700;
+}
+
+:host.fuse-alert-appearance-soft.fuse-alert-type-error .fuse-alert-container code {
+  @apply bg-red-200 text-red-800;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-error .fuse-alert-container {
+  @apply bg-red-600;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-error .fuse-alert-container .fuse-alert-icon {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-error .fuse-alert-container .fuse-alert-title,
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-error .fuse-alert-container .fuse-alert-dismiss-button {
+  @apply text-white;
+}
+
+.dark :host.fuse-alert-appearance-soft.fuse-alert-type-error .fuse-alert-container .fuse-alert-message {
+  @apply text-red-200;
+}
+/*# sourceMappingURL=alert.component.css.map */

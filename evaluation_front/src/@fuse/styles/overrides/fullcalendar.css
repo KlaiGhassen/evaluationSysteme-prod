@@ -1,0 +1,660 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ FullCalendar overrides
+/* ----------------------------------------------------------------------------------------------------- */
+.fc {
+  /* Day grid event - Dragging */
+}
+
+.fc .fc-view-container {
+  /* Day Grid - Month view */
+  /* Time Grid - Week view */
+  /* Time Grid - Day view */
+  /* List - Year view */
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-head > tr > .fc-head-container {
+  border: none;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-head > tr > .fc-head-container .fc-row .fc-day-header {
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-head > tr > .fc-head-container .fc-row .fc-day-header span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  @apply text-secondary;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-body > tr > .fc-widget-content {
+  border: none;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-week .fc-bg .fc-day {
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-week .fc-bg .fc-day.fc-today {
+  background: none;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-week .fc-content-skeleton .fc-day-top {
+  text-align: center;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-week .fc-content-skeleton .fc-day-top.fc-other-month {
+  opacity: 1;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-week .fc-content-skeleton .fc-day-top.fc-other-month .fc-day-number {
+  @apply text-hint;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-week .fc-content-skeleton .fc-day-top.fc-today .fc-day-number {
+  @apply bg-primary text-on-primary;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-week .fc-content-skeleton .fc-day-top .fc-day-number {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 22px;
+  height: 21px;
+  margin: 4px 0;
+  font-size: 12px;
+  border-radius: 50%;
+  float: none;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-week .fc-content-skeleton .fc-event-container .fc-day-grid-event {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 22px;
+  min-height: 22px;
+  max-height: 22px;
+  margin: 0 6px 4px 6px;
+  padding: 0 5px;
+  font-size: 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+@screen sm {
+  .fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-week .fc-content-skeleton .fc-event-container .fc-day-grid-event {
+    padding: 0 8px;
+  }
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-week .fc-content-skeleton .fc-more {
+  padding: 0 3px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  @apply text-secondary;
+}
+
+@screen sm {
+  .fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-week .fc-content-skeleton .fc-more {
+    padding: 0 6px;
+  }
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-week .fc-highlight-skeleton .fc-highlight {
+  position: relative;
+  opacity: 1;
+  @apply bg-gray-100;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-popover {
+  @apply bg-card;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-popover.fc-more-popover {
+  border: none;
+  border-radius: 4px;
+  @apply shadow-2xl;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-popover.fc-more-popover .fc-header {
+  height: 32px;
+  min-height: 32px;
+  max-height: 32px;
+  padding: 0 8px;
+  @apply bg-hover;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-popover.fc-more-popover .fc-header .fc-title {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-popover.fc-more-popover .fc-body {
+  max-height: 160px;
+  overflow: hidden auto;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-popover.fc-more-popover .fc-body .fc-event-container {
+  padding: 8px;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-popover.fc-more-popover .fc-body .fc-event-container .fc-day-grid-event {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 22px;
+  min-height: 22px;
+  max-height: 22px;
+  margin: 0 0 6px 0;
+  padding: 0 8px;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.fc .fc-view-container .fc-view.fc-dayGridMonth-view .fc-popover.fc-more-popover .fc-body .fc-event-container .fc-day-grid-event:last-child {
+  margin-bottom: 0;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-head > tr > .fc-head-container {
+  border: none;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-head > tr > .fc-head-container .fc-row .fc-axis {
+  width: 48px !important;
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-head > tr > .fc-head-container .fc-row .fc-day-header {
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-head > tr > .fc-head-container .fc-row .fc-day-header span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  @apply text-secondary;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-head > tr > .fc-head-container .fc-row .fc-day-header span.fc-weekday {
+  padding-top: 16px;
+  font-size: 12px;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-head > tr > .fc-head-container .fc-row .fc-day-header span.fc-date {
+  padding-bottom: 12px;
+  font-size: 26px;
+  font-weight: 300;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content {
+  border: none;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-row {
+  min-height: 0;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-row .fc-bg .fc-axis {
+  width: 48px !important;
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-row .fc-bg .fc-day {
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-row .fc-bg .fc-day.fc-today {
+  background: none;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-row .fc-content-skeleton {
+  padding-bottom: 0;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-row .fc-content-skeleton .fc-axis {
+  width: 48px !important;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-row .fc-content-skeleton .fc-event-container .fc-day-grid-event {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 22px;
+  min-height: 22px;
+  max-height: 22px;
+  margin: 0 6px 6px 6px;
+  padding: 0 8px;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-divider {
+  border: none;
+  background: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-bg .fc-axis {
+  border: none;
+  width: 48px !important;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-bg .fc-axis + .fc-day {
+  border: none;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-bg .fc-day {
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-bg .fc-day.fc-today {
+  background: none;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-slats .fc-axis {
+  width: 48px !important;
+  height: 48px;
+  text-align: center;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-slats .fc-axis span {
+  font-size: 12px;
+  width: 48px;
+  min-width: 48px;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-slats .fc-time {
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-slats .fc-widget-content {
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-content-skeleton .fc-axis {
+  width: 48px !important;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-content-skeleton .fc-event-container {
+  margin: 0 12px 0 0;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-content-skeleton .fc-event-container .fc-time-grid-event {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-content-skeleton .fc-event-container .fc-time-grid-event .fc-time,
+.fc .fc-view-container .fc-view.fc-timeGridWeek-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-content-skeleton .fc-event-container .fc-time-grid-event .fc-title {
+  font-size: 12px;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-head > tr > .fc-head-container {
+  border: none;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-head > tr > .fc-head-container .fc-row .fc-axis {
+  width: 48px !important;
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-head > tr > .fc-head-container .fc-row .fc-day-header {
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-head > tr > .fc-head-container .fc-row .fc-day-header span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  @apply text-secondary;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-head > tr > .fc-head-container .fc-row .fc-day-header span.fc-weekday {
+  padding-top: 16px;
+  font-size: 12px;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-head > tr > .fc-head-container .fc-row .fc-day-header span.fc-date {
+  padding-bottom: 12px;
+  font-size: 26px;
+  font-weight: 300;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content {
+  border: none;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-bg .fc-axis {
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-bg .fc-day {
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-bg .fc-day.fc-today {
+  background: none;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-row {
+  min-height: 0;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-row .fc-bg .fc-axis {
+  width: 48px !important;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-row .fc-content-skeleton {
+  padding-bottom: 0;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-row .fc-content-skeleton .fc-axis {
+  width: 48px !important;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-day-grid .fc-row .fc-content-skeleton .fc-event-container .fc-day-grid-event {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 22px;
+  min-height: 22px;
+  max-height: 22px;
+  margin: 0 6px 6px 6px;
+  padding: 0 8px;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-divider {
+  border: none;
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-bg .fc-day {
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-bg .fc-day.fc-today {
+  background: none;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-bg .fc-axis {
+  border: none;
+  width: 48px !important;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-bg .fc-axis + .fc-day {
+  border: none;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-slats .fc-axis {
+  width: 48px !important;
+  height: 48px;
+  text-align: center;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-slats .fc-axis span {
+  font-size: 12px;
+  width: 48px;
+  min-width: 48px;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-slats .fc-time {
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-slats .fc-widget-content {
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-content-skeleton .fc-axis {
+  width: 48px !important;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-content-skeleton .fc-event-container {
+  margin: 0 12px 0 0;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-content-skeleton .fc-event-container .fc-time-grid-event {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-content-skeleton .fc-event-container .fc-time-grid-event .fc-time,
+.fc .fc-view-container .fc-view.fc-timeGridDay-view .fc-body > tr > .fc-widget-content .fc-time-grid .fc-content-skeleton .fc-event-container .fc-time-grid-event .fc-title {
+  font-size: 12px;
+}
+
+.fc .fc-view-container .fc-view.fc-listYear-view {
+  border: none;
+}
+
+.fc .fc-view-container .fc-view.fc-listYear-view .fc-list-table .fc-list-heading {
+  display: none;
+}
+
+.fc .fc-view-container .fc-view.fc-listYear-view .fc-list-table .fc-list-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+}
+
+.fc .fc-view-container .fc-view.fc-listYear-view .fc-list-table .fc-list-item:hover td {
+  @apply bg-hover;
+}
+
+.fc .fc-view-container .fc-view.fc-listYear-view .fc-list-table .fc-list-item td {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: auto;
+  height: 48px;
+  min-height: 48px;
+  padding: 0 8px;
+  border-width: 0 0 1px 0;
+  border-color: var(--fuse-divider);
+}
+
+.fc .fc-view-container .fc-view.fc-listYear-view .fc-list-table .fc-list-item td.fc-list-item-date {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  padding-left: 16px;
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+}
+
+@screen sm {
+  .fc .fc-view-container .fc-view.fc-listYear-view .fc-list-table .fc-list-item td.fc-list-item-date {
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+  }
+}
+
+.fc .fc-view-container .fc-view.fc-listYear-view .fc-list-table .fc-list-item td.fc-list-item-date > span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.fc .fc-view-container .fc-view.fc-listYear-view .fc-list-table .fc-list-item td.fc-list-item-date > span span:first-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-right: 2px;
+  width: 32px;
+  min-width: 32px;
+  max-width: 32px;
+  font-size: 18px;
+}
+
+@screen sm {
+  .fc .fc-view-container .fc-view.fc-listYear-view .fc-list-table .fc-list-item td.fc-list-item-date > span span:first-child {
+    padding-right: 8px;
+  }
+}
+
+.fc .fc-view-container .fc-view.fc-listYear-view .fc-list-table .fc-list-item td.fc-list-item-date > span span:first-child + span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  @apply text-secondary;
+}
+
+.fc .fc-view-container .fc-view.fc-listYear-view .fc-list-table .fc-list-item td.fc-list-item-time {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
+}
+
+@screen sm {
+  .fc .fc-view-container .fc-view.fc-listYear-view .fc-list-table .fc-list-item td.fc-list-item-time {
+    width: 160px;
+    min-width: 160px;
+    max-width: 160px;
+  }
+}
+
+.fc .fc-view-container .fc-view.fc-listYear-view .fc-list-table .fc-list-item td.fc-list-item-marker {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+
+.fc .fc-view-container .fc-view.fc-listYear-view .fc-list-table .fc-list-item td.fc-list-item-marker .fc-event-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.fc .fc-view-container .fc-view.fc-listYear-view .fc-list-table .fc-list-item td.fc-list-item-title {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
+  padding-right: 24px;
+  font-weight: 500;
+}
+
+.fc .fc-day-grid-event.fc-dragging, .fc .fc-day-grid-event.fc-resizing {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 22px;
+  min-height: 22px;
+  max-height: 22px;
+  margin: 0 6px 4px 6px;
+  padding: 0 8px;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 4px;
+  border: none;
+}
+/*# sourceMappingURL=fullcalendar.css.map */

@@ -1,0 +1,124 @@
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-hidden">
+    <mat-drawer-container class="flex-auto h-full bg-card dark:bg-transparent">
+        <!-- Drawer -->
+        <mat-drawer
+            class="w-2/3 sm:w-72 lg:w-56 border-r-0 bg-default"
+            [mode]="drawerMode"
+            [opened]="drawerOpened"
+            #drawer
+        >
+            <div class="p-6 lg:py-8 lg:pl-4 lg:pr-0">
+                <!-- Filters -->
+                <div class="space-y-2">
+                    <!-- Labels -->
+                    <ng-container *ngIf="labels$ | async as labels">
+                        <ng-container
+                            *ngFor="let label of labels; trackBy: trackByFn"
+                        >
+                            <div
+                                class="relative flex items-center py-2 px-4 font-medium rounded-full cursor-pointer"
+                                [ngClass]="{
+                                    'bg-gray-200 dark:bg-gray-700 text-primary dark:text-primary-400':
+                                        'label:' + label.up_id === filterStatus,
+                                    'text-hint hover:bg-hover':
+                                        'label:' + label.up_id !== filterStatus
+                                }"
+                                (click)="filterByLabel(label.up_id)"
+                                matRipple
+                                [matRippleDisabled]="
+                                    'label:' + label.up_id === filterStatus
+                                "
+                            >
+                                <mat-icon
+                                    class="text-current"
+                                    [svgIcon]="'heroicons_outline:tag'"
+                                ></mat-icon>
+                                <div
+                                    class="ml-3 leading-5 select-none text-default"
+                                >
+                                    {{ label.name_up }}
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                    <!-- Edit Labels -->
+                    <div
+                        class="relative flex items-center py-2 px-4 font-medium rounded-full cursor-pointer hover:bg-hover"
+                        (click)="openEditLabelsDialog()"
+                        matRipple
+                    >
+                        <mat-icon
+                            class="text-hint"
+                            [svgIcon]="'heroicons_outline:pencil'"
+                        ></mat-icon>
+                        <div class="ml-3 leading-5 select-none">Edit Up</div>
+                    </div>
+                      <!-- New note -->
+                      <button
+                      class="ml-4 px-1 sm:px-4 min-w-10"
+                      mat-flat-button
+                      [color]="'primary'"
+                      (click)="addNewNote()"
+                  >
+                      <mat-icon
+                          class="icon-size-5"
+                          [svgIcon]="'heroicons_solid:plus-circle'"
+                      ></mat-icon>
+                      <span class="hidden sm:inline-block ml-2"
+                          >launch Rate</span
+                      >
+                  </button>
+                </div>
+            </div>
+        </mat-drawer>
+        <mat-drawer-content
+            class="flex flex-col bg-gray-100 dark:bg-transparent"
+        >
+            <!-- Main -->
+            <div class="flex flex-col flex-auto p-6 md:p-8">
+                <!-- Header -->
+            
+
+                <!-- Notes -->
+                <ng-container>
+                    <ng-container>
+                        <angular-org-chart
+                            class="mt-8"
+                            id="orgChartId"
+                            [data]="orgData"
+                        ></angular-org-chart>
+                    </ng-container>
+                </ng-container>
+
+                <!-- Loading template -->
+                <ng-template #loading>
+                    <div
+                        class="flex flex-auto flex-col items-center justify-center bg-gray-100 dark:bg-transparent"
+                    >
+                        <div
+                            class="mt-4 text-2xl font-semibold tracking-tight text-secondary"
+                        >
+                            Loading...
+                        </div>
+                    </div>
+                </ng-template>
+                <!-- No notes template -->
+                <ng-template #noNotes>
+                    <div
+                        class="flex flex-auto flex-col items-center justify-center bg-gray-100 dark:bg-transparent"
+                    >
+                        <mat-icon
+                            class="icon-size-24"
+                            [svgIcon]="'iconsmind:file_hide'"
+                        ></mat-icon>
+                        <div
+                            class="mt-4 text-2xl font-semibold tracking-tight text-secondary"
+                        >
+                            There are no Up hierarchy !
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

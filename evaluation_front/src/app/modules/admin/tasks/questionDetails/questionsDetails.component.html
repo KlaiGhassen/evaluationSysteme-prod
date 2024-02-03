@@ -1,0 +1,127 @@
+<div class="flex flex-auto">
+    <form
+        class="flex flex-col flex-auto p-6 pt-10 sm:p-8 sm:pt-10 overflow-y-auto"
+        [formGroup]="taskForm"
+    >
+        <!-- Header -->
+        <div class="flex items-center justify-between -mt-3 -ml-4">
+            <!-- Mark as ... button -->
+            <!-- Mark as complete -->
+            <ng-container *ngIf="title">
+                <div class="flex items-center justify-center">
+                
+                    <span class="ml-2 font-semibold">{{ title }}</span>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="!title">
+                <div class="flex items-center justify-center">
+                
+                    <span class="ml-2 font-semibold">Chose Question Section</span>
+                </div>
+            </ng-container>
+
+            <div class="flex items-center">
+                <!-- More menu -->
+                <button mat-icon-button [matMenuTriggerFor]="moreMenu">
+                    <mat-icon
+                        [svgIcon]="'heroicons_outline:dots-vertical'"
+                    ></mat-icon>
+                </button>
+                <mat-menu #moreMenu="matMenu">
+                    <button mat-menu-item (click)="deleteTask()">
+                        <mat-icon
+                            [svgIcon]="'heroicons_outline:trash'"
+                        ></mat-icon>
+                        <span>Delete Question</span>
+                    </button>
+                </mat-menu>
+
+                <!-- Close button -->
+
+                <button
+                    mat-icon-button
+                    (click)="closeDrawer()"
+                    [routerLink]="['../']"
+                >
+                    <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <mat-divider class="mt-6 mb-8"></mat-divider>
+
+        <mat-form-field class="fuse-mat-textarea fuse-mat-no-subscript w-full">
+            <mat-label>Questions Sections</mat-label>
+
+            <mat-select
+                [formControlName]="'section_id'"
+                [placeholder]="'Questions Sections'"
+            >
+                <ng-container
+                    *ngFor="let section of sections; trackBy: trackByFn"
+                >
+                    <mat-option [value]="section.section_id">{{
+                        section.title
+                    }}</mat-option>
+                </ng-container>
+            </mat-select>
+            <mat-icon
+                class="icon-size-5"
+                matPrefix
+                [svgIcon]="'heroicons_solid:location-marker'"
+            ></mat-icon>
+        </mat-form-field>
+        <mat-divider class="mt-6 mb-8"></mat-divider>
+
+        <!-- Title -->
+        <div>
+            <mat-form-field
+                class="fuse-mat-textarea fuse-mat-no-subscript w-full"
+            >
+                <mat-label>Question</mat-label>
+                <textarea
+                    matInput
+                    [formControlName]="'question'"
+                    [spellcheck]="false"
+                    matTextareaAutosize
+                    #titleField
+                ></textarea>
+            </mat-form-field>
+        </div>
+
+        <!-- Notes -->
+        <div class="mt-8">
+            <mat-form-field
+                class="fuse-mat-textarea fuse-mat-no-subscript w-full"
+            >
+                <mat-label>Notes</mat-label>
+                <textarea
+                    matInput
+                    [spellcheck]="false"
+                    matTextareaAutosize
+                ></textarea>
+            </mat-form-field>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex mt-4 items-center justify-end">
+            <button
+                mat-stroked-button
+                (click)="toggleCompleted()"
+                type="button"
+            >
+                Cancel
+            </button>
+            <button
+                class="ml-4"
+                mat-flat-button
+                type="button"
+                [disabled]="!taskForm.valid || !taskForm.dirty"
+                [color]="'primary'"
+                (click)="save()"
+            >
+                Save
+            </button>
+        </div>
+    </form>
+</div>

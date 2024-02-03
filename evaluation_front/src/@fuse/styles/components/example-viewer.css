@@ -1,0 +1,54 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Example viewer
+/* ----------------------------------------------------------------------------------------------------- */
+.example-viewer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 32px 0;
+  overflow: hidden;
+  @apply rounded-2xl shadow bg-card;
+}
+
+.example-viewer .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 88px;
+  min-height: 88px;
+  max-height: 88px;
+  padding: 0 40px;
+}
+
+.example-viewer .title h6 {
+  font-weight: 700;
+}
+
+.example-viewer .title .controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.example-viewer .title .controls > * + * {
+  margin-left: 8px;
+}
+
+.example-viewer mat-tab-group .mat-tab-body-content .fuse-highlight pre {
+  margin: 0;
+  border-radius: 0;
+}
+/*# sourceMappingURL=example-viewer.css.map */

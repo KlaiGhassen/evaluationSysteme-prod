@@ -1,0 +1,103 @@
+/* Variables */
+fuse-vertical-navigation {
+  /* Thin appearance overrides */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin {
+  width: 80px;
+  min-width: 80px;
+  max-width: 80px;
+  /* Left positioned */
+  /* Right positioned */
+  /* Wrapper */
+  /* Aside wrapper */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin.fuse-vertical-navigation-position-left.fuse-vertical-navigation-mode-side {
+  margin-left: -80px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin.fuse-vertical-navigation-position-left.fuse-vertical-navigation-opened {
+  margin-left: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin.fuse-vertical-navigation-position-right.fuse-vertical-navigation-mode-side {
+  margin-right: -80px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin.fuse-vertical-navigation-position-right.fuse-vertical-navigation-opened {
+  margin-right: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin.fuse-vertical-navigation-position-right .fuse-vertical-navigation-aside-wrapper {
+  left: auto;
+  right: 80px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper {
+  /* Content */
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 64px;
+  min-height: 64px;
+  max-height: 64px;
+  padding: 0 16px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-icon {
+  margin: 0;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-arrow,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge-content,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-aside-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-arrow,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-badge-content,
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-basic-item .fuse-vertical-navigation-item-wrapper .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper {
+  display: none;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-collapsable-item {
+  display: none;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-wrapper .fuse-vertical-navigation-content > fuse-vertical-navigation-group-item > .fuse-vertical-navigation-item-wrapper {
+  display: none;
+}
+
+fuse-vertical-navigation.fuse-vertical-navigation-appearance-thin .fuse-vertical-navigation-aside-wrapper {
+  left: 80px;
+}
+/*# sourceMappingURL=thin.css.map */
