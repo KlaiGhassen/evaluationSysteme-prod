@@ -142,24 +142,24 @@ export class AuthSignInComponent implements OnInit {
      */
     ngOnInit(): void {
         // @ts-ignore
-        google.accounts.id.initialize({
-            client_id: this.clientId,
-            callback: this.handleCredentialResponse.bind(this),
-            auto_select: false,
-            cancel_on_tap_outside: false,
-        });
-        // @ts-ignore
-        google.accounts.id.renderButton(
-            // @ts-ignore
-            document.getElementById('buttonDiv'),
-            { theme: 'outline', size: 'large', width: '100%' }
-        );
-        // @ts-ignore
-        google.accounts.id.prompt(
-            (notification: PromptMomentNotification) => {}
-        );
+        // google.accounts.id.initialize({
+        //     client_id: this.clientId,
+        //     callback: this.handleCredentialResponse.bind(this),
+        //     auto_select: false,
+        //     cancel_on_tap_outside: false,
+        // });
+        // // @ts-ignore
+        // google.accounts.id.renderButton(
+        //     // @ts-ignore
+        //     document.getElementById('buttonDiv'),
+        //     { theme: 'outline', size: 'large', width: '100%' }
+        // );
+        // // @ts-ignore
+        // google.accounts.id.prompt(
+        //     (notification: PromptMomentNotification) => {}
+        // );
 
-        this.isIframe = window !== window.parent && !window.opener; // Remove this line to use Angular Universal
+        // this.isIframe = window !== window.parent && !window.opener; // Remove this line to use Angular Universal
         this.setLoginDisplay();
 
         this.authService.instance.enableAccountStorageEvents(); // Optional - This will enable ACCOUNT_ADDED and ACCOUNT_REMOVED events emitted when a user logs in or out of another tab or window
