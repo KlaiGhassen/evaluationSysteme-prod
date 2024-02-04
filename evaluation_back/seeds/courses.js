@@ -251,7 +251,7 @@ exports.seed = async function (knex) {
       },
       {
         id: 16,
-        email: "ghassen.mallek@esprit.tn",
+        email: "mallek.ghassen@esprit.tn",
         first_name: "ghassen",
         last_name: "mallek",
         role: "TEACHER",
