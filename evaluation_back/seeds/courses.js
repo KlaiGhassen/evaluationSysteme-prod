@@ -196,6 +196,7 @@ exports.seed = async function (knex) {
         first_name: "imed",
         last_name: "amri",
         role: "RDI",
+        option: "SIM",
         password: "test",
         up: "up java",
       },

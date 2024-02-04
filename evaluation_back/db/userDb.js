@@ -531,7 +531,6 @@ exports.getTeam = async (req, res, next) => {
           });
         let connectedUserFilter = [];
         teachers.map((teacher) => {
-
           if (
             teacher.option == connectedUsers.option ||
             teacher.role == "CUP" ||
@@ -590,7 +589,7 @@ exports.getTeam = async (req, res, next) => {
         teachers = await knex("user")
           .select("*")
           .whereNot({ id: id, role: "STUDENT" })
-          .whereIn("role", ["CUP", "CD"])
+          .whereIn("role", ["CUP", "RO"])
           .orWhere({ up: up, rdi: id })
           .leftJoin("teacher_ratting", function () {
             this.on("user.id", "=", "teacher_ratting.teacher_rated_id").andOn(
@@ -599,6 +598,18 @@ exports.getTeam = async (req, res, next) => {
               id
             );
           });
+        let connectedUserFilters = [];
+        teachers.map((teacher) => {
+          if (
+            teacher.option == connectedUsers.option ||
+            teacher.role == "CUP" ||
+            teacher.role == "CD"
+          ) {
+            connectedUserFilters.push(teacher);
+          }
+        });
+        teachers = connectedUserFilters;
+
         break;
       case "CD":
         teachers = await knex("user")
