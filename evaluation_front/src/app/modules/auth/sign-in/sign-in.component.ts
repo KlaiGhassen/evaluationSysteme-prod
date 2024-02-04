@@ -102,34 +102,41 @@ export class AuthSignInComponent implements OnInit {
             (data: any) => {
                 this._authService
                     .uploadMedia(this.blobToFile(data, 'msalPicture'))
-                    .subscribe((res) => {
+                    .subscribe(async (res) => {
                         this._authService.profilePicture = res;
-                        this.http.get(GRAPH_ENDPOINT).subscribe((profile) => {
-                            this._authService.LoginWithMsal(profile).subscribe(
-                                (x: any) => {
-                                    this._ngZone.run(() => {
-                                        const redirectURL =
-                                            this._activatedRoute.snapshot.queryParamMap.get(
-                                                'redirectURL'
-                                            ) || '/signed-in-redirect';
+                        await this.http
+                            .get(GRAPH_ENDPOINT)
+                            .subscribe((profile) => {
+                                this._authService
+                                    .LoginWithMsal(profile)
+                                    .subscribe(
+                                        (x: any) => {
+                                            this._ngZone.run(() => {
+                                                const redirectURL =
+                                                    this._activatedRoute.snapshot.queryParamMap.get(
+                                                        'redirectURL'
+                                                    ) || '/signed-in-redirect';
 
-                                        // Navigate to the redirect url
-                                        this._router.onSameUrlNavigation = 'reload';
+                                                // Navigate to the redirect url
+                                                this._router.onSameUrlNavigation =
+                                                    'reload';
 
-                                        this._router.navigateByUrl(redirectURL);
-                                    });
-                                },
-                                (error: any) => {
-                                    this.alert = {
-                                        type: 'error',
-                                        message: 'Wrong email',
-                                    };
+                                                this._router.navigateByUrl(
+                                                    redirectURL
+                                                );
+                                            });
+                                        },
+                                        (error: any) => {
+                                            this.alert = {
+                                                type: 'error',
+                                                message: 'Wrong email',
+                                            };
 
-                                    // Show the alert
-                                    this.showAlert = true;
-                                }
-                            );
-                        });
+                                            // Show the alert
+                                            this.showAlert = true;
+                                        }
+                                    );
+                            });
                     });
             },
             (error) => {

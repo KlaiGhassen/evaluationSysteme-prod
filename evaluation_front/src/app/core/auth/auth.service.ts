@@ -170,7 +170,7 @@ export class AuthService {
 
                         // Return a new observable with the response
 
-                        return this.downloadMedia(data.image).pipe(
+                        return this.downloadMedia(this.profilePicture).pipe(
                             map(
                                 (res) => {
                                     console.log(
