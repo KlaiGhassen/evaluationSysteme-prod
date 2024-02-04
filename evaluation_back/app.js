@@ -35,14 +35,10 @@ app.use(
       "http://localhost:3030",
       "http://localhost:4200",
       "http://localhost:443",
-      "https://www.google.com/",
-      "http://172.17.3.115:3030",
-      "http://41.226.11.247:3030",
-      "https://eval.esprit-tn.com:3030",
-      "http://41.226.11.247:443",
-      "https://41.226.11.247:443",
-      "https://eval.esprit-tn.com" ,
-      "http://eval.esprit-tn.com" 
+      "https://espritmobile.ovh",
+      "http://espritmobile.ovh",
+
+
     ],
 
     // "true" will copy the domain of the request back
