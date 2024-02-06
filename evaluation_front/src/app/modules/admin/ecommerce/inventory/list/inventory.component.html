@@ -75,13 +75,9 @@
                             matSortDisableClear
                         >
                             <div></div>
-                            <div
-                                class="hidden md:block"
-                                [mat-sort-header]="'id'"
-                            >
-                                Identifier
-                            </div>
-                            <div [mat-sort-header]="'first_name'">
+                           
+                            <div                                 
+                            [mat-sort-header]="'first_name'">
                                 full Name
                             </div>
                             <div
@@ -132,9 +128,7 @@
                                     </div> -->
                                     <div></div>
                                     <!-- SKU -->
-                                    <div class="hidden md:block truncate">
-                                        {{ product.id_et }}
-                                    </div>
+                                 
 
                                     <!-- Name -->
                                     <div class="truncate">

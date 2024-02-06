@@ -32,7 +32,7 @@ services:
     depends_on:
       - db
     volumes:
-      - uploads:/evaluation_back/uploads
+      - uploads:/uploads
 
   loadBlancer:
     image: nginx

@@ -157,7 +157,11 @@
                                         class="w-full items-center flex justify-center"
                                         *ngIf="member.beforeRate"
                                     >
-                                        <span> Rated </span>
+                                        <ngx-star-rating
+                                            [disabled]="true"
+                                            [(ngModel)]="member.ratting"
+                                            [id]="'rating-' + i"
+                                        ></ngx-star-rating>
                                     </div>
                                 </div>
                             </ng-container>
@@ -303,7 +307,11 @@
                                         class="w-full items-center flex justify-center"
                                         *ngIf="member.beforeRate"
                                     >
-                                        <span> Rated </span>
+                                        <ngx-star-rating
+                                            [disabled]="true"
+                                            [(ngModel)]="member.ratting"
+                                            [id]="'rating-' + i"
+                                        ></ngx-star-rating>
                                     </div>
                                 </div>
                             </ng-container>
@@ -424,7 +432,11 @@
                                         class="w-full items-center flex justify-center"
                                         *ngIf="member.beforeRate"
                                     >
-                                        <span> Rated </span>
+                                    <ngx-star-rating
+                                    [disabled]="true"
+                                    [(ngModel)]="member.value"
+                                    [id]="'rating-' + i"
+                                ></ngx-star-rating>
                                     </div>
                                 </div>
                             </ng-container>

@@ -136,10 +136,6 @@ export class ProjectComponent implements OnInit, OnDestroy {
                 // Reset the filtered courses
                 this.filtredTichers = this.teachers;
 
-                console.log('this.filtredTichers ', this.filtredTichers);
-
-                // Filter by category
-
                 // Filter by completed
                 if (hideCompleted) {
                     this.filtredTichers = this.filtredTichers.filter(
@@ -267,6 +263,19 @@ export class ProjectComponent implements OnInit, OnDestroy {
                     }
                 });
             });
+            combineLatest([this.filters.hideCompleted$]).subscribe(
+                ([hideCompleted]) => {
+                    // Reset the filtered courses
+                    this.filtredTichers = this.teachers;
+    
+                    // Filter by completed
+                    if (hideCompleted) {
+                        this.filtredTichers = this.filtredTichers.filter(
+                            (course) => course.value == null
+                        );
+                    }
+                }
+            );
         }
     }
     cancelRateTeaching(member) {
