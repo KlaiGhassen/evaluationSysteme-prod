@@ -316,9 +316,7 @@
                                             Evaluation Chart
                                         </div>
 
-                                      
-
-                                        <div >
+                                        <div>
                                             <button
                                                 *ngIf="
                                                     user.reclamation ==
@@ -1600,7 +1598,15 @@
                                         class="w-full items-center flex justify-center"
                                         *ngIf="member.beforeRate"
                                     >
-                                        <span> Rated </span>
+                                        <div
+                                            class="stars w-full items-center flex justify-center"
+                                        >
+                                            <ngx-star-rating
+                                            [disabled]="true"
+                                                [(ngModel)]="member.value"
+                                                [id]="'rating-' + i"
+                                            ></ngx-star-rating>
+                                        </div>
                                     </div>
                                 </div>
                             </ng-container>

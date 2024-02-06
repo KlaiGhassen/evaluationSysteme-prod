@@ -150,7 +150,6 @@ function initializeAppFactory(service: UserService): () => Promise<any> {
             useFactory: MSALInterceptorConfigFactory,
         },
         MsalService,
-        MsalGuard,
         MsalBroadcastService,
         {
             provide: APP_INITIALIZER,

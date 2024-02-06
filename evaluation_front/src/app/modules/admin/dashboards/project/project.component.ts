@@ -9,7 +9,6 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-
 @Component({
     selector: 'project',
     templateUrl: './project.component.html',
@@ -271,10 +270,12 @@ export class ProjectComponent implements OnInit, OnDestroy {
         }
     }
     cancelRateTeaching(member) {
+        console.log('hello');
         this.filtredTichers.filter((teacher) => {
             if (teacher.id == member.id) {
                 teacher.ratting = null;
-                teacher['confirmRate'] = false;
+                teacher.value = null;
+                teacher['beforeRate'] = false;
             }
         });
     }
