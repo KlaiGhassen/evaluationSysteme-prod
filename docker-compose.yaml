@@ -32,8 +32,7 @@ services:
     depends_on:
       - db
     volumes:
-      - uploads:/uploads
-
+      - pictures:/app/uploads
   loadBlancer:
     image: nginx
     ports:
@@ -48,4 +47,4 @@ services:
       - db
 volumes:
   bdp-data:
-  uploads:
+  pictures:

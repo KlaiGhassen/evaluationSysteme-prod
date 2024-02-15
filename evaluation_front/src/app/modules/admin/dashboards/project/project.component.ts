@@ -248,34 +248,100 @@ export class ProjectComponent implements OnInit, OnDestroy {
         });
     }
     confirmRateTeaching(member) {
-        if (member.value != null) {
-            let rate = {
-                value: member.value,
-                teacher_rated_id: member.id,
-                teacher_rate_id: this.user.id,
-                type: this.user.role,
-            };
-            this._projectService.rateTeacher(rate).subscribe((data) => {
-                this.filtredTichers.filter((teacher) => {
-                    if (teacher.id == member.id) {
-                        teacher['confirmRate'] = false;
-                        teacher['beforeRate'] = true;
-                    }
+        if (this.user.role != 'RDI') {
+            if (member.value != null) {
+                let rate = {
+                    value: member.value,
+                    teacher_rated_id: member.id,
+                    teacher_rate_id: this.user.id,
+                    type: this.user.role,
+                };
+                this._projectService.rateTeacher(rate).subscribe((data) => {
+                    this.filtredTichers.filter((teacher) => {
+                        if (teacher.id == member.id) {
+                            teacher['confirmRate'] = false;
+                            teacher['beforeRate'] = true;
+                        }
+                    });
                 });
-            });
-            combineLatest([this.filters.hideCompleted$]).subscribe(
-                ([hideCompleted]) => {
-                    // Reset the filtered courses
-                    this.filtredTichers = this.teachers;
-    
-                    // Filter by completed
-                    if (hideCompleted) {
-                        this.filtredTichers = this.filtredTichers.filter(
-                            (course) => course.value == null
-                        );
+                combineLatest([this.filters.hideCompleted$]).subscribe(
+                    ([hideCompleted]) => {
+                        // Reset the filtered courses
+                        this.filtredTichers = this.teachers;
+
+                        // Filter by completed
+                        if (hideCompleted) {
+                            this.filtredTichers = this.filtredTichers.filter(
+                                (course) => course.value == null
+                            );
+                        }
                     }
+                );
+            }
+        } else {
+            if (member.rdi == true) {
+                if (member.value != null) {
+                    let rate = {
+                        value: member.value,
+                        teacher_rated_id: member.id,
+                        teacher_rate_id: this.user.id,
+                        type: this.user.role,
+                    };
+                    this._projectService.rateTeacher(rate).subscribe((data) => {
+                        this.filtredTichers.filter((teacher) => {
+                            if (teacher.id == member.id) {
+                                teacher['confirmRate'] = false;
+                                teacher['beforeRate'] = true;
+                            }
+                        });
+                    });
+                    combineLatest([this.filters.hideCompleted$]).subscribe(
+                        ([hideCompleted]) => {
+                            // Reset the filtered courses
+                            this.filtredTichers = this.teachers;
+
+                            // Filter by completed
+                            if (hideCompleted) {
+                                this.filtredTichers =
+                                    this.filtredTichers.filter(
+                                        (course) => course.value == null
+                                    );
+                            }
+                        }
+                    );
                 }
-            );
+            } else {
+                if (member.value != null) {
+                    let rate = {
+                        value: member.value,
+                        teacher_rated_id: member.id,
+                        teacher_rate_id: this.user.id,
+                        type: 'TEACHER',
+                    };
+                    this._projectService.rateTeacher(rate).subscribe((data) => {
+                        this.filtredTichers.filter((teacher) => {
+                            if (teacher.id == member.id) {
+                                teacher['confirmRate'] = false;
+                                teacher['beforeRate'] = true;
+                            }
+                        });
+                    });
+                    combineLatest([this.filters.hideCompleted$]).subscribe(
+                        ([hideCompleted]) => {
+                            // Reset the filtered courses
+                            this.filtredTichers = this.teachers;
+
+                            // Filter by completed
+                            if (hideCompleted) {
+                                this.filtredTichers =
+                                    this.filtredTichers.filter(
+                                        (course) => course.value == null
+                                    );
+                            }
+                        }
+                    );
+                }
+            }
         }
     }
     cancelRateTeaching(member) {

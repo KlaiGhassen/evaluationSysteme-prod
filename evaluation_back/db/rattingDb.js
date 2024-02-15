@@ -56,6 +56,7 @@ exports.addRattingRo = async (req, res, next) => {
 exports.addTeacherRatting = async (req, res, next) => {
   try {
     let rattingDb;
+    console.log(req.body.type);
     const ratting = {
       value: req.body.value,
       teacher_rated_id: req.body.teacher_rated_id,

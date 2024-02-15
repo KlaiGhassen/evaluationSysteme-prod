@@ -586,11 +586,12 @@ exports.getTeam = async (req, res, next) => {
         teachers = test;
         break;
       case "RDI":
+        let connectedUserFilters = [];
+
         teachers = await knex("user")
           .select("*")
           .whereNot({ id: id, role: "STUDENT" })
           .whereIn("role", ["CUP", "RO"])
-          .orWhere({ up: up, rdi: id })
           .leftJoin("teacher_ratting", function () {
             this.on("user.id", "=", "teacher_ratting.teacher_rated_id").andOn(
               "teacher_ratting.teacher_rate_id",
@@ -598,7 +599,6 @@ exports.getTeam = async (req, res, next) => {
               id
             );
           });
-        let connectedUserFilters = [];
         teachers.map((teacher) => {
           if (
             teacher.option == connectedUsers.option ||
@@ -608,8 +608,26 @@ exports.getTeam = async (req, res, next) => {
             connectedUserFilters.push(teacher);
           }
         });
-        teachers = connectedUserFilters;
-
+        teachersRdi = await knex("user")
+        .select("*")
+        .whereNot({ id: id, role: "STUDENT" })
+        .andWhere({ up: up, rdi: id })
+        .leftJoin("teacher_ratting", function () {
+          this.on("user.id", "=", "teacher_ratting.teacher_rated_id").andOn(
+            "teacher_ratting.teacher_rate_id",
+            "=",
+            id
+          );
+        });
+        teachersRdi.map((teacher) => {
+        if (
+          teacher.option == connectedUsers.option 
+        ) {
+          teacher["rdi"]=true;
+          connectedUserFilters.push(teacher);
+        }
+      });
+      teachers = connectedUserFilters;
         break;
       case "CD":
         teachers = await knex("user")

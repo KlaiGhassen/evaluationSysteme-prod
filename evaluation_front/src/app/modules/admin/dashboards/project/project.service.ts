@@ -78,7 +78,6 @@ export class ProjectService {
             .get(environment.apiUrl + 'dashboard/ratedChart')
             .pipe(
                 tap((response: any) => {
-
                     this._chartStudents.next(response);
                 })
             );
@@ -88,7 +87,6 @@ export class ProjectService {
             .get(environment.apiUrl + 'dashboard/ratedChart')
             .pipe(
                 tap((response: any) => {
-
                     this._chartStudents.next(response);
                 })
             );
