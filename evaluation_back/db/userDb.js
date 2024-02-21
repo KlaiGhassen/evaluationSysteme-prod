@@ -587,7 +587,6 @@ exports.getTeam = async (req, res, next) => {
         break;
       case "RDI":
         let connectedUserFilters = [];
-
         teachers = await knex("user")
           .select("*")
           .whereNot({ id: id, role: "STUDENT" })
@@ -621,7 +620,7 @@ exports.getTeam = async (req, res, next) => {
           });
         teachersRdi.map((teacher) => {
           if (teacher.option == connectedUsers.option) {
-            teacher["rdi"] = true;
+            teacher["rdi_affectation"] = true;
             connectedUserFilters.push(teacher);
           }
         });
@@ -658,7 +657,6 @@ exports.getTeam = async (req, res, next) => {
         break;
     }
     res.teachers = teachers;
-    console.log("teacher", teachers);
     next();
   } catch (error) {
     console.error(error);

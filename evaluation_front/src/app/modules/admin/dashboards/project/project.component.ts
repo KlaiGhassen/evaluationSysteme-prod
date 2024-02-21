@@ -25,7 +25,6 @@ export class ProjectComponent implements OnInit, OnDestroy {
     data: any;
     user;
     framingData = [];
-    selectedProject: string = 'ACME Corp. Backend App';
     private _unsubscribeAll: Subject<any> = new Subject<any>();
     teachers: any;
     filtredTichers: any;
