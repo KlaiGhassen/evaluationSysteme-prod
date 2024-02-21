@@ -170,6 +170,7 @@ export class ProjectService {
             .get(environment.apiUrl + 'teacher/same-team')
             .pipe(
                 tap((response: any) => {
+                    console.log(response);
                     response.forEach((teacher: any) => {
                         this.downloadMediaFromUser(teacher.image).subscribe(
                             (blob: any) => {
