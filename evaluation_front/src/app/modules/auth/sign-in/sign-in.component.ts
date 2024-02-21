@@ -167,9 +167,6 @@ export class AuthSignInComponent implements OnInit {
         // );
 
         // this.isIframe = window !== window.parent && !window.opener; // Remove this line to use Angular Universal
-       
-
-      
 
         this.signInForm = this._formBuilder.group({
             email: [
@@ -216,33 +213,7 @@ export class AuthSignInComponent implements OnInit {
             this.authService.loginRedirect();
         }
     }
-    getUserPhoto(): void {
-        // get the access token for the Graph API
-        this.authService
-            .acquireTokenSilent({
-                scopes: ['User.Read'],
-            })
-            .subscribe((token) => {
-                // make a GET request to the Graph API endpoint for the user photo
-                this.http
-                    .get('https://graph.microsoft.com/v1.0/me/photo/$value', {
-                        responseType: 'blob', // specify the response type as blob
-                        headers: {
-                            Authorization: `Bearer ${token}`, // set the authorization header with the token
-                        },
-                    })
-                    .subscribe((photo) => {
-                        console.log(photo);
-                        // convert the blob to a data URL
-                        const reader = new FileReader();
-                        reader.onload = () => {
-                            this.photoUrl = reader.result as string; // assign the data URL to the photoUrl variable
-                        };
-                        reader.readAsDataURL(photo);
-                        console.log(reader.readAsDataURL(photo));
-                    });
-            });
-    }
+ 
 
     loginPopup() {
         this.showAlert = false;

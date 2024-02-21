@@ -15,7 +15,6 @@ import { takeUntil } from 'rxjs/operators';
 import { User } from 'app/core/user/user.types';
 import { UserService } from 'app/core/user/user.service';
 import { AuthService } from 'app/core/auth/auth.service';
-import { SolanaServicesService } from 'app/modules/admin/solana-services/solana-services.service';
 
 @Component({
     selector: 'user',
@@ -36,12 +35,9 @@ export class UserComponent implements OnInit, OnDestroy {
      * Constructor
      */
     constructor(
-        private _ngZone: NgZone,
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
         private _userService: UserService,
-        private _authService: AuthService,
-        private _solanaService: SolanaServicesService
     ) {}
 
     // -----------------------------------------------------------------------------------------------------

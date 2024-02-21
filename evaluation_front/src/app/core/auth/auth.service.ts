@@ -135,66 +135,62 @@ export class AuthService {
         if (this._user) {
             return throwError('User is already logged in.');
         }
-
         let credentialsData = {
             mail: credentials.mail,
-            image: this.profilePicture,
         };
+
         if (this.profilePicture) {
-            return this._httpClient
-                .post(environment.apiUrl + 'auth/msal', { credentialsData })
-                .pipe(
-                    switchMap((response: any) => {
-                        let data = {
-                            id: response.user.id,
-                            first_name: response.user.first_name,
-                            last_name: response.user.last_name,
-                            email: response.user.email,
-                            address: response.user.address,
-                            image: response.user.image,
-                            blobImage: null,
-                            about: response.user.about,
-                            role: response.user.role,
-                            classroom: response.user.classroom_id,
-                            phone: response.user.phone,
-                            class_name: response.user.name_class,
-                            social_image: response.user.social_image,
-                            reclamation: response.user.reclamation,
-                        };
-
-                        // Store the access token in the local storage
-                        // Set the authenticated flag to true
-                        this.accessToken = response.accessToken;
-
-                        // Store the user on the user service
-
-                        // Return a new observable with the response
-
-                        return this.downloadMedia(this.profilePicture).pipe(
-                            map(
-                                (res) => {
-                                    console.log(
-                                        'hello from the other side ',
-                                        res
-                                    );
-
-                                    const objectURL = URL.createObjectURL(res);
-                                    data.blobImage =
-                                        this.sanitizer.bypassSecurityTrustUrl(
-                                            objectURL
-                                        );
-                                    this._userService.user = data;
-
-                                    return of(true);
-                                },
-                                (err) => {
-                                    return of(false);
-                                }
-                            )
-                        );
-                    })
-                );
+            credentialsData['image'] = this.profilePicture;
+            console.log(credentialsData);
         }
+        return this._httpClient
+            .post(environment.apiUrl + 'auth/msal', { credentialsData })
+            .pipe(
+                switchMap((response: any) => {
+                    let data = {
+                        id: response.user.id,
+                        first_name: response.user.first_name,
+                        last_name: response.user.last_name,
+                        email: response.user.email,
+                        address: response.user.address,
+                        image: response.user.image,
+                        blobImage: null,
+                        about: response.user.about,
+                        role: response.user.role,
+                        classroom: response.user.classroom_id,
+                        phone: response.user.phone,
+                        class_name: response.user.name_class,
+                        social_image: response.user.social_image,
+                        reclamation: response.user.reclamation,
+                    };
+
+                    // Store the access token in the local storage
+                    // Set the authenticated flag to true
+                    this.accessToken = response.accessToken;
+
+                    // Store the user on the user service
+
+                    // Return a new observable with the response
+
+                    return this.downloadMedia(this.profilePicture).pipe(
+                        map(
+                            (res) => {
+                                const objectURL = URL.createObjectURL(res);
+                                data.blobImage =
+                                    this.sanitizer.bypassSecurityTrustUrl(
+                                        objectURL
+                                    );
+                                this._userService.user = data;
+
+                                return of(true);
+                            },
+                            (err) => {
+                                return of(false);
+                            }
+                        )
+                    );
+                })
+            );
     }
     LoginWithGoogle(credentials: string): Observable<any> {
         if (this._user) {

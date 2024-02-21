@@ -48,8 +48,6 @@ exports.login = async (req, res, next) => {
 exports.msallLogin = async (req, res, next) => {
   try {
     let credentials = req.body.credentialsData;
-    console.log(credentials);
-    console.log(credentials.mail.toLowerCase());
     const user = await knex("user")
       .where({ email: credentials.mail.toLowerCase() })
       .leftJoin("classroom", "classroom.classroom_id", "user.student_class")
