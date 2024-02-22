@@ -96,40 +96,32 @@ export class AuthSignInComponent implements OnInit {
             }
         );
     }
-getProfileWithoutPicture(profile){
+    getProfileWithoutPicture(profile) {
+        this._authService.LoginWithMsal(profile).subscribe(
+            (x: any) => {
+                this._ngZone.run(() => {
+                    const redirectURL =
+                        this._activatedRoute.snapshot.queryParamMap.get(
+                            'redirectURL'
+                        ) || '/signed-in-redirect';
 
-    this._authService
-    .LoginWithMsal(profile)
-    .subscribe(
-        (x: any) => {
-            this._ngZone.run(() => {
-                const redirectURL =
-                    this._activatedRoute.snapshot.queryParamMap.get(
-                        'redirectURL'
-                    ) || '/signed-in-redirect';
+                    // Navigate to the redirect url
+                    this._router.onSameUrlNavigation = 'reload';
 
-                // Navigate to the redirect url
-                this._router.onSameUrlNavigation =
-                    'reload';
+                    this._router.navigateByUrl(redirectURL);
+                });
+            },
+            (error: any) => {
+                this.alert = {
+                    type: 'error',
+                    message: 'Wrong email',
+                };
 
-                this._router.navigateByUrl(
-                    redirectURL
-                );
-            });
-        },
-        (error: any) => {
-            this.alert = {
-                type: 'error',
-                message: 'Wrong email',
-            };
-
-            // Show the alert
-            this.showAlert = true;
-        }
-    );
-
-}
-
+                // Show the alert
+                this.showAlert = true;
+            }
+        );
+    }
 
     getProfile() {
         this._authService.uploadPicture().subscribe(
@@ -137,10 +129,7 @@ getProfileWithoutPicture(profile){
                 this._authService
                     .uploadMedia(this.blobToFile(data, 'msalPicture'))
                     .subscribe(async (res) => {
-                       if(res){
                         this._authService.profilePicture = res;
-                       }
-                       
                         await this.http
                             .get(GRAPH_ENDPOINT)
                             .subscribe((profile) => {
@@ -176,8 +165,33 @@ getProfileWithoutPicture(profile){
                             });
                     });
             },
-            (error) => {
-                console.log(error);
+            async (error) => {
+                await this.http.get(GRAPH_ENDPOINT).subscribe((profile) => {
+                    this._authService.LoginWithMsal(profile).subscribe(
+                        (x: any) => {
+                            this._ngZone.run(() => {
+                                const redirectURL =
+                                    this._activatedRoute.snapshot.queryParamMap.get(
+                                        'redirectURL'
+                                    ) || '/signed-in-redirect';
+
+                                // Navigate to the redirect url
+                                this._router.onSameUrlNavigation = 'reload';
+
+                                this._router.navigateByUrl(redirectURL);
+                            });
+                        },
+                        (error: any) => {
+                            this.alert = {
+                                type: 'error',
+                                message: 'Wrong email',
+                            };
+
+                            // Show the alert
+                            this.showAlert = true;
+                        }
+                    );
+                });
             }
         );
     }
@@ -185,6 +199,8 @@ getProfileWithoutPicture(profile){
      * On init
      */
     ngOnInit(): void {
+        window.localStorage.clear();
+        window.sessionStorage.clear();
         // @ts-ignore
         // google.accounts.id.initialize({
         //     client_id: this.clientId,
@@ -250,7 +266,6 @@ getProfileWithoutPicture(profile){
             this.authService.loginRedirect();
         }
     }
- 
 
     loginPopup() {
         this.showAlert = false;
