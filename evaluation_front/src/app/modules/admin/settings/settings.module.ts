@@ -20,9 +20,11 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { FuseConfirmationService } from '@fuse/services/confirmation/confirmation.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SettingsPlanBillingComponent } from './plan-billing/plan-billing.component';
+import { MailboxComposeComponent } from './compose/compose.component';
 
 @NgModule({
     declarations: [
+        MailboxComposeComponent,
         SettingsComponent,
         SettingsAccountComponent,
         SettingsSecurityComponent,

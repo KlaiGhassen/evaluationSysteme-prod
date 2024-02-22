@@ -13,6 +13,7 @@ export class ProjectService {
     private _data: BehaviorSubject<any> = new BehaviorSubject(null);
     private _studentsNumber: BehaviorSubject<any> = new BehaviorSubject(null);
     private _chartStudents: BehaviorSubject<any> = new BehaviorSubject(null);
+    private _rdiTasks: BehaviorSubject<any> = new BehaviorSubject(null);
 
     private _dataFraming: BehaviorSubject<any> = new BehaviorSubject(null);
     private _affectationTeachers: BehaviorSubject<any> = new BehaviorSubject(
@@ -68,10 +69,20 @@ export class ProjectService {
     get notRdi$(): Observable<any> {
         return this._NotRdi.asObservable();
     }
+    get rdiTasks$(): Observable<any> {
+        return this._rdiTasks.asObservable();
+    }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
+    addRdiTasks(task: any): Observable<any> {
+        return this._httpClient.post(environment.apiUrl + 'rditask', {task}).pipe(
+            tap((response: any) => {
+                this._rdiTasks.next(response);
+            })
+        );
+    }
 
     getTeacherRatings(): Observable<any> {
         return this._httpClient

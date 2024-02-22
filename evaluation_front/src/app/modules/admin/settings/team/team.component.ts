@@ -9,6 +9,8 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MailboxComposeComponent } from '../compose/compose.component';
 
 @Component({
     selector: 'settings-team',
@@ -27,6 +29,7 @@ export class SettingsTeamComponent implements OnInit {
      */
     constructor(
         private _formBuilder: FormBuilder,
+        private _matDialog: MatDialog,
 
         private _projectService: ProjectService,
         private _fuseConfirmationService: FuseConfirmationService
@@ -51,6 +54,14 @@ export class SettingsTeamComponent implements OnInit {
                 this.membersRdi = data;
             });
         // Setup the team members
+    }
+    addTask(id): void {
+        // Create the contact
+        this._matDialog.open(MailboxComposeComponent, {
+            data: id,
+        });
+
+        // Mark for check
     }
 
     /**

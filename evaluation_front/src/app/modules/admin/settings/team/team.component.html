@@ -80,6 +80,17 @@
                             ></mat-icon>
                         </button>
                     </div>
+                    <div class="order-1 sm:order-2 sm:ml-3">
+                        <button
+                            (click)="addTask(member.id)"
+                            mat-icon-button
+                        >
+                            <mat-icon
+                                class="text-hint"
+                                [svgIcon]="'heroicons_outline:plus-circle'"
+                            ></mat-icon>
+                        </button>
+                    </div>
                 </div>
             </div>
         </ng-container>

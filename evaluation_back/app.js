@@ -17,6 +17,7 @@ var ratting = require("./routes/ratting");
 var mtc = require("./routes/ModuleTeacherClass");
 var sol = require("./routes/solanaTransactions.js");
 var up = require("./routes/up");
+var rdiTask = require("./routes/RdiTasks.js");
 
 var dashboard = require("./routes/dashboard");
 
@@ -37,8 +38,6 @@ app.use(
       "http://localhost:443",
       "https://espritmobile.ovh",
       "http://espritmobile.ovh",
-
-
     ],
 
     // "true" will copy the domain of the request back
@@ -67,10 +66,11 @@ app.use("/api/mtc", authenticateToken, mtc);
 app.use("/api/dashboard", authenticateToken, dashboard);
 app.use("/api/sol", authenticateToken, sol);
 app.use("/api/up", authenticateToken, up);
+app.use("/api/rditask", authenticateToken, rdiTask);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  console.log(req.url)
+  console.log(req.url);
   next(createError(404));
 });
 
