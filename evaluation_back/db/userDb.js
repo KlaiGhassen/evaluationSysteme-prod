@@ -515,6 +515,29 @@ exports.getTeam = async (req, res, next) => {
     const up = req.payload.up;
     const connectedUsers = await knex("user").where({ id: id, up: up }).first();
     var teachers = [];
+    const teachers_class_id = await knex("teacher_class")
+      .select("*")
+      .where({ teacher_id: id })
+      .leftJoin(
+        "classroom",
+        "teacher_class.classroom",
+        "=",
+        "classroom.classroom_id"
+      );
+    let seenClasses = new Set();
+    let filteredArray = teachers_class_id.filter((item) => {
+      let classSubstring = item.class.substring(1).toUpperCase();
+      if (!seenClasses.has(classSubstring)) {
+        switch (classSubstring) {
+          case "GAMIX":
+            seenClasses.add(classSubstring);
+            break;
+          case "SIM":
+            seenClasses.add(classSubstring);
+            break;
+        }
+      }
+    });
     switch (role) {
       //TODO change role for who teached ganix with sim
       case "TEACHER":
@@ -530,18 +553,34 @@ exports.getTeam = async (req, res, next) => {
               id
             );
           });
+
         let connectedUserFilter = [];
-        teachers.map((teacher) => {
+        teachers.map(async (teacher) => {
           if (
-            teacher.role == "RO" ||
+            (teacher.role == "RO" &&
+              seenClasses.has(teacher.option.toUpperCase())) ||
             teacher.role == "CUP" ||
             teacher.role == "CD"
           ) {
             connectedUserFilter.push(teacher);
           }
         });
+        teachersRdi = await knex("user")
+          .select("*")
+          .where({ role: "RDI" })
+          .leftJoin("teacher_ratting", function () {
+            this.on("user.id", "=", "teacher_ratting.teacher_rated_id").andOn(
+              "teacher_ratting.teacher_rate_id",
+              "=",
+              id
+            );
+          });
+        teachersRdi.map((teacher) => {
+          console.log(teacher);
+          teacher["rdi_affectation"] = true;
+          connectedUserFilter.push(teacher);
+        });
         teachers = connectedUserFilter;
-
         break;
       case "CUP":
         teachers = await knex("user")
@@ -559,6 +598,20 @@ exports.getTeam = async (req, res, next) => {
               id
             );
           });
+        teachersRdi = await knex("user")
+          .select("*")
+          .where({ role: "RDI" })
+          .leftJoin("teacher_ratting", function () {
+            this.on("user.id", "=", "teacher_ratting.teacher_rated_id").andOn(
+              "teacher_ratting.teacher_rate_id",
+              "=",
+              id
+            );
+          });
+        teachersRdi.map((teacher) => {
+          teacher["rdi_affectation"] = true;
+          teachers.push(teacher);
+        });
         break;
       case "RO":
         teachers = await knex("user")
@@ -584,6 +637,24 @@ exports.getTeam = async (req, res, next) => {
             test.push(teacher);
           }
         });
+        teachersRdi = await knex("user")
+          .select("*")
+          .whereNot({ id: id, role: "STUDENT" })
+          .andWhere({ up: up, rdi: id })
+          .leftJoin("teacher_ratting", function () {
+            this.on("user.id", "=", "teacher_ratting.teacher_rated_id").andOn(
+              "teacher_ratting.teacher_rate_id",
+              "=",
+              id
+            );
+          });
+        teachersRdi.map((teacher) => {
+          if (teacher.option == connectedUsers.option) {
+            teacher["rdi_affectation"] = true;
+            test.push(teacher);
+          }
+        });
+
         teachers = test;
         break;
       case "RDI":
@@ -601,7 +672,8 @@ exports.getTeam = async (req, res, next) => {
           });
         teachers.map((teacher) => {
           if (
-            teacher.option == connectedUsers.option ||
+            (teacher.role == "RO" &&
+              seenClasses.has(teacher.option.toUpperCase())) ||
             teacher.role == "CUP" ||
             teacher.role == "CD"
           ) {

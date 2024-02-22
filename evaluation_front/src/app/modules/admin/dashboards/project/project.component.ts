@@ -58,6 +58,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
         this._userService.user$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((data) => {
+                console.log('connected user', data);
                 this.user = data;
             });
     }
@@ -247,6 +248,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
         });
     }
     confirmRateTeaching(member) {
+        console.log(member);
         if (this.user.role != 'RDI') {
             if (member.value != null) {
                 let rate = {
@@ -278,7 +280,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
                 );
             }
         } else {
-            if (member.rdi == true) {
+            if (member.rdi_affectation == true) {
                 if (member.value != null) {
                     let rate = {
                         value: member.value,
