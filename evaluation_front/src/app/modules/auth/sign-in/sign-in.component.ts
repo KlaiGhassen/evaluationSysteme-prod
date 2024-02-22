@@ -96,6 +96,40 @@ export class AuthSignInComponent implements OnInit {
             }
         );
     }
+getProfileWithoutPicture(profile){
+
+    this._authService
+    .LoginWithMsal(profile)
+    .subscribe(
+        (x: any) => {
+            this._ngZone.run(() => {
+                const redirectURL =
+                    this._activatedRoute.snapshot.queryParamMap.get(
+                        'redirectURL'
+                    ) || '/signed-in-redirect';
+
+                // Navigate to the redirect url
+                this._router.onSameUrlNavigation =
+                    'reload';
+
+                this._router.navigateByUrl(
+                    redirectURL
+                );
+            });
+        },
+        (error: any) => {
+            this.alert = {
+                type: 'error',
+                message: 'Wrong email',
+            };
+
+            // Show the alert
+            this.showAlert = true;
+        }
+    );
+
+}
+
 
     getProfile() {
         this._authService.uploadPicture().subscribe(
@@ -103,7 +137,10 @@ export class AuthSignInComponent implements OnInit {
                 this._authService
                     .uploadMedia(this.blobToFile(data, 'msalPicture'))
                     .subscribe(async (res) => {
+                       if(res){
                         this._authService.profilePicture = res;
+                       }
+                       
                         await this.http
                             .get(GRAPH_ENDPOINT)
                             .subscribe((profile) => {
@@ -217,7 +254,6 @@ export class AuthSignInComponent implements OnInit {
 
     loginPopup() {
         this.showAlert = false;
-
         if (this.msalGuardConfig.authRequest) {
             this.authService
                 .loginPopup({

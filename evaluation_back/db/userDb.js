@@ -516,6 +516,7 @@ exports.getTeam = async (req, res, next) => {
     const connectedUsers = await knex("user").where({ id: id, up: up }).first();
     var teachers = [];
     switch (role) {
+      //TODO change role for who teached ganix with sim
       case "TEACHER":
         teachers = await knex("user")
           .select("*")
@@ -532,7 +533,7 @@ exports.getTeam = async (req, res, next) => {
         let connectedUserFilter = [];
         teachers.map((teacher) => {
           if (
-            teacher.option == connectedUsers.option ||
+            teacher.role == "RO" ||
             teacher.role == "CUP" ||
             teacher.role == "CD"
           ) {
