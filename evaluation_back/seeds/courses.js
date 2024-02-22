@@ -2297,9 +2297,9 @@ exports.seed = async function (knex) {
         role: "TEACHER",
         password: "test",
         up: "up java",
-      }
+      },
     ]);
-    const newStartValue = 243; // Replace with the new starting value for the sequence
+    const newStartValue = 245; // Replace with the new starting value for the sequence
     const tableName = "user"; // Replace with your actual table name
     const columnName = "id"; // Replace with the column name for which you want to find the sequence
     // Get the sequence name
