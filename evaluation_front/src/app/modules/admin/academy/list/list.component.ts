@@ -50,9 +50,6 @@ export class AcademyListComponent implements OnInit, OnDestroy {
         private _fuseConfirmationService: FuseConfirmationService,
         private _formBuilder: FormBuilder,
         private _matDialog: MatDialog,
-        private _activatedRoute: ActivatedRoute,
-        private _changeDetectorRef: ChangeDetectorRef,
-        private _router: Router,
         private _academyService: AcademyService
     ) {}
     addModule() {

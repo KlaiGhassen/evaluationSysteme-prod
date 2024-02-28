@@ -135,7 +135,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
             ([hideCompleted]) => {
                 // Reset the filtered courses
                 this.filtredTichers = this.teachers;
-
+                console.log('filtred teachers', this.filtredTichers);
                 // Filter by completed
                 if (hideCompleted) {
                     this.filtredTichers = this.filtredTichers.filter(
