@@ -14,7 +14,6 @@ import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserService } from './core/user/user.service';
-import { Observable } from 'rxjs';
 import {
     IPublicClientApplication,
     PublicClientApplication,
@@ -23,7 +22,6 @@ import {
     LogLevel,
 } from '@azure/msal-browser';
 import {
-    MsalGuard,
     MsalInterceptor,
     MsalBroadcastService,
     MsalInterceptorConfiguration,

@@ -87,12 +87,14 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy {
             this.user.role !== 'RO' &&
             this.user.role !== 'RDI'
         ) {
-            if (q != '') {
-                this.connectWallet();
-            } else {
-                this.isconnected = true;
-            }
+            // if (q != '') {
+            //     this.connectWallet();
+            // } else {
+            //     this.isconnected = true;
+            // }
         }
+        this.isconnected = true;
+
         // Subscribe to navigation data
         this._navigationService.navigation$
             .pipe(takeUntil(this._unsubscribeAll))

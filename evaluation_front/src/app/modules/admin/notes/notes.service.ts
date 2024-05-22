@@ -123,6 +123,7 @@ export class NotesService {
             .get<any[]>(environment.apiUrl + 'up/hearchy', {
                 params: {
                     upName,
+                    department: 'tic',
                 },
             })
             .pipe(

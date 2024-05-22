@@ -1483,6 +1483,7 @@
                                 class="sm:mt-0 sm:ml-auto sm:mb-2"
                                 [color]="'primary'"
                                 (change)="toggleCompleted($event)"
+                                [(ngModel)]="ratedPeople"
                             >
                                 Hide Rated
                             </mat-slide-toggle>
@@ -1497,7 +1498,12 @@
                                     let i = index
                                 "
                             >
-                                <ng-container *ngIf="!member.rdi_affectation">
+                                <ng-container
+                                    *ngIf="
+                                        !member.rdi_affectation &&
+                                        user.department == member.department
+                                    "
+                                >
                                     <div
                                         class="flex flex-col flex-auto items-center bg-card shadow rounded-2xl overflow-hidden"
                                     >
@@ -1623,9 +1629,8 @@
                         </div>
                     </ng-template>
                 </mat-tab>
-
                 <mat-tab
-                    *ngIf="user.role == 'RDI' || user.rdi "
+                    *ngIf="user.role == 'RDI' || user.rdi"
                     label="Rdi Teacher"
                 >
                     <ng-template matTabContent>
@@ -1636,11 +1641,11 @@
                                 class="sm:mt-0 sm:ml-auto sm:mb-2"
                                 [color]="'primary'"
                                 (change)="toggleCompleted($event)"
+                                [(ngModel)]="ratedPeople"
                             >
                                 Hide Rated
                             </mat-slide-toggle>
                         </div>
-
                         <div
                             class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full mt-6 md:mt-8"
                         >

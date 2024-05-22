@@ -67,7 +67,6 @@ export class ProjectComponent implements OnInit, OnDestroy {
         this._projectService.framing$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((data) => {
-                console.log(data);
                 this.framingData = data;
                 this.framingData
                     .filter((t) => t.ratting != null)
@@ -77,7 +76,6 @@ export class ProjectComponent implements OnInit, OnDestroy {
         this._projectService.teachers$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((data) => {
-                console.log(data);
                 this.teachers = data;
                 this.teachers
                     .filter((t) => t.ratting != null)
@@ -87,7 +85,6 @@ export class ProjectComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((data) => {
                 this.ros = data;
-
                 this.ros
                     .filter((t) => t.value != null)
                     .map((t) => (t['beforeRate'] = true));

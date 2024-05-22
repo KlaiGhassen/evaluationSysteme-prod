@@ -156,6 +156,14 @@ export const appRoutes: Route[] = [
         },
         children: [
             {
+                path: 'calendar',
+                loadChildren: () =>
+                    import('app/modules/calendar/calendar.module').then(
+                        (m) => m.CalendarModule
+                    ),
+            },
+
+            {
                 path: 'students',
                 loadChildren: () =>
                     import('app/modules/admin/students/contacts.module').then(
@@ -174,6 +182,13 @@ export const appRoutes: Route[] = [
                 loadChildren: () =>
                     import('app/modules/admin/teachers/contacts.module').then(
                         (m) => m.ContactsModule
+                    ),
+            },
+            {
+                path: 'gestion-up',
+                loadChildren: () =>
+                    import('app/modules/admin/notes/notes.module').then(
+                        (m) => m.NotesModule
                     ),
             },
         ],
@@ -208,6 +223,13 @@ export const appRoutes: Route[] = [
                     import('app/modules/admin/notes/notes.module').then(
                         (m) => m.NotesModule
                     ),
+            },
+            {
+                path: 'up-file-mangment',
+                loadChildren: () =>
+                    import(
+                        'app/modules/admin/file-manager/file-manager.module'
+                    ).then((m) => m.FileManagerModule),
             },
         ],
     },

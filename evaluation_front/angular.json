@@ -38,6 +38,11 @@
                                 "glob": "_redirects",
                                 "input": "src",
                                 "output": "/"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "node_modules/ngx-scanner-qrcode/wasm/",
+                                "output": "./assets/wasm/"
                             }
                         ],
                         "stylePreprocessorOptions": {
@@ -139,7 +144,7 @@
     },
     "defaultProject": "fuse",
     "cli": {
-      "analytics": "d9bcc685-e771-4a3e-a744-3a6bff505d80",
+        "analytics": "d9bcc685-e771-4a3e-a744-3a6bff505d80",
         "defaultCollection": "@angular-eslint/schematics"
     }
 }

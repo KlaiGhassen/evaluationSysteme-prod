@@ -68,6 +68,7 @@ export class UserService {
                         class_name: user.name_class,
                         social_image: user.social_image,
                         reclamation: user.reclamation,
+                        department: user.department,
                     };
 
                     return data;
@@ -117,6 +118,7 @@ export class UserService {
                         class_name: user.name_class,
                         social_image: user.social_image,
                         reclamation: user.reclamation,
+                        department: user.department,
                     };
                     this.downloadMediaFromUser(data.image).subscribe((res) => {
                         const objectURL = URL.createObjectURL(res);
@@ -152,6 +154,7 @@ export class UserService {
                         class_name: user.name_class,
                         social_image: user.social_image,
                         reclamation: user.reclamation,
+                        department: user.department,
                     };
                     this.downloadMediaFromUser(data.image).subscribe((res) => {
                         const objectURL = URL.createObjectURL(res);

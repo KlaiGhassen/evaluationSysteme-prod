@@ -163,6 +163,8 @@ export class AuthService {
                         class_name: response.user.name_class,
                         social_image: response.user.social_image,
                         reclamation: response.user.reclamation,
+                        department: response.user.department,
+
                     };
 
                     // Store the access token in the local storage
@@ -220,6 +222,8 @@ export class AuthService {
                         class_name: response.user.name_class,
                         social_image: response.user.social_image,
                         reclamation: response.user.reclamation,
+                        department: response.user.department,
+
                     };
 
                     // Store the access token in the local storage
@@ -285,6 +289,8 @@ export class AuthService {
                         class_name: response.body.user.name_class,
                         social_image: response.body.user.social_image,
                         reclamation: response.body.user.reclamation,
+                        department: response.body.user.department,
+
                     };
 
                     // Store the access token in the local storage
@@ -347,6 +353,7 @@ export class AuthService {
                         class_name: response.user.name_class,
                         social_image: response.user.social_image,
                         reclamation: response.user.reclamation,
+                        department: response.user.department,
                     };
                     // Store the access token in the local storage
                     this.accessToken = response.accessToken;

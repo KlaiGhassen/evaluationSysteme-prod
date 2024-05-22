@@ -35,8 +35,11 @@ exports.GetHeiarchy = async (req, res, next) => {
   try {
     const TeachersCd = await knex("user")
       .select("*")
-      .where({ up: req.query.upName })
-      .andWhere({ role: "CD" })
+      .where({
+        up: req.query.upName,
+        role: "CD",
+        department: req.query.department,
+      })
       .first();
     const TeachersCup = await knex("user")
       .select("*")
@@ -120,6 +123,9 @@ exports.GetHeiarchy = async (req, res, next) => {
     }
 
     res.orgData = orgData;
+    console.log(orgData);
+    console.log(orgData.children);
+
     next();
   } catch (error) {
     console.error(error);

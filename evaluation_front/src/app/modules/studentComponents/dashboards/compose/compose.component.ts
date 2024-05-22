@@ -46,9 +46,10 @@ export class MailboxComposeComponent implements OnInit {
      * On init
      */
     ngOnInit(): void {
-        if (this.data == 'beforeRating') {
-            this.beforeRating = true;
-        }
+        this.beforeRating = true;
+
+        // if (this.data == 'beforeRating') {
+        // }
     }
     async connectWallet() {
         await this._solanaService.connectWallet();

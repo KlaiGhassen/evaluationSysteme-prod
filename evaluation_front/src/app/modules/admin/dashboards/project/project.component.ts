@@ -21,6 +21,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
     } = {
         hideCompleted$: new BehaviorSubject(false),
     };
+    ratedPeople: boolean = false;
 
     data: any;
     user;
@@ -181,6 +182,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
                 },
             },
         };
+        console.log(this.user)
 
         // Filter the courses
     }
@@ -439,6 +441,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
     }
 
     toggleCompleted(change: MatSlideToggleChange): void {
-        this.filters.hideCompleted$.next(change.checked);
+        this.ratedPeople = change.checked;
+        this.filters.hideCompleted$.next(this.ratedPeople);
     }
 }

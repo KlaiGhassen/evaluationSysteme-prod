@@ -20,7 +20,7 @@ export class MailboxComposeComponent implements OnInit {
     private _unsubscribeAll: Subject<any> = new Subject<any>();
     userForm: FormGroup;
     searchInputControl: FormControl = new FormControl();
-    role: any = ['TEACHER', 'CUP', 'RDI', 'RO'];
+    role: any = ['TEACHER', 'CUP', 'RDI', 'RO', 'CD'];
     fromFile: boolean = false;
     files: File[] = [];
     dataStudents = [];

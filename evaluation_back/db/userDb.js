@@ -639,8 +639,7 @@ exports.getTeam = async (req, res, next) => {
         });
         teachersRdi = await knex("user")
           .select("*")
-          .whereNot({ id: id, role: "STUDENT" })
-          .andWhere({ up: up, rdi: id })
+          .where({ role: "RDI" })
           .leftJoin("teacher_ratting", function () {
             this.on("user.id", "=", "teacher_ratting.teacher_rated_id").andOn(
               "teacher_ratting.teacher_rate_id",
@@ -649,10 +648,8 @@ exports.getTeam = async (req, res, next) => {
             );
           });
         teachersRdi.map((teacher) => {
-          if (teacher.option == connectedUsers.option) {
-            teacher["rdi_affectation"] = true;
-            test.push(teacher);
-          }
+          teacher["rdi_affectation"] = true;
+          test.push(teacher);
         });
 
         teachers = test;
