@@ -18,7 +18,7 @@ var mtc = require("./routes/ModuleTeacherClass");
 var sol = require("./routes/solanaTransactions.js");
 var up = require("./routes/up");
 var rdiTask = require("./routes/RdiTasks.js");
-
+var seanceMangment = require("./routes/seanceMangment");
 var dashboard = require("./routes/dashboard");
 
 const authenticateToken = require("./middleware/authorize");
@@ -67,6 +67,7 @@ app.use("/api/dashboard", authenticateToken, dashboard);
 app.use("/api/sol", authenticateToken, sol);
 app.use("/api/up", authenticateToken, up);
 app.use("/api/rditask", authenticateToken, rdiTask);
+app.use("/api/seanceMangment", authenticateToken, seanceMangment);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
