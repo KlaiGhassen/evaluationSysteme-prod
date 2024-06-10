@@ -11,6 +11,8 @@ async function generatePDF(seance) {
 
   const doc = new PDFDocument();
   const absoluteImagePath = require("path").resolve(__dirname, "../uploads/");
+  const logo = require("path").resolve(__dirname, "../utils/");
+
   // Pipe the PDF into a writable stream
   doc.pipe(fs.createWriteStream(absoluteImagePath + "/pdf/" + pdfName));
   const teacher = await knex("user").where("id", seance.id_teacher).first();
@@ -19,7 +21,7 @@ async function generatePDF(seance) {
     .first();
 
   // Define layout parameters
-  const logoPath = absoluteImagePath + "/logo.png"; // Update with the path to your logo
+  const logoPath = logo + "/logo.png"; // Update with the path to your logo
   const imagePath = absoluteImagePath + "/qrs/" + seance.qrcode; // Update with the path to your image
   const moduleName = module.name_module;
   const teacherName = teacher.first_name + " " + teacher.last_name;
