@@ -58,12 +58,25 @@ module.exports = {
   },
   getQrCode: async function (req, res) {
     let nom = req.params.nom;
-    console.log(nom);
     const file = picsPath + "/qrs/" + nom;
     try {
       // Check if file exists
       fs.accessSync(file, fs.constants.F_OK);
       res.sendFile(file);
+    } catch (err) {
+      console.error("File does not exist");
+      res.json({ message: "file not found" });
+    }
+  },
+  getPdfQrCode: async function (req, res) {
+    let nom = req.params.nom;
+    console.log("pdf", nom);
+
+    const file = picsPath + "/pdf/" + nom;
+    try {
+      // Check if file exists
+      fs.accessSync(file, fs.constants.F_OK);
+      res.download(file);
     } catch (err) {
       console.error("File does not exist");
       res.json({ message: "file not found" });

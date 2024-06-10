@@ -299,16 +299,21 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
         // Get the view's current start and end dates, add/subtract
         // 60 days to create a ~150 days period to fetch the data for
-        const viewStart = moment(
-            this._fullCalendarApi.view.currentStart
-        ).subtract(60, 'days');
-        const viewEnd = moment(this._fullCalendarApi.view.currentEnd).add(
-            60,
-            'days'
-        );
+        const viewStart = moment(this._fullCalendarApi.view.currentStart)
+            .subtract(60, 'days')
+            .startOf('day');
+        console.log('start date ', viewStart.toISOString());
+        const viewEnd = moment(this._fullCalendarApi.view.currentEnd)
+            .add(60, 'days')
+            .endOf('day');
+        console.log('end date ', viewEnd.toISOString());
 
         // Get events
-        this._calendarService.getEvents(viewStart, viewEnd, true).subscribe();
+        this._calendarService
+            .getEvents(viewStart, viewEnd, true)
+            .subscribe((data) => {
+                console.log(data);
+            });
     }
 
     /**
@@ -403,11 +408,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
      * @param id
      */
     getCalendar(id): Calendar {
+        console.log('passedid', id);
         if (!id) {
             return;
         }
 
-        return this.calendars.find((calendar) => calendar.id === id);
+        return this.calendars.find((calendar) => calendar.id == id);
     }
 
     /**
@@ -528,12 +534,14 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
      */
     onEventClick(calendarEvent): void {
         // Find the event with the clicked event's id
+
         const event: any = cloneDeep(
-            this.events.find((item) => item.id === calendarEvent.event.id)
+            this.events.find((item) => item.id == calendarEvent.event.id)
         );
 
         // Set the event
         this.event = event;
+        console.log('event', event);
 
         // Prepare the end value
         let end;
@@ -1042,5 +1050,20 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.eventForm
             .get('end')
             .setValue(moment().year(9999).endOf('year').toISOString());
+    }
+
+    downloadPdf(fileName) {
+        this._calendarService
+            .downloadPdfQrCode(fileName)
+            .subscribe((response) => {
+                const url = window.URL.createObjectURL(response);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'output.pdf';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            });
     }
 }

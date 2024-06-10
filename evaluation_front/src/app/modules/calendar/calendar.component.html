@@ -195,6 +195,14 @@
                                                     | date : "EEEE, MMMM d"
                                             }}
                                         </div>
+                                        <div>
+                                            <img [src]="event.qrcode" />
+                                        </div>
+                                        <button
+                                            (click)="downloadPdf(event.pdfName)"
+                                        >
+                                            Download Pdf
+                                        </button>
                                         <div class="text-secondary">
                                             {{ recurrenceStatus }}
                                         </div>

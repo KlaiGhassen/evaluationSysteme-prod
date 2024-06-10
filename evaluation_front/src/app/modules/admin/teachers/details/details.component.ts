@@ -27,6 +27,8 @@ import { ContactsListComponent } from 'app/modules/admin/teachers/list/list.comp
 import { ContactsService } from 'app/modules/admin/teachers/contacts.service';
 import { ProjectService } from '../../dashboards/project/project.service';
 import { UserService } from 'app/core/user/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { HorarireComposeComponent } from '../horaire/compose-horaire.component';
 
 @Component({
     selector: 'contacts-details',
@@ -49,7 +51,6 @@ export class ContactsDetailsComponent implements OnInit, OnDestroy {
     modules: any[];
     tabelColumns: string[] = ['classroom', 'module_name', 'actions'];
     tableColumnrating: string[] = ['nameTeacher', 'value', 'actions'];
-
     classRoomId: number = null;
     classRoomIdSuperVising: number = null;
     moduleId: number = null;
@@ -78,6 +79,7 @@ export class ContactsDetailsComponent implements OnInit, OnDestroy {
      * Constructor
      */
     constructor(
+        private _matDialog: MatDialog,
         private _activatedRoute: ActivatedRoute,
         private _changeDetectorRef: ChangeDetectorRef,
         private _contactsListComponent: ContactsListComponent,
@@ -197,6 +199,8 @@ export class ContactsDetailsComponent implements OnInit, OnDestroy {
         //         this._changeDetectorRef.markForCheck();
         //     });
     }
+
+    
 
     isNumber(o): boolean {
         return !isNaN(o - 0) && o !== null && o !== '' && o !== false;

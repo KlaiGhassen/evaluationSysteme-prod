@@ -79,6 +79,20 @@ export const appRoutes: Route[] = [
         },
         children: [
             {
+                path: 'qr-code/:full_name/:Classe/:date_cours/:seance',
+                loadChildren: () =>
+                    import(
+                        'app/modules/studentComponents/qrcodeScan/example.module'
+                    ).then((m) => m.ExampleModule),
+            },
+            {
+                path: 'calendar',
+                loadChildren: () =>
+                    import('app/modules/calendar/calendar.module').then(
+                        (m) => m.CalendarModule
+                    ),
+            },
+            {
                 path: 'example',
                 loadChildren: () =>
                     import('app/modules/admin/example/example.module').then(
@@ -155,14 +169,6 @@ export const appRoutes: Route[] = [
             initialData: InitialDataResolver,
         },
         children: [
-            {
-                path: 'calendar',
-                loadChildren: () =>
-                    import('app/modules/calendar/calendar.module').then(
-                        (m) => m.CalendarModule
-                    ),
-            },
-
             {
                 path: 'students',
                 loadChildren: () =>

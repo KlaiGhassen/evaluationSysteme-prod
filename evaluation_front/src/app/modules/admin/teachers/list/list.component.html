@@ -20,29 +20,42 @@
             <div class="flex-auto">
                 <!-- Header -->
                 <div
-                    class="flex flex-col sm:flex-row md:flex-col flex-auto justify-between py-8 px-6 md:px-8 border-b"
+                    class="py-8 px-6 md:px-8 border-b"
                 >
                     <!-- Title -->
-                    <div>
-                        <div
-                            class="text-4xl font-extrabold tracking-tight leading-none"
+                    <div class="flex flex-col sm:flex-row md:flex-row flex-auto justify-between py-8 px-6 md:px-8 border-b">
+                        <div>
+                            <div
+                                class="text-4xl font-extrabold tracking-tight leading-none"
+                            >
+                                Teachers
+                            </div>
+
+                            <div class="ml-0.5 font-medium text-secondary">
+                                <ng-container *ngIf="contactsCount > 0">
+                                    {{ contactsCount }}
+                                </ng-container>
+                                {{
+                                    contactsCount
+                                        | i18nPlural
+                                            : {
+                                                  "=0": "No teachers found",
+                                                  "=1": "teachers found",
+                                                  other: "teacher found"
+                                              }
+                                }}
+                            </div>
+                        </div>
+                        <button
+                            mat-stroked-button
+                            (click)="openHorareCompose()"
                         >
-                            Teachers
-                        </div>
-                        <div class="ml-0.5 font-medium text-secondary">
-                            <ng-container *ngIf="contactsCount > 0">
-                                {{ contactsCount }}
-                            </ng-container>
-                            {{
-                                contactsCount
-                                    | i18nPlural
-                                        : {
-                                              "=0": "No teachers found",
-                                              "=1": "teachers found",
-                                              other: "teacher found"
-                                          }
-                            }}
-                        </div>
+                            <mat-icon
+                                class="icon-size-5"
+                                [svgIcon]="'heroicons_solid:pencil-alt'"
+                            ></mat-icon>
+                            <span class="ml-2">schedule lessons</span>
+                        </button>
                     </div>
 
                     <!-- Main actions -->
@@ -222,8 +235,6 @@
                                             {{ contact.up }}
                                         </div>
                                     </div>
-                                    
-
                                 </a>
                             </ng-container>
                         </ng-container>

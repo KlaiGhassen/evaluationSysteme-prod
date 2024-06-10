@@ -32,10 +32,12 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { FuseAlertModule } from '@fuse/components/alert';
+import { HorarireComposeComponent } from './horaire/compose-horaire.component';
 
 @NgModule({
     declarations: [
         MailboxComposeComponent,
+        HorarireComposeComponent,
         ContactsComponent,
         ContactsListComponent,
         ContactsDetailsComponent,
@@ -67,6 +69,8 @@ import { FuseAlertModule } from '@fuse/components/alert';
         NgApexchartsModule,
         MatButtonToggleModule,
         FuseAlertModule,
+        MatProgressSpinnerModule,
+        NgxDropzoneModule,
 
     ],
     providers: [

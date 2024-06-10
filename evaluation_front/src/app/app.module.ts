@@ -33,7 +33,6 @@ import {
     MsalGuardConfiguration,
     MsalRedirectComponent,
 } from '@azure/msal-angular';
-
 const isIE =
     window.navigator.userAgent.indexOf('MSIE ') > -1 ||
     window.navigator.userAgent.indexOf('Trident/') > -1; // Remove this line to use Angular Universal
@@ -157,6 +156,6 @@ function initializeAppFactory(service: UserService): () => Promise<any> {
         },
     ],
 
-    bootstrap: [AppComponent,MsalRedirectComponent],
+    bootstrap: [AppComponent, MsalRedirectComponent],
 })
 export class AppModule {}

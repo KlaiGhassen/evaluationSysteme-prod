@@ -19,6 +19,7 @@ import { ContactsService } from 'app/modules/admin/teachers/contacts.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MailboxComposeComponent } from '../compose/compose.component';
 import { UserService } from 'app/core/user/user.service';
+import { HorarireComposeComponent } from '../horaire/compose-horaire.component';
 
 @Component({
     selector: 'contacts-list',
@@ -163,6 +164,12 @@ export class ContactsListComponent implements OnInit, OnDestroy {
         this._contactsService
             .getContacts(this.selectedFilter, this.up)
             .subscribe();
+    }
+
+    openHorareCompose() {
+        this._matDialog.open(HorarireComposeComponent, {
+            data: '',
+        });
     }
 
     /**

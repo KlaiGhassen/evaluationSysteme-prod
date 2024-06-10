@@ -201,6 +201,7 @@ export class ContactsService {
      * @param contact
      */
     updateContact(id: string, contact: any): Observable<any> {
+        
         return this.contacts$.pipe(
             take(1),
             switchMap((contacts) =>

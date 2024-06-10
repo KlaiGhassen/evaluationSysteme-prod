@@ -94,6 +94,13 @@ export class ContactsService {
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
 
+    addSeance(data): Observable<any> {
+        return this._httpClient.post(
+            environment.apiUrl + 'seanceMangment',
+            data
+        );
+    }
+
     /**
      * Get contacts
      */

@@ -11,6 +11,7 @@ exports.up = function (knex) {
       table.string("description");
       table.timestamp("start");
       table.timestamp("end");
+      table.string("pdfName");
       table
         .integer("id_module")
         .references("module.id_module")
@@ -25,7 +26,14 @@ exports.up = function (knex) {
         table.integer("id_seance");
         table.integer("classroom_id").unsigned().notNullable();
         table.integer("id_student");
-        table.primary(["id_seance", "classroom_id", "id_student"]); // composite primary key
+        table.string("seance");
+        table.string("seance_status");
+        table.primary([
+          "id_seance",
+          "classroom_id",
+          "id_student",
+          "seance_status",
+        ]); // composite primary key
         table
           .foreign("id_seance")
           .references("seance.id")

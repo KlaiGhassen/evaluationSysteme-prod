@@ -1,5 +1,4 @@
-export interface Calendar
-{
+export interface Calendar {
     id: string;
     title: string;
     color: string;
@@ -8,8 +7,7 @@ export interface Calendar
 
 export type CalendarDrawerMode = 'over' | 'side';
 
-export interface CalendarEvent
-{
+export interface CalendarEvent {
     id: string;
     calendarId: string;
     recurringEventId: string | null;
@@ -19,11 +17,11 @@ export interface CalendarEvent
     start: string | null;
     end: string | null;
     allDay: boolean;
+    qrcode?: any;
     recurrence: string;
 }
 
-export interface CalendarEventException
-{
+export interface CalendarEventException {
     id: string;
     eventId: string;
     exdate: string;
@@ -32,15 +30,13 @@ export interface CalendarEventException
 export type CalendarEventPanelMode = 'view' | 'add' | 'edit';
 export type CalendarEventEditMode = 'single' | 'future' | 'all';
 
-export interface CalendarSettings
-{
+export interface CalendarSettings {
     dateFormat: 'DD/MM/YYYY' | 'MM/DD/YYYY' | 'YYYY-MM-DD' | 'll';
     timeFormat: '12' | '24';
     startWeekOn: 6 | 0 | 1;
 }
 
-export interface CalendarWeekday
-{
+export interface CalendarWeekday {
     abbr: string;
     label: string;
     value: string;
