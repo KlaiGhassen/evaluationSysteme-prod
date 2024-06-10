@@ -105,7 +105,7 @@ function base64ToImage(base64String, filePath) {
   }
 }
 
-function convertFullNameToEmail(fullName) {
+async function convertFullNameToEmail(fullName) {
   // Convert full name to lowercase
   const lowerCaseName = fullName.toLowerCase();
 
@@ -147,7 +147,7 @@ exports.addSeance = async (req, res, next) => {
       .first();
 
     const user = await knex("user")
-      .where("email", convertFullNameToEmail(req_seance.full_name))
+      .where("email", await convertFullNameToEmail(req_seance.full_name))
       .first();
 
     console.log(user);
@@ -325,7 +325,7 @@ exports.presence = async (req, res, next) => {
     )
   );
   const teacher = await knex("user")
-    .where("email", convertFullNameToEmail(req.body.data.full_name))
+    .where("email", await convertFullNameToEmail(req.body.data.full_name))
     .first();
 
   const classroom = await knex("classroom").where("name_class", classe).first();
