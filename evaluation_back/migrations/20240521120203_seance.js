@@ -17,7 +17,11 @@ exports.up = function (knex) {
         .references("module.id_module")
         .onDelete("CASCADE")
         .onUpdate("CASCADE");
-      table.integer("id_teacher").references("user.id");
+      table
+        .integer("id_teacher")
+        .references("user.id")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
 
       table.timestamps(true, true);
     })
