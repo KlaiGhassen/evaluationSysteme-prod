@@ -15,7 +15,7 @@ async function generatePDF(seance) {
 
   // Pipe the PDF into a writable stream
   doc.pipe(fs.createWriteStream(absoluteImagePath + "/pdf/" + pdfName));
-  const teacher = await knex("user").where("id", seance.id_teacher).first();
+  const teacher = await knex("user").where("id", seance.teacherId).first();
   const module = await knex("module")
     .where("id_module", seance.id_module)
     .first();
@@ -150,8 +150,6 @@ exports.addSeance = async (req, res, next) => {
       .where("email", await convertFullNameToEmail(req_seance.full_name))
       .first();
 
-    console.log(user);
-
     const seance = await knex("seance").insert({
       title: req_seance.title,
       qrcode: req_seance.qrcode,
@@ -163,7 +161,7 @@ exports.addSeance = async (req, res, next) => {
       end:
         req_seance.date_course + " " + sessionTimes[req_seance.seance].end_time,
       id_module: module.id_module,
-      id_teacher: user.id,
+      teacherId: user.id,
       pdfName: await generatePDF({
         title: req_seance.title,
         qrcode: req_seance.qrcode,
@@ -177,7 +175,7 @@ exports.addSeance = async (req, res, next) => {
           " " +
           sessionTimes[req_seance.seance].end_time,
         id_module: module.id_module,
-        id_teacher: user.id,
+        teacherId: user.id,
       }),
     });
   });
@@ -194,7 +192,7 @@ exports.getSeances = async (req, res, next) => {
     console.log(`View End: ${viewEnd}`);
 
     // Fetch the events from the database
-    const events = await knex("seance").where("id_teacher", req.payload.id);
+    const events = await knex("seance").where("teacherId", req.payload.id);
     console.log(`Fetched ${events.length} events`);
 
     // Prepare the results array

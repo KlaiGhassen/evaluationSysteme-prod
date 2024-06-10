@@ -18,11 +18,10 @@ exports.up = function (knex) {
         .onDelete("CASCADE")
         .onUpdate("CASCADE");
       table
-        .integer("id_teacher")
+        .integer("teacherId")
         .references("user.id")
         .onDelete("CASCADE")
-        .onUpdate("CASCADE");
-
+        .onUpdate("CASCADE").unsigned().notNullable();
       table.timestamps(true, true);
     })
     .then(() => {
