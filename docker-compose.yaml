@@ -33,6 +33,8 @@ services:
       - db
     volumes:
       - pictures:/app/uploads
+      - pdf:/app/uploads/pdf/
+      - qrs:/app/uploads/qrs/
   loadBlancer:
     image: nginx
     ports:
@@ -48,3 +50,5 @@ services:
 volumes:
   bdp-data:
   pictures:
+  pdf:
+  qrs:
