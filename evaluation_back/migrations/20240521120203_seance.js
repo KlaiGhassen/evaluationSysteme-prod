@@ -7,11 +7,12 @@ exports.up = function (knex) {
     .createTable("seance", (table) => {
       table.increments("id");
       table.string("title");
+      table.string("pdfQrcode");
       table.string("qrcode");
       table.string("description");
       table.timestamp("start");
       table.timestamp("end");
-      table.string("pdfName");
+     
       table
         .integer("id_module")
         .references("module.id_module")

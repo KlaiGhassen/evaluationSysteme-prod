@@ -7,14 +7,14 @@ const { RRuleSet, RRule } = require("rrule");
 const PDFDocument = require("pdfkit");
 
 async function generatePDF(seance) {
-  const pdfName = "pdf-" + Date.now() + ".pdf";
+  const pdfQrcode = "pdf-" + Date.now() + ".pdf";
 
   const doc = new PDFDocument();
   const absoluteImagePath = require("path").resolve(__dirname, "../uploads/");
   const logo = require("path").resolve(__dirname, "../utils/");
 
   // Pipe the PDF into a writable stream
-  doc.pipe(fs.createWriteStream(absoluteImagePath + "/pdf/" + pdfName));
+  doc.pipe(fs.createWriteStream(absoluteImagePath + "/pdf/" + pdfQrcode));
   const teacher = await knex("user").where("id", seance.teacherId).first();
   const module = await knex("module")
     .where("id_module", seance.id_module)
@@ -78,7 +78,7 @@ async function generatePDF(seance) {
 
   // Finalize the PDF and end the stream
   doc.end();
-  return pdfName;
+  return pdfQrcode;
 }
 
 // Generate the PDF
@@ -162,7 +162,7 @@ exports.addSeance = async (req, res, next) => {
         req_seance.date_course + " " + sessionTimes[req_seance.seance].end_time,
       id_module: module.id_module,
       teacherId: user.id,
-      pdfName: await generatePDF({
+      pdfQrcode: await generatePDF({
         title: req_seance.title,
         qrcode: req_seance.qrcode,
         description: req_seance.description,
