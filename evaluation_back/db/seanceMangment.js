@@ -150,9 +150,7 @@ exports.addSeance = async (req, res, next) => {
       .where("email", convertFullNameToEmail(req_seance.full_name))
       .first();
 
-    console.log(
-      req_seance.date_course + " " + sessionTimes[req_seance.seance].start_time
-    );
+    console.log(user);
 
     const seance = await knex("seance").insert({
       title: req_seance.title,
