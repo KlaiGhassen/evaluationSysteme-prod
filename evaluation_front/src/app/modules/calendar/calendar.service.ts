@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, forkJoin, of } from 'rxjs';
 import { map, switchMap, take, tap } from 'rxjs/operators';
 import { Moment } from 'moment';
 import {
@@ -235,43 +235,54 @@ export class CalendarService {
                 },
             })
             .pipe(
-                switchMap((response) =>
-                    this._events.pipe(
-                        take(1),
-                        map((events) => {
-                            // If replace...
-                            if (replace) {
-                                // Execute the observable with the response replacing the events object
-                                this._events.next(response);
-                            }
-                            // Otherwise...
-                            else {
-                                // If events is null, replace it with an empty array
-                                events = events || [];
-
-                                // Execute the observable by appending the response to the current events
-                                this._events.next([...events, ...response]);
-                            }
-
-                            // Return the response
-                            return response;
-                        })
-                    )
-                ),
-                tap((response) => {
-                    response.forEach((element) => {
+                switchMap((response) => {
+                    const downloadObservables = response.map((element) => {
                         if (element.qrcode) {
-                            this.downloadQrCode(element.qrcode).subscribe(
-                                (res) => {
+                            return this.downloadQrCode(element.qrcode).pipe(
+                                map((res) => {
                                     const objectURL = URL.createObjectURL(res);
                                     element.qrcode =
                                         this.sanitizer.bypassSecurityTrustUrl(
                                             objectURL
                                         );
-                                }
+                                    return element;
+                                })
                             );
+                        } else {
+                            return of(element);
                         }
                     });
+
+                    // Use forkJoin to wait for all QR code downloads to complete
+                    return forkJoin(downloadObservables).pipe(
+                        switchMap((updatedResponse) =>
+                            this._events.pipe(
+                                take(1),
+                                map((events) => {
+                                    // If replace...
+                                    if (replace) {
+                                        // Execute the observable with the response replacing the events object
+                                        this._events.next(updatedResponse);
+                                    }
+                                    // Otherwise...
+                                    else {
+                                        console.log('ghassen was here !!!!');
+                                        // If events is null, replace it with an empty array
+                                        events = events || [];
+
+                                        // Execute the observable by appending the response to the current events
+                                        this._events.next([
+                                            ...events,
+                                            ...updatedResponse,
+                                        ]);
+                                    }
+
+                                    // Return the response
+                                    return updatedResponse;
+                                })
+                            )
+                        )
+                    );
                 })
             );
     }

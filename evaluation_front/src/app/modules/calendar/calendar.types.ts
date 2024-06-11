@@ -18,7 +18,9 @@ export interface CalendarEvent {
     end: string | null;
     allDay: boolean;
     qrcode?: any;
+    pdfName?: any;
     recurrence: string;
+    
 }
 
 export interface CalendarEventException {

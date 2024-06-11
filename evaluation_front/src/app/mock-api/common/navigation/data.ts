@@ -53,11 +53,10 @@ export const defaultNavigation: FuseNavigationItem[] = [
     {
         id: 'apps.calendar',
         title: 'Calendar',
-        subtitle: '3 upcoming events',
         type: 'basic',
         icon: 'heroicons_outline:calendar',
         link: '/calendar',
-        Role: 'TEACHER|CUP|RDI|RO|CD|STUDENT',
+        Role: 'TEACHER|CUP|RDI|RO|CD|ADMIN|STUDENT',
     },
     {
         id: 'My Teachers',

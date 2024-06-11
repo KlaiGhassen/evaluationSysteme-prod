@@ -113,6 +113,12 @@ calendar {
         }
     }
 }
+.red-line {
+    width: 100%;
+    height: 2px; /* Adjust the height as needed */
+    background-color: red;
+    z-index: 9999;
+}
 
 /* Event panel */
 .calendar-event-panel {

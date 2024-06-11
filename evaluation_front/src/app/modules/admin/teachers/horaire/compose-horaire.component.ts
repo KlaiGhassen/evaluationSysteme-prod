@@ -125,6 +125,7 @@ export class HorarireComposeComponent implements OnInit {
                 element['full_name'] = element['Nom'];
                 element['module'] = element['Module'];
                 element['nbrh'] = element['Nbr Heures'];
+                element['classe'] = element['Classe'];
                 let qrcode = this.generateAndSendQRCodes(
                     'http://localhost:4200/qr-code/' +
                         element['full_name'] +

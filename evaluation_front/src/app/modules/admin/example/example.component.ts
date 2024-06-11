@@ -3,15 +3,15 @@ import { Router } from '@angular/router';
 import { UserService } from 'app/core/user/user.service';
 
 
-declare global {
-    interface Window {
-        phantom?: {
-            solana?: {
-                isPhantom?: any;
-            };
-        };
-    }
-}
+// declare global {
+//     interface Window {
+//         phantom?: {
+//             solana?: {
+//                 isPhantom?: any;
+//             };
+//         };
+//     }
+// }
 
 @Component({
     selector: 'example',
@@ -23,6 +23,8 @@ export class ExampleComponent {
      */
 
     constructor(private _router: Router, private _userService: UserService) {
+       
+       
         this._userService.user$.subscribe((user) => {
             switch (user.role) {
                 case 'ADMIN':

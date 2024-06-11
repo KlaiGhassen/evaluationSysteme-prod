@@ -7,15 +7,15 @@ const { RRuleSet, RRule } = require("rrule");
 const PDFDocument = require("pdfkit");
 
 async function generatePDF(seance) {
-  const pdfQrcode = "pdf-" + Date.now() + ".pdf";
+  const pdfName = "pdf-" + Date.now() + ".pdf";
 
   const doc = new PDFDocument();
   const absoluteImagePath = require("path").resolve(__dirname, "../uploads/");
   const logo = require("path").resolve(__dirname, "../utils/");
 
   // Pipe the PDF into a writable stream
-  doc.pipe(fs.createWriteStream(absoluteImagePath + "/pdf/" + pdfQrcode));
-  const teacher = await knex("user").where("id", seance.teacherId).first();
+  doc.pipe(fs.createWriteStream(absoluteImagePath + "/pdf/" + pdfName));
+  const teacher = await knex("user").where("id", seance.id_teacher).first();
   const module = await knex("module")
     .where("id_module", seance.id_module)
     .first();
@@ -78,7 +78,7 @@ async function generatePDF(seance) {
 
   // Finalize the PDF and end the stream
   doc.end();
-  return pdfQrcode;
+  return pdfName;
 }
 
 // Generate the PDF
@@ -104,13 +104,12 @@ function base64ToImage(base64String, filePath) {
     console.log(error);
   }
 }
-
 async function convertFullNameToEmail(fullName) {
   // Convert full name to lowercase
   const lowerCaseName = fullName.toLowerCase();
 
-  // Replace spaces with dots
-  const emailName = lowerCaseName.replace(/\s+/g, ".");
+  // Replace the first space with a dot and remove any remaining spaces
+  const emailName = lowerCaseName.replace(/\s/, ".").replace(/\s/g, "");
 
   // Append the domain
   const email = `${emailName}@esprit.tn`;
@@ -139,7 +138,7 @@ exports.addSeance = async (req, res, next) => {
       description: data.module,
       date_course: data.date_cours,
       seance: data.seance,
-      class: data.Classe,
+      classe: data.classe.toUpperCase(),
     };
 
     const module = await knex("module")
@@ -154,6 +153,7 @@ exports.addSeance = async (req, res, next) => {
       title: req_seance.title,
       qrcode: req_seance.qrcode,
       description: req_seance.description,
+      classe: req_seance.classe,
       start:
         req_seance.date_course +
         " " +
@@ -161,8 +161,8 @@ exports.addSeance = async (req, res, next) => {
       end:
         req_seance.date_course + " " + sessionTimes[req_seance.seance].end_time,
       id_module: module.id_module,
-      teacherId: user.id,
-      pdfQrcode: await generatePDF({
+      id_teacher: user.id,
+      pdfName: await generatePDF({
         title: req_seance.title,
         qrcode: req_seance.qrcode,
         description: req_seance.description,
@@ -175,7 +175,7 @@ exports.addSeance = async (req, res, next) => {
           " " +
           sessionTimes[req_seance.seance].end_time,
         id_module: module.id_module,
-        teacherId: user.id,
+        id_teacher: user.id,
       }),
     });
   });
@@ -188,12 +188,33 @@ exports.getSeances = async (req, res, next) => {
   try {
     const viewStart = moment.utc(req.query.start);
     const viewEnd = moment.utc(req.query.end);
-    console.log(`View Start: ${viewStart}`);
-    console.log(`View End: ${viewEnd}`);
+    let events = [];
+    console.log(req.payload);
+    if (req.payload.role === "ADMIN") {
+      // Fetch the events from the database
+      events = await knex("seance");
 
-    // Fetch the events from the database
-    const events = await knex("seance").where("teacherId", req.payload.id);
-    console.log(`Fetched ${events.length} events`);
+      events = await Promise.all(
+        events.map(async (event) => {
+          const scanSeance = await knex("seance_student")
+            .where("id_seance", event.id)
+            .orderBy("created_at", "asc") // Order by created_at in ascending order
+            .first(); // Fetch the first record
+
+          // Adding the scanned student data to the event
+          event["scanned_student"] = scanSeance;
+          return event; // Ensure to return the modified event
+        })
+      );
+      console.log("events", events);
+    } else if (req.payload.role === "TEACHER") {
+      events = await knex("seance").where("id_teacher", req.payload.id);
+    } else if (req.payload.role === "STUDENT") {
+      const classroom = await knex("classroom")
+        .where("classroom_id", req.payload.student_class)
+        .first();
+      events = await knex("seance").where("classe", classroom.name_class);
+    }
 
     // Prepare the results array
     const results = [];

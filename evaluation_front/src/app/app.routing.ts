@@ -92,6 +92,7 @@ export const appRoutes: Route[] = [
                         (m) => m.CalendarModule
                     ),
             },
+
             {
                 path: 'example',
                 loadChildren: () =>

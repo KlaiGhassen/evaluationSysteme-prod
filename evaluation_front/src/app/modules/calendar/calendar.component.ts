@@ -42,6 +42,7 @@ import {
     CalendarSettings,
 } from 'app/modules/calendar/calendar.types';
 import { Router } from '@angular/router';
+import { UserService } from 'app/core/user/user.service';
 
 @Component({
     selector: 'calendar',
@@ -80,6 +81,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     private _eventPanelOverlayRef: OverlayRef;
     private _fullCalendarApi: FullCalendar;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
+    user;
 
     /**
      * Constructor
@@ -93,8 +95,13 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         private _overlay: Overlay,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _viewContainerRef: ViewContainerRef,
-        private _router: Router
-    ) {}
+        private _router: Router,
+        private _userService: UserService
+    ) {
+        this._userService.user$.subscribe((user) => {
+            this.user = user;
+        });
+    }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Accessors
@@ -302,18 +309,13 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         const viewStart = moment(this._fullCalendarApi.view.currentStart)
             .subtract(60, 'days')
             .startOf('day');
-        console.log('start date ', viewStart.toISOString());
         const viewEnd = moment(this._fullCalendarApi.view.currentEnd)
             .add(60, 'days')
             .endOf('day');
         console.log('end date ', viewEnd.toISOString());
 
         // Get events
-        this._calendarService
-            .getEvents(viewStart, viewEnd, true)
-            .subscribe((data) => {
-                console.log(data);
-            });
+        this._calendarService.getEvents(viewStart, viewEnd, true).subscribe();
     }
 
     /**
@@ -408,7 +410,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
      * @param id
      */
     getCalendar(id): Calendar {
-        console.log('passedid', id);
         if (!id) {
             return;
         }
@@ -538,7 +539,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         const event: any = cloneDeep(
             this.events.find((item) => item.id == calendarEvent.event.id)
         );
-
+        console.log(event);
         // Set the event
         this.event = event;
         console.log('event', event);
@@ -596,7 +597,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                                             <span>
                                                 <span>${moment(
                                                     calendarEvent.event.start
-                                                ).format('D')}</span>
+                                                ).format('D')}
+                                                
+                                                </span>
                                                 <span>${moment(
                                                     calendarEvent.event.start
                                                 ).format('MMM')}, ${moment(
@@ -634,6 +637,68 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
         // Set the event's visibility
         calendarEvent.el.style.display = calendar.visible ? 'flex' : 'none';
+        // Check if the event is on or after the specific time (14:00)
+
+        if (
+            calendarEvent.event.extendedProps.scanned_student &&
+            calendarEvent.event.extendedProps.scanned_student.id_seance !=
+                undefined &&
+            calendarEvent.event.id ==
+                calendarEvent.event.extendedProps.scanned_student.id_seance
+        ) {
+            console.log('Condition met. Adding red line...');
+
+            // Get the event's start and end time
+            const eventStartTime = moment(calendarEvent.event.start);
+            const eventEndTime = moment(calendarEvent.event.end);
+
+            const targetTime = moment(
+                calendarEvent.event.extendedProps.scanned_student.created_at
+            );
+            console.log('Event Start Time:', eventStartTime);
+            console.log('Event End Time:', eventEndTime);
+            console.log('Target Time:', targetTime);
+
+            if (
+                eventStartTime.isBefore(targetTime) &&
+                eventEndTime.isAfter(targetTime)
+            ) {
+                console.log(
+                    'Target time within event duration. Adding red line...'
+                );
+
+                // Calculate the position for the red line within the event element
+                const eventDurationInMinutes = eventEndTime.diff(
+                    eventStartTime,
+                    'minutes'
+                );
+                const minutesUntilTargetTime = targetTime.diff(
+                    eventStartTime,
+                    'minutes'
+                );
+                const percentageUntilTargetTime =
+                    (minutesUntilTargetTime / eventDurationInMinutes) * 100;
+                console.log(
+                    'Percentage Until Target Time:',
+                    percentageUntilTargetTime
+                );
+
+                // Create the red line element
+                const redLine = document.createElement('div');
+                redLine.style.position = 'absolute';
+                redLine.style.width = '100%';
+                redLine.style.height = '2px';
+                redLine.style.backgroundColor = 'red';
+                redLine.style.top = `${percentageUntilTargetTime}%`;
+
+                // Append the red line to the event element
+                calendarEvent.el.appendChild(redLine);
+            } else {
+                console.log('Target time not within event duration.');
+            }
+        } else {
+            console.log('Condition not met. Skipping red line...');
+        }
     }
 
     /**
@@ -1052,6 +1117,27 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             .setValue(moment().year(9999).endOf('year').toISOString());
     }
 
+    downloadPdfsOfTheDay() {
+        const s1Start = moment().set({ hour: 8, minute: 0 });
+        const s1End = moment().set({ hour: 17, minute: 0 });
+        this.events.forEach((event) => {
+            if (moment(event.start).isBetween(s1Start, s1End)) {
+                this._calendarService
+                    .downloadPdfQrCode(event.pdfName)
+                    .subscribe((response) => {
+                        const url = window.URL.createObjectURL(response);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = event.pdfName;
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        document.body.removeChild(a);
+                    });
+            }
+        });
+    }
+
     downloadPdf(fileName) {
         this._calendarService
             .downloadPdfQrCode(fileName)
@@ -1059,7 +1145,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 const url = window.URL.createObjectURL(response);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = 'output.pdf';
+                a.download = fileName;
                 document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(url);

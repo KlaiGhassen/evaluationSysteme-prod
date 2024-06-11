@@ -56,7 +56,21 @@
                             [svgIcon]="'heroicons_outline:calendar'"
                         ></mat-icon>
                     </button>
-                    <button (click)="scanQr()">scan qr code</button>
+                    <button
+                        mat-button
+                        *ngIf="user.role == 'STUDENT'"
+                        (click)="scanQr()"
+                    >
+                        scan qr code
+                    </button>
+                    <button
+                        mat-button
+                        *ngIf="user.role == 'ADMIN'"
+                        (click)="downloadPdfsOfTheDay()"
+                    >
+                        download pdf of the day
+                    </button>
+
                     <div class="hidden md:block ml-auto">
                         <mat-form-field
                             class="fuse-mat-dense fuse-mat-no-subscript w-30 ml-2"
@@ -155,7 +169,7 @@
                         [defaultView]="view"
                         [events]="events"
                         [firstDay]="settings.startWeekOn"
-                        [handleWindowResize]="false"
+                        [handleWindowResize]="true"
                         [header]="false"
                         [height]="'parent'"
                         [plugins]="calendarPlugins"

@@ -7,22 +7,24 @@ exports.up = function (knex) {
     .createTable("seance", (table) => {
       table.increments("id");
       table.string("title");
-      table.string("pdfQrcode");
+      table.string("pdfName");
       table.string("qrcode");
       table.string("description");
       table.timestamp("start");
       table.timestamp("end");
-     
+      table.string("classe");
       table
         .integer("id_module")
         .references("module.id_module")
         .onDelete("CASCADE")
         .onUpdate("CASCADE");
       table
-        .integer("teacherId")
+        .integer("id_teacher")
         .references("user.id")
         .onDelete("CASCADE")
-        .onUpdate("CASCADE").unsigned().notNullable();
+        .onUpdate("CASCADE")
+        .unsigned()
+        .notNullable();
       table.timestamps(true, true);
     })
     .then(() => {
