@@ -1,42 +1,46 @@
 version: "3.8"
+
 services:
   db:
-    image: postgres
+    image: postgres:latest
     restart: always
     environment:
       POSTGRES_PASSWORD: t5albiza1
       POSTGRES_USER: postgres
       POSTGRES_DB: teachersevalution
     volumes:
-      - bdp-data:/var/lib/postgresql/data/
-  front:
-    image: ghassenklai/evaluationfront:1.0.0
-    ports:
-      - "80"
-    restart: always
-    depends_on:
-      - back
+      - bdp-data:/var/lib/postgresql/data
+
   back:
     image: ghassenklai/evaluation_back:1.0.0
     ports:
-      - "3000"
+      - "3000:3000"
     restart: always
     environment:
-      - ACCESS_TOKEN_SECRET=3e7749f0cb1771397af3b572905a27f18e521020d82aeffaf7b3cd8bc08e283d1cc503a8d1f16b91da6925f75abb5d769c745f10089f0734bfd124e8b0d3afb8
-      - REFRESH_TOKEN_SECRET=3e7749f0cb1771397af3b572905a27f18e521020d82aeffaf7b3cd8bc08e283d1cc503a8d1f16b91da6925f75abb5d769c745f10085d769c745f10089f073
-      - CLIENT_ID=830033697803-07hrq9qctj2ba61ugra0i84cl6lsdabj.apps.googleusercontent.com
-      - HOST=db
-      - USER=postgres
-      - PASSWORD=t5albiza1
-      - DATABASE=teachersevalution
+      ACCESS_TOKEN_SECRET: 3e7749f0cb1771397af3b572905a27f18e521020d82aeffaf7b3cd8bc08e283d1cc503a8d1f16b91da6925f75abb5d769c745f10089f0734bfd124e8b0d3afb8
+      REFRESH_TOKEN_SECRET: 3e7749f0cb1771397af3b572905a27f18e521020d82aeffaf7b3cd8bc08e283d1cc503a8d1f16b91da6925f75abb5d769c745f10085d769c745f10089f073
+      CLIENT_ID: 830033697803-07hrq9qctj2ba61ugra0i84cl6lsdabj.apps.googleusercontent.com
+      HOST: db
+      USER: postgres
+      PASSWORD: t5albiza1
+      DATABASE: teachersevalution
     depends_on:
       - db
     volumes:
       - pictures:/app/uploads
-      - pdf:/app/uploads/pdf/
-      - qrs:/app/uploads/qrs/
-  loadBlancer:
-    image: nginx
+      - pdf:/app/uploads/pdf
+      - qrs:/app/uploads/qrs
+
+  front:
+    image: ghassenklai/evaluationfront:1.0.0
+    ports:
+      - "80:80"
+    restart: always
+    depends_on:
+      - back
+
+  loadBalancer:
+    image: nginx:latest
     ports:
       - "3030:3030"
       - "3040:3040"
@@ -47,6 +51,7 @@ services:
       - front
       - back
       - db
+
 volumes:
   bdp-data:
   pictures:
