@@ -10,7 +10,7 @@ services:
     volumes:
       - bdp-data:/var/lib/postgresql/data/
   front:
-    build: ghassenklai/evaluationfront
+    image: ghassenklai/evaluationfront
     ports:
       - "80"
     restart: always
