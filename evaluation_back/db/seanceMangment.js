@@ -206,7 +206,6 @@ exports.getSeances = async (req, res, next) => {
           return event; // Ensure to return the modified event
         })
       );
-      console.log("events", events);
     } else if (req.payload.role === "TEACHER") {
       events = await knex("seance").where("id_teacher", req.payload.id);
     } else if (req.payload.role === "STUDENT") {
@@ -223,8 +222,8 @@ exports.getSeances = async (req, res, next) => {
     events.forEach((event) => {
       event["calendarId"] = "1a470c8e-40ed-4c2d-b590-a4f1f6ead6cc";
 
-      const eventStart = moment.utc(event.start).add(1, "hour");
-      const eventEnd = moment.utc(event.end).add(1, "hour");
+      const eventStart = moment.utc(event.start);
+      const eventEnd = moment.utc(event.end);
       console.log(
         `Processing event: ${
           event.id
