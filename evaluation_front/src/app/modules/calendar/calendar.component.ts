@@ -571,8 +571,10 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.eventForm.patchValue(event);
 
         // Open the event panel
+        if (this.user.role != 'student') {
         this._openEventPanel(calendarEvent);
     }
+}
 
     /**
      * On event render

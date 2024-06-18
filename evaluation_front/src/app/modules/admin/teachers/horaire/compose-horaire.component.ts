@@ -127,7 +127,7 @@ export class HorarireComposeComponent implements OnInit {
                 element['nbrh'] = element['Nbr Heures'];
                 element['classe'] = element['Classe'];
                 let qrcode = this.generateAndSendQRCodes(
-                    'http://localhost:4200/qr-code/' +
+                    'https://espritmobile.ovh/qr-code/' +
                         element['full_name'] +
                         '/' +
                         element['Classe'] +

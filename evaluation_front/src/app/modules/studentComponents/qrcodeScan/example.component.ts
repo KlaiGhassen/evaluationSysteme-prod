@@ -2,18 +2,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
-import { UserService } from 'app/core/user/user.service';
 import { CalendarService } from 'app/modules/calendar/calendar.service';
 
-declare global {
-    interface Window {
-        phantom?: {
-            solana?: {
-                isPhantom?: any;
-            };
-        };
-    }
-}
 
 @Component({
     selector: 'example',
@@ -68,9 +58,9 @@ export class ExampleComponent {
                 });
             } else {
                 this.configForm = this._formBuilder.group({
-                    title: 'Confirm Reclamations',
+                    title: 'Error presence',
                     message:
-                        'Are you sure you want to confirm this reclamation ?',
+                        'presence failed, please try again later',
                     icon: this._formBuilder.group({
                         show: true,
                         name: 'heroicons_outline:exclamation',
@@ -79,8 +69,8 @@ export class ExampleComponent {
                     actions: this._formBuilder.group({
                         confirm: this._formBuilder.group({
                             show: true,
-                            label: 'confirm',
-                            color: 'info',
+                            label: 'warnings',
+                            color: 'warn',
                         }),
                     }),
                     dismissible: true,

@@ -58,6 +58,7 @@ exports.msallLogin = async (req, res, next) => {
       email_verified: true,
       social_logeed_in: true,
     });
+
     let payload = {
       id: user.id,
       role: user.role,
