@@ -207,7 +207,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
             });
-
         // Get events
         this._calendarService.events$
             .pipe(takeUntil(this._unsubscribeAll))
@@ -300,6 +299,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     ngAfterViewInit(): void {
         // Get the full calendar API
         this._fullCalendarApi = this._fullCalendar.getApi();
+        this._fullCalendar.timeZone = 'Europe/Paris';
 
         // Get the current view's title
         this.viewTitle = this._fullCalendarApi.view.title;
@@ -572,9 +572,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
         // Open the event panel
         if (this.user.role != 'student') {
-        this._openEventPanel(calendarEvent);
+            this._openEventPanel(calendarEvent);
+        }
     }
-}
 
     /**
      * On event render

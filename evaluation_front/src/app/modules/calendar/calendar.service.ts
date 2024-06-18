@@ -236,6 +236,7 @@ export class CalendarService {
             })
             .pipe(
                 switchMap((response) => {
+                    console.log(response)
                     const downloadObservables = response.map((element) => {
                         if (element.qrcode) {
                             return this.downloadQrCode(element.qrcode).pipe(

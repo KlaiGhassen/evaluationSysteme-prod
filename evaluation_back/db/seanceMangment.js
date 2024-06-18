@@ -1,7 +1,7 @@
 require("dotenv").config();
 const fs = require("fs");
 let knex = require("./knex");
-const moment = require("moment"); // require
+const moment = require("moment");
 const { RRuleSet, RRule } = require("rrule");
 
 const PDFDocument = require("pdfkit");
@@ -189,7 +189,6 @@ exports.getSeances = async (req, res, next) => {
     const viewStart = moment.utc(req.query.start);
     const viewEnd = moment.utc(req.query.end);
     let events = [];
-    console.log(req.payload);
     if (req.payload.role === "ADMIN") {
       // Fetch the events from the database
       events = await knex("seance");
