@@ -266,7 +266,6 @@ export class CalendarService {
                                     }
                                     // Otherwise...
                                     else {
-                                        console.log('ghassen was here !!!!');
                                         // If events is null, replace it with an empty array
                                         events = events || [];
 
