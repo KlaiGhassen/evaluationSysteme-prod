@@ -644,9 +644,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         if (
             calendarEvent.event.extendedProps.scanned_student &&
             calendarEvent.event.extendedProps.scanned_student.id_seance !=
-                undefined &&
-            calendarEvent.event.id ==
-                calendarEvent.event.extendedProps.scanned_student.id_seance
+                undefined
         ) {
             console.log('Condition met. Adding red line...');
 
@@ -692,7 +690,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 redLine.style.height = '2px';
                 redLine.style.backgroundColor = 'red';
                 redLine.style.top = `${percentageUntilTargetTime}%`;
-
                 // Append the red line to the event element
                 calendarEvent.el.appendChild(redLine);
             } else {
