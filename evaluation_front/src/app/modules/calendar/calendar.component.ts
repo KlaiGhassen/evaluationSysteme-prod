@@ -640,7 +640,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         // Set the event's visibility
         calendarEvent.el.style.display = calendar.visible ? 'flex' : 'none';
         // Check if the event is on or after the specific time (14:00)
-
         if (
             calendarEvent.event.extendedProps.scanned_student &&
             calendarEvent.event.extendedProps.scanned_student.id_seance !=

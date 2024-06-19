@@ -195,13 +195,16 @@ exports.getSeances = async (req, res, next) => {
 
       events = await Promise.all(
         events.map(async (event) => {
+
           const scanSeance = await knex("seance_student")
             .where("id_seance", event.id)
             .orderBy("created_at", "asc") // Order by created_at in ascending order
             .first(); // Fetch the first record
-
           // Adding the scanned student data to the event
-          event["scanned_student"] = scanSeance;
+          if (scanSeance) {
+            event["scanned_student"] = scanSeance;
+          }
+          console.log(scanSeance)
           return event; // Ensure to return the modified event
         })
       );
@@ -334,13 +337,6 @@ exports.presence = async (req, res, next) => {
   let StudentId = req.payload.id;
   let classe = req.body.data.classe.toUpperCase();
   console.log(req.body);
-  console.log(
-    moment.utc(
-      req.body.data.date_cours +
-        " " +
-        sessionTimes[req.body.data.seance].start_time
-    )
-  );
   const teacher = await knex("user")
     .where("email", await convertFullNameToEmail(req.body.data.full_name))
     .first();
@@ -366,7 +362,8 @@ exports.presence = async (req, res, next) => {
         id_seance: seance.id,
         classroom_id: classroom.classroom_id,
         id_student: StudentId,
-        status: getSession(),
+        seance: req.body.data.seance,
+        seance_status: getSession(),
       });
       res.seance_student = true;
       next();
