@@ -1,4 +1,14 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    OnDestroy,
+    OnInit,
+    Output,
+    TemplateRef,
+    ViewChild,
+    ViewContainerRef,
+    ViewEncapsulation,
+} from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { Subject } from 'rxjs';
@@ -9,13 +19,13 @@ import { CalendarService } from 'app/modules/calendar/calendar.service';
 import { calendarColors } from 'app/modules/calendar/sidebar/calendar-colors';
 
 @Component({
-    selector     : 'calendar-sidebar',
-    templateUrl  : './sidebar.component.html',
-    encapsulation: ViewEncapsulation.None
+    selector: 'calendar-sidebar',
+    templateUrl: './sidebar.component.html',
+    encapsulation: ViewEncapsulation.None,
 })
-export class CalendarSidebarComponent implements OnInit, OnDestroy
-{
-    @Output() readonly calendarUpdated: EventEmitter<any> = new EventEmitter<any>();
+export class CalendarSidebarComponent implements OnInit, OnDestroy {
+    @Output() readonly calendarUpdated: EventEmitter<any> =
+        new EventEmitter<any>();
     @ViewChild('editPanel') private _editPanel: TemplateRef<any>;
 
     calendar: Calendar | null;
@@ -31,9 +41,7 @@ export class CalendarSidebarComponent implements OnInit, OnDestroy
         private _calendarService: CalendarService,
         private _overlay: Overlay,
         private _viewContainerRef: ViewContainerRef
-    )
-    {
-    }
+    ) {}
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -42,13 +50,11 @@ export class CalendarSidebarComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
         // Get calendars
         this._calendarService.calendars$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((calendars) => {
-
                 // Store the calendars
                 this.calendars = calendars;
             });
@@ -57,15 +63,13 @@ export class CalendarSidebarComponent implements OnInit, OnDestroy
     /**
      * On destroy
      */
-    ngOnDestroy(): void
-    {
+    ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
 
         // Dispose the overlay
-        if ( this._editPanelOverlayRef )
-        {
+        if (this._editPanelOverlayRef) {
             this._editPanelOverlayRef.dispose();
         }
     }
@@ -77,29 +81,27 @@ export class CalendarSidebarComponent implements OnInit, OnDestroy
     /**
      * Open edit panel
      */
-    openEditPanel(calendar: Calendar): void
-    {
+    openEditPanel(calendar: Calendar): void {
         // Set the calendar
         this.calendar = cloneDeep(calendar);
 
         // Create the overlay if it doesn't exist
-        if ( !this._editPanelOverlayRef )
-        {
+        if (!this._editPanelOverlayRef) {
             this._createEditPanelOverlay();
         }
 
         // Attach the portal to the overlay
-        this._editPanelOverlayRef.attach(new TemplatePortal(this._editPanel, this._viewContainerRef));
+        this._editPanelOverlayRef.attach(
+            new TemplatePortal(this._editPanel, this._viewContainerRef)
+        );
     }
 
     /**
      * Close the edit panel
      */
-    closeEditPanel(): void
-    {
+    closeEditPanel(): void {
         // Detach the overlay from the portal
-        if ( this._editPanelOverlayRef )
-        {
+        if (this._editPanelOverlayRef) {
             this._editPanelOverlayRef.detach();
         }
     }
@@ -109,8 +111,8 @@ export class CalendarSidebarComponent implements OnInit, OnDestroy
      *
      * @param calendar
      */
-    toggleCalendarVisibility(calendar: Calendar): void
-    {
+    toggleCalendarVisibility(calendar: Calendar): void {
+        console.log('here', calendar);
         // Toggle the visibility
         calendar.visible = !calendar.visible;
 
@@ -121,14 +123,13 @@ export class CalendarSidebarComponent implements OnInit, OnDestroy
     /**
      * Add calendar
      */
-    addCalendar(): void
-    {
+    addCalendar(): void {
         // Create a new calendar with default values
         const calendar = {
-            id     : null,
-            title  : '',
-            color  : 'bg-blue-500',
-            visible: true
+            id: null,
+            title: '',
+            color: 'bg-blue-500',
+            visible: true,
         };
 
         // Open the edit panel
@@ -140,14 +141,11 @@ export class CalendarSidebarComponent implements OnInit, OnDestroy
      *
      * @param calendar
      */
-    saveCalendar(calendar: Calendar): void
-    {
+    saveCalendar(calendar: Calendar): void {
         // If there is no id on the calendar...
-        if ( !calendar.id )
-        {
+        if (!calendar.id) {
             // Add calendar to the server
             this._calendarService.addCalendar(calendar).subscribe(() => {
-
                 // Close the edit panel
                 this.closeEditPanel();
 
@@ -156,17 +154,17 @@ export class CalendarSidebarComponent implements OnInit, OnDestroy
             });
         }
         // Otherwise...
-        else
-        {
+        else {
             // Update the calendar on the server
-            this._calendarService.updateCalendar(calendar.id, calendar).subscribe(() => {
+            this._calendarService
+                .updateCalendar(calendar.id, calendar)
+                .subscribe(() => {
+                    // Close the edit panel
+                    this.closeEditPanel();
 
-                // Close the edit panel
-                this.closeEditPanel();
-
-                // Emit the calendarUpdated event
-                this.calendarUpdated.emit();
-            });
+                    // Emit the calendarUpdated event
+                    this.calendarUpdated.emit();
+                });
         }
     }
 
@@ -175,11 +173,9 @@ export class CalendarSidebarComponent implements OnInit, OnDestroy
      *
      * @param calendar
      */
-    deleteCalendar(calendar: Calendar): void
-    {
+    deleteCalendar(calendar: Calendar): void {
         // Delete the calendar on the server
         this._calendarService.deleteCalendar(calendar.id).subscribe(() => {
-
             // Close the edit panel
             this.closeEditPanel();
 
@@ -197,16 +193,16 @@ export class CalendarSidebarComponent implements OnInit, OnDestroy
      *
      * @private
      */
-    private _createEditPanelOverlay(): void
-    {
+    private _createEditPanelOverlay(): void {
         // Create the overlay
         this._editPanelOverlayRef = this._overlay.create({
-            hasBackdrop     : true,
-            scrollStrategy  : this._overlay.scrollStrategies.reposition(),
-            positionStrategy: this._overlay.position()
-                                  .global()
-                                  .centerHorizontally()
-                                  .centerVertically()
+            hasBackdrop: true,
+            scrollStrategy: this._overlay.scrollStrategies.reposition(),
+            positionStrategy: this._overlay
+                .position()
+                .global()
+                .centerHorizontally()
+                .centerVertically(),
         });
 
         // Detach the overlay from the portal on backdrop click

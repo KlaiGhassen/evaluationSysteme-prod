@@ -4,28 +4,37 @@
  */
 exports.up = function (knex) {
   return knex.schema
-    .createTable("seance", (table) => {
-      table.increments("id");
+    .createTable("calendars", (table) => {
+      table.increments("id_calendar");
       table.string("title");
-      table.string("pdfName");
-      table.string("qrcode");
-      table.string("description");
-      table.timestamp("start");
-      table.timestamp("end");
-      table.string("classe");
-      table
-        .integer("id_module")
-        .references("module.id_module")
-        .onDelete("CASCADE")
-        .onUpdate("CASCADE");
-      table
-        .integer("id_teacher")
-        .references("user.id")
-        .onDelete("CASCADE")
-        .onUpdate("CASCADE")
-        .unsigned()
-        .notNullable();
-      table.timestamps(true, true);
+      table.string("color");
+      table.string("visible");
+    })
+
+    .then(() => {
+      return knex.schema.createTable("seance", (table) => {
+        table.increments("id");
+        table.string("title");
+        table.string("pdfName");
+        table.string("qrcode");
+        table.string("description");
+        table.timestamp("start");
+        table.timestamp("end");
+        table.string("classe");
+        table
+          .integer("id_module")
+          .references("module.id_module")
+          .onDelete("CASCADE")
+          .onUpdate("CASCADE");
+        table
+          .integer("id_teacher")
+          .references("user.id")
+          .onDelete("CASCADE")
+          .onUpdate("CASCADE")
+          .unsigned()
+          .notNullable();
+        table.timestamps(true, true);
+      });
     })
     .then(() => {
       return knex.schema.createTable("seance_student", (table) => {

@@ -55,7 +55,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild('eventPanel') private _eventPanel: TemplateRef<any>;
     @ViewChild('fullCalendar') private _fullCalendar: FullCalendarComponent;
     @ViewChild('drawer') private _drawer: MatDrawer;
-
     calendars: Calendar[];
     calendarPlugins: any[] = [
         dayGridPlugin,
@@ -203,7 +202,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 console.log(calendars);
                 // Store the calendars
                 this.calendars = calendars;
-
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
             });
@@ -211,12 +209,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         this._calendarService.events$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((events) => {
-                console.log(events);
-
                 // Clone the events to change the object reference so
                 // that the FullCalendar can trigger a re-render.
                 this.events = cloneDeep(events);
-
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
             });
@@ -227,7 +222,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             .subscribe((settings) => {
                 // Store the settings
                 this.settings = settings;
-
                 // Set the FullCalendar event time format based on the time format setting
                 this.eventTimeFormat = {
                     hour: settings.timeFormat === '12' ? 'numeric' : '2-digit',
@@ -539,10 +533,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         const event: any = cloneDeep(
             this.events.find((item) => item.id == calendarEvent.event.id)
         );
-        console.log(event);
         // Set the event
         this.event = event;
-        console.log('event', event);
 
         // Prepare the end value
         let end;

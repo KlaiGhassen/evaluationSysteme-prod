@@ -7,7 +7,7 @@ export const calendars = [
         title: 'seance',
         color: 'bg-teal-500',
         visible: true,
-    },
+    }
 ];
 export const events = [
     // Personal

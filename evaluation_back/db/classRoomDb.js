@@ -24,7 +24,6 @@ exports.getAllClassrooms = async (req, res, next) => {
     if (role === "ADMIN") {
       classRooms = await knex.select("*").from("classroom");
     } else {
-      console.log("hello worldsss");
 
       classRooms = await knex
         .select("*")

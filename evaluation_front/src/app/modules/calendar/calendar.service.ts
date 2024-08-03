@@ -81,7 +81,7 @@ export class CalendarService {
      */
     getCalendars(): Observable<Calendar[]> {
         return this._httpClient
-            .get<Calendar[]>('api/apps/calendar/calendars')
+            .get<Calendar[]>(environment.apiUrl+'seanceMangment/calendars')
             .pipe(
                 tap((response) => {
                     this._calendars.next(response);

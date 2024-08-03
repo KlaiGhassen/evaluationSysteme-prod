@@ -78,6 +78,7 @@ export class CalendarMockApi
                 // Get the id and calendar
                 const id = request.body.id;
                 const calendar = cloneDeep(request.body.calendar);
+                
 
                 // Prepare the updated calendar
                 let updatedCalendar = null;

@@ -192,23 +192,23 @@ exports.getSeances = async (req, res, next) => {
     if (req.payload.role === "ADMIN") {
       // Fetch the events from the database
       events = await knex("seance");
-
       events = await Promise.all(
         events.map(async (event) => {
-
           const scanSeance = await knex("seance_student")
             .where("id_seance", event.id)
             .orderBy("created_at", "asc") // Order by created_at in ascending order
             .first(); // Fetch the first record
+
           // Adding the scanned student data to the event
-          if (scanSeance) {
-            event["scanned_student"] = scanSeance;
-          }
-          console.log(scanSeance)
+          event["scanned_student"] = scanSeance;
           return event; // Ensure to return the modified event
         })
       );
-    } else if (req.payload.role === "TEACHER") {
+    } else if (
+      req.payload.role === "TEACHER" ||
+      req.payload.role === "RDI" ||
+      req.payload.role === "CUP"
+    ) {
       events = await knex("seance").where("id_teacher", req.payload.id);
     } else if (req.payload.role === "STUDENT") {
       const classroom = await knex("classroom")
@@ -222,16 +222,10 @@ exports.getSeances = async (req, res, next) => {
 
     // Process each event
     events.forEach((event) => {
-      event["calendarId"] = "1a470c8e-40ed-4c2d-b590-a4f1f6ead6cc";
-
+      console.log(event.classe);
+      event["calendarId"] = event.classe;
       const eventStart = moment.utc(event.start);
       const eventEnd = moment.utc(event.end);
-      console.log(
-        `Processing event: ${
-          event.id
-        }, Start: ${eventStart.format()}, End: ${eventEnd.format()}`
-      );
-
       // Check if event falls within view range
       if (!event.recurrence) {
         if (eventStart.isBefore(viewEnd) && eventEnd.isAfter(viewStart)) {
@@ -268,7 +262,6 @@ exports.getSeances = async (req, res, next) => {
             console.log(`Date ${ruleDate.format()} is out of view range`);
             return;
           }
-
           const eventInstance = {
             id: `${event.id}_${ruleDate
               .clone()
@@ -332,6 +325,42 @@ function _generateRuleset(event, dtStart, until) {
 
   return rrulestr(ruleSet.join("\n"), { forceset: true });
 }
+
+exports.getCalendarsPerClasses = async (req, res, next) => {
+  try {
+    mode_calendar = req.params.mode;
+    let calendar;
+    switch (mode_calendar) {
+      case "classes":
+        calendar = await knex.select("*").from("classroom");
+        break;
+      case "teachers":
+        calendar = await knex.select("*").from("user").where("role", "TEACHER");
+        break;
+      case "students":
+        calendar = await knex.select("*").from("user").where("role", "STUDENT");
+        break;
+      default:
+        calendar = await knex.select("*").from("classroom");
+        break;
+    }
+    let data = calendar.map((classroom) => {
+      let calendar = {
+        id: classroom.name_class,
+        title: classroom.name_class,
+        color: "bg-teal-500",
+        visible: true,
+      };
+      return calendar;
+    });
+    console.log(data);
+    res.calendars = data;
+    next();
+  } catch (e) {
+    console.error("Error fetching seances:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
 
 exports.presence = async (req, res, next) => {
   let StudentId = req.payload.id;
