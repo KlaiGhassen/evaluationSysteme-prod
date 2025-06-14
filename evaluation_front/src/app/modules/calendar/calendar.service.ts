@@ -256,32 +256,11 @@ export class CalendarService {
 
                     // Use forkJoin to wait for all QR code downloads to complete
                     return forkJoin(downloadObservables).pipe(
-                        switchMap((updatedResponse) =>
-                            this._events.pipe(
-                                take(1),
-                                map((events) => {
-                                    // If replace...
-                                    if (replace) {
-                                        // Execute the observable with the response replacing the events object
-                                        this._events.next(updatedResponse);
-                                    }
-                                    // Otherwise...
-                                    else {
-                                        // If events is null, replace it with an empty array
-                                        events = events || [];
-
-                                        // Execute the observable by appending the response to the current events
-                                        this._events.next([
-                                            ...events,
-                                            ...updatedResponse,
-                                        ]);
-                                    }
-
-                                    // Return the response
-                                    return updatedResponse;
-                                })
-                            )
-                        )
+                        map((updatedResponse) => {
+                            // Always replace the events when changing weeks
+                            this._events.next(updatedResponse);
+                            return updatedResponse;
+                        })
                     );
                 })
             );

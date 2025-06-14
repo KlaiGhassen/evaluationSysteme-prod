@@ -150,7 +150,6 @@ exports.addSeance = async (req, res, next) => {
           title: data.module,
           full_name: data.full_name,
           qrcode: imageName,
-          linktoscan: data.linktoscan,
           module: data.module,
           description: data.module,
           date_course: data.date_cours,
@@ -183,7 +182,6 @@ exports.addSeance = async (req, res, next) => {
           qrcode: req_seance.qrcode,
           description: req_seance.description,
           classe: req_seance.classe,
-          linktoscan: req_seance.linktoscan,
           start:
             req_seance.date_course +
             " " +
