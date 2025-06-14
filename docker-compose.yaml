@@ -1,3 +1,4 @@
+version: "3.8"
 services:
   db:
     image: postgres
@@ -9,7 +10,7 @@ services:
     volumes:
       - bdp-data:/var/lib/postgresql/data/
   front:
-    build: ./evaluationfront
+    build: ./evaluation_front
     ports:
       - "80"
     restart: always
