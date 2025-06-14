@@ -118,71 +118,131 @@ async function convertFullNameToEmail(fullName) {
 }
 
 exports.addSeance = async (req, res, next) => {
-  const absoluteImagePath = require("path").resolve(
-    __dirname,
-    "../uploads/qrs"
-  );
-  req.body.forEach(async (data) => {
-    console.log(data);
-    const imageName = "qr-" + Date.now() + ".png";
+  try {
+    if (!req.body || !Array.isArray(req.body) || req.body.length === 0) {
+      return res.status(400).json({ error: "Invalid request body. Expected non-empty array of seances." });
+    }
 
-    base64ToImage(
-      data.qrcode.__zone_symbol__value,
-      absoluteImagePath + "/" + imageName
+    const absoluteImagePath = require("path").resolve(
+      __dirname,
+      "../uploads/qrs"
     );
-    const req_seance = {
-      title: data.module,
-      full_name: data.full_name,
-      qrcode: imageName,
-      linktoscan: data.linktoscan,
-      module: data.module,
-      description: data.module,
-      date_course: data.date_cours,
-      seance: data.seance,
-      classe: data.classe.toUpperCase(),
-    };
 
-    const module = await knex("module")
-      .where("name_module", req_seance.module)
-      .first();
+    const results = await Promise.all(req.body.map(async (data) => {
+      try {
+        // Validate required fields
+        if (!data.module || !data.full_name || !data.qrcode || !data.date_cours || !data.seance || !data.classe) {
+          throw new Error("Missing required fields");
+        }
 
-    const user = await knex("user")
-      .where("email", await convertFullNameToEmail(req_seance.full_name))
-      .first();
+        if (!data.qrcode.__zone_symbol__value) {
+          throw new Error("Invalid QR code data");
+        }
 
-    const seance = await knex("seance").insert({
-      title: req_seance.title,
-      qrcode: req_seance.qrcode,
-      description: req_seance.description,
-      classe: req_seance.classe,
-      linktoscan: req_seance.linktoscan,
-      start:
-        req_seance.date_course +
-        " " +
-        sessionTimes[req_seance.seance].start_time,
-      end:
-        req_seance.date_course + " " + sessionTimes[req_seance.seance].end_time,
-      id_module: module.id_module,
-      id_teacher: user.id,
-      pdfName: await generatePDF({
-        title: req_seance.title,
-        qrcode: req_seance.qrcode,
-        description: req_seance.description,
-        start:
-          req_seance.date_course +
-          " " +
-          sessionTimes[req_seance.seance].start_time,
-        end:
-          req_seance.date_course +
-          " " +
-          sessionTimes[req_seance.seance].end_time,
-        id_module: module.id_module,
-        id_teacher: user.id,
-      }),
+        const imageName = "qr-" + Date.now() + ".png";
+
+        base64ToImage(
+          data.qrcode.__zone_symbol__value,
+          absoluteImagePath + "/" + imageName
+        );
+
+        const req_seance = {
+          title: data.module,
+          full_name: data.full_name,
+          qrcode: imageName,
+          linktoscan: data.linktoscan,
+          module: data.module,
+          description: data.module,
+          date_course: data.date_cours,
+          seance: data.seance,
+          classe: data.classe.toUpperCase(),
+        };
+
+        const module = await knex("module")
+          .where("name_module", req_seance.module)
+          .first();
+
+        if (!module) {
+          throw new Error(`Module "${req_seance.module}" not found`);
+        }
+
+        const user = await knex("user")
+          .where("email", await convertFullNameToEmail(req_seance.full_name))
+          .first();
+
+        if (!user) {
+          throw new Error(`Teacher "${req_seance.full_name}" not found`);
+        }
+
+        if (!sessionTimes[req_seance.seance]) {
+          throw new Error(`Invalid session "${req_seance.seance}"`);
+        }
+
+        const seance = await knex("seance").insert({
+          title: req_seance.title,
+          qrcode: req_seance.qrcode,
+          description: req_seance.description,
+          classe: req_seance.classe,
+          linktoscan: req_seance.linktoscan,
+          start:
+            req_seance.date_course +
+            " " +
+            sessionTimes[req_seance.seance].start_time,
+          end:
+            req_seance.date_course + " " + sessionTimes[req_seance.seance].end_time,
+          id_module: module.id_module,
+          id_teacher: user.id,
+          pdfName: await generatePDF({
+            title: req_seance.title,
+            qrcode: req_seance.qrcode,
+            description: req_seance.description,
+            start:
+              req_seance.date_course +
+              " " +
+              sessionTimes[req_seance.seance].start_time,
+            end:
+              req_seance.date_course +
+              " " +
+              sessionTimes[req_seance.seance].end_time,
+            id_module: module.id_module,
+            id_teacher: user.id,
+          }),
+        });
+
+        return { success: true, seance };
+      } catch (error) {
+        return { 
+          success: false, 
+          error: error.message,
+          data: {
+            module: data.module,
+            full_name: data.full_name,
+            classe: data.classe
+          }
+        };
+      }
+    }));
+
+    const hasErrors = results.some(result => !result.success);
+    if (hasErrors) {
+      res.status(207).json({ 
+        message: "Some seances failed to be created",
+        results 
+      });
+    } else {
+      res.status(200).json({ 
+        message: "All seances created successfully",
+        results 
+      });
+    }
+    next();
+  } catch (error) {
+    console.error("Error in addSeance:", error);
+    res.status(500).json({ 
+      error: "Internal server error",
+      message: error.message 
     });
-  });
-  res.seance = true;
-  next();
+  }
 };
 const _exceptions = [];
 
