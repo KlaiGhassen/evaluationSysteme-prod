@@ -36,8 +36,8 @@ app.use(
       "http://localhost:3030",
       "http://localhost:4200",
       "http://localhost:443",
-      "https://espritmobile.ovh",
-      "http://espritmobile.ovh",
+      "https://espritmobile.com",
+      "http://espritmobile.com",
       "https://xzx9j4s1-4200.euw.devtunnels.ms",
     ],
 
