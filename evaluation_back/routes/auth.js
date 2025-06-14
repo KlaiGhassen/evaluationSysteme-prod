@@ -54,6 +54,7 @@ router.get("/profile-picture/:nom", storage.getUserImage);
 
 //! login routes calls login method on controller
 router.post("/sign-in", authController.login, (req, res) => {
+  console.log("hello world from sign in");
   res.cookie("refreshToken", res.refreshToken, {
     httpOnly: true,
   });

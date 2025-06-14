@@ -56,6 +56,7 @@ app.use(
 );
 
 app.use("/api/auth", auth);
+console.log("hello world ");
 app.use("/api/ue", authenticateToken, courses);
 app.use("/api/user", authenticateToken, user);
 app.use("/api/teacher", authenticateToken, teachers);
