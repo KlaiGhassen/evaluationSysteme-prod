@@ -225,20 +225,19 @@ exports.addSeance = async (req, res, next) => {
 
     const hasErrors = results.some(result => !result.success);
     if (hasErrors) {
-      res.status(207).json({ 
+      return res.status(207).json({ 
         message: "Some seances failed to be created",
         results 
       });
     } else {
-      res.status(200).json({ 
+      return res.status(200).json({ 
         message: "All seances created successfully",
         results 
       });
     }
-    next();
   } catch (error) {
     console.error("Error in addSeance:", error);
-    res.status(500).json({ 
+    return res.status(500).json({ 
       error: "Internal server error",
       message: error.message 
     });
