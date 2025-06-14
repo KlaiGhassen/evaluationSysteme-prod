@@ -209,6 +209,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         this._calendarService.events$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((events) => {
+                console.log('events', events);
                 // Clone the events to change the object reference so
                 // that the FullCalendar can trigger a re-render.
                 this.events = cloneDeep(events);
@@ -529,12 +530,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
      */
     onEventClick(calendarEvent): void {
         // Find the event with the clicked event's id
-
         const event: any = cloneDeep(
             this.events.find((item) => item.id == calendarEvent.event.id)
         );
         // Set the event
         this.event = event;
+        console.log(event);
 
         // Prepare the end value
         let end;
@@ -631,61 +632,72 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
         // Set the event's visibility
         calendarEvent.el.style.display = calendar.visible ? 'flex' : 'none';
-        // Check if the event is on or after the specific time (14:00)
-        if (
-            calendarEvent.event.extendedProps.scanned_student &&
-            calendarEvent.event.extendedProps.scanned_student.id_seance !=
-                undefined
-        ) {
-            console.log('Condition met. Adding red line...');
-
+        if (calendarEvent.event.extendedProps.scanned_seances.length > 0) {
             // Get the event's start and end time
-            const eventStartTime = moment(calendarEvent.event.start);
-            const eventEndTime = moment(calendarEvent.event.end);
 
-            const targetTime = moment(
-                calendarEvent.event.extendedProps.scanned_student.created_at
+            calendarEvent.event.extendedProps.scanned_seances.forEach(
+                (seance) => {
+                    const eventStartTime = moment(calendarEvent.event.start);
+                    const eventEndTime = moment(calendarEvent.event.end);
+
+                    const targetTime = moment(seance.created_at);
+
+                    if (
+                        eventStartTime.isSameOrBefore(targetTime) &&
+                        eventEndTime.isSameOrAfter(targetTime)
+                    ) {
+                        console.log(
+                            'Target time within event duration. Adding red line...'
+                        );
+                        // Calculate the position for the red line within the event element
+                        const eventDurationInMinutes = eventEndTime.diff(
+                            eventStartTime,
+                            'minutes'
+                        );
+                        const minutesUntilTargetTime = targetTime.diff(
+                            eventStartTime,
+                            'minutes'
+                        );
+                        const percentageUntilTargetTime =
+                            (minutesUntilTargetTime / eventDurationInMinutes) *
+                            100;
+                        console.log(
+                            'Percentage Until Target Time:',
+                            percentageUntilTargetTime
+                        );
+                        const lineContainer = document.createElement('div');
+                        lineContainer.style.position = 'absolute';
+                        lineContainer.style.width = '100%';
+                        lineContainer.style.top = `${percentageUntilTargetTime}%`;
+
+                        // Create the timestamp element
+                        const timestamp = document.createElement('div');
+                        timestamp.style.position = 'absolute';
+                        timestamp.style.left = '50%';
+                        timestamp.style.transform = 'translate(-50%, -100%)';
+                        timestamp.style.fontSize = '10px';
+                        timestamp.style.color = '#333'; // Dark gray color for better visibility
+                        timestamp.textContent = moment(
+                            seance.created_at
+                        ).format('HH:mm');
+
+                        // Create the red line element
+                        const redLine = document.createElement('div');
+                        redLine.style.width = '100%';
+                        redLine.style.height = '2px';
+                        redLine.style.backgroundColor = 'red';
+
+                        // Append elements to container
+                        lineContainer.appendChild(timestamp);
+                        lineContainer.appendChild(redLine);
+
+                        // Append the container to the event element
+                        calendarEvent.el.appendChild(lineContainer);
+                    } else {
+                        console.log('Target time not within event duration.');
+                    }
+                }
             );
-            console.log('Event Start Time:', eventStartTime);
-            console.log('Event End Time:', eventEndTime);
-            console.log('Target Time:', targetTime);
-
-            if (
-                eventStartTime.isBefore(targetTime) &&
-                eventEndTime.isAfter(targetTime)
-            ) {
-                console.log(
-                    'Target time within event duration. Adding red line...'
-                );
-
-                // Calculate the position for the red line within the event element
-                const eventDurationInMinutes = eventEndTime.diff(
-                    eventStartTime,
-                    'minutes'
-                );
-                const minutesUntilTargetTime = targetTime.diff(
-                    eventStartTime,
-                    'minutes'
-                );
-                const percentageUntilTargetTime =
-                    (minutesUntilTargetTime / eventDurationInMinutes) * 100;
-                console.log(
-                    'Percentage Until Target Time:',
-                    percentageUntilTargetTime
-                );
-
-                // Create the red line element
-                const redLine = document.createElement('div');
-                redLine.style.position = 'absolute';
-                redLine.style.width = '100%';
-                redLine.style.height = '2px';
-                redLine.style.backgroundColor = 'red';
-                redLine.style.top = `${percentageUntilTargetTime}%`;
-                // Append the red line to the event element
-                calendarEvent.el.appendChild(redLine);
-            } else {
-                console.log('Target time not within event duration.');
-            }
         } else {
             console.log('Condition not met. Skipping red line...');
         }
@@ -1111,6 +1123,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         const s1Start = moment().set({ hour: 8, minute: 0 });
         const s1End = moment().set({ hour: 17, minute: 0 });
         this.events.forEach((event) => {
+            console.log(event);
             if (moment(event.start).isBetween(s1Start, s1End)) {
                 this._calendarService
                     .downloadPdfQrCode(event.pdfName)

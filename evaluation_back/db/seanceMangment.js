@@ -118,12 +118,12 @@ async function convertFullNameToEmail(fullName) {
 }
 
 exports.addSeance = async (req, res, next) => {
-  console.log(req.body);
   const absoluteImagePath = require("path").resolve(
     __dirname,
     "../uploads/qrs"
   );
   req.body.forEach(async (data) => {
+    console.log(data);
     const imageName = "qr-" + Date.now() + ".png";
 
     base64ToImage(
@@ -134,6 +134,7 @@ exports.addSeance = async (req, res, next) => {
       title: data.module,
       full_name: data.full_name,
       qrcode: imageName,
+      linktoscan: data.linktoscan,
       module: data.module,
       description: data.module,
       date_course: data.date_cours,
@@ -154,6 +155,7 @@ exports.addSeance = async (req, res, next) => {
       qrcode: req_seance.qrcode,
       description: req_seance.description,
       classe: req_seance.classe,
+      linktoscan: req_seance.linktoscan,
       start:
         req_seance.date_course +
         " " +
@@ -186,106 +188,103 @@ const _exceptions = [];
 
 exports.getSeances = async (req, res, next) => {
   try {
-    const viewStart = moment.utc(req.query.start);
-    const viewEnd = moment.utc(req.query.end);
+    console.log(`User role: ${req.payload.role}`);
     let events = [];
-    if (req.payload.role === "ADMIN") {
-      // Fetch the events from the database
-      events = await knex("seance");
-      events = await Promise.all(
-        events.map(async (event) => {
-          const scanSeance = await knex("seance_student")
-            .where("id_seance", event.id)
-            .orderBy("created_at", "asc") // Order by created_at in ascending order
-            .first(); // Fetch the first record
 
-          // Adding the scanned student data to the event
-          event["scanned_student"] = scanSeance;
-          return event; // Ensure to return the modified event
+    // Helper function to fetch scanned seances with student details
+    const fetchScannedSeances = async (event) => {
+      console.log(`Processing event ID: ${event.id}`);
+      
+      // Fetch teacher details
+      const teacher = await knex("user")
+        .where("id", event.id_teacher)
+        .select("id", "first_name", "last_name", "email")
+        .first();
+      
+      console.log(`Teacher details for event ${event.id}:`, teacher);
+      
+      const scannedSeances = await knex("seance_student")
+        .where("id_seance", event.id)
+        .orderBy("created_at", "asc");
+      
+      console.log(`Found ${scannedSeances.length} scans for event ${event.id}`);
+      
+      const scannedSeancesWithDetails = await Promise.all(
+        scannedSeances.map(async (scan) => {
+          const student = await knex("user")
+            .where("id", scan.id_student)
+            .select("first_name", "last_name", "email")
+            .first();
+          
+          console.log(`Student scan details:`, {
+            scanId: scan.id,
+            studentName: student ? `${student.first_name} ${student.last_name}` : 'Not found',
+            scanTime: scan.created_at
+          });
+          
+          return {
+            ...scan,
+            student_details: student
+          };
         })
       );
+
+      return {
+        ...event,
+        teacher_details: teacher, // Add teacher details to the event
+        scanned_seances: scannedSeancesWithDetails
+      };
+    };
+
+    if (req.payload.role === "ADMIN") {
+      // Fetch all events from the database
+      events = await knex("seance")
+        .orderBy("start", "desc"); // Order by start date, most recent first
+      console.log(`Found ${events.length} total events`);
+      
+      // Fetch all scanned seances for each event
+      events = await Promise.all(events.map(fetchScannedSeances));
+
     } else if (
       req.payload.role === "TEACHER" ||
       req.payload.role === "RDI" ||
       req.payload.role === "CUP"
     ) {
-      events = await knex("seance").where("id_teacher", req.payload.id);
+      events = await knex("seance")
+        .where("id_teacher", req.payload.id)
+        .orderBy("start", "desc");
+      console.log(`Found ${events.length} events for teacher ${req.payload.id}`);
+      
+      // Fetch scanned seances for teacher's events
+      events = await Promise.all(events.map(fetchScannedSeances));
+
     } else if (req.payload.role === "STUDENT") {
       const classroom = await knex("classroom")
         .where("classroom_id", req.payload.student_class)
         .first();
-      events = await knex("seance").where("classe", classroom.name_class);
+      
+      events = await knex("seance")
+        .where("classe", classroom.name_class)
+        .orderBy("start", "desc");
+      console.log(`Found ${events.length} events for student's class ${classroom.name_class}`);
     }
 
-    // Prepare the results array
-    const results = [];
+    // Log final processed events
+    console.log('Final processed events:', events.map(event => ({
+      id: event.id,
+      title: event.title,
+      date: event.start,
+      teacher: event.teacher_details ? `${event.teacher_details.first_name} ${event.teacher_details.last_name}` : 'Unknown',
+      scannedCount: event.scanned_seances ? event.scanned_seances.length : 0
+    })));
 
-    // Process each event
-    events.forEach((event) => {
-      console.log(event.classe);
-      event["calendarId"] = event.classe;
-      const eventStart = moment.utc(event.start);
-      const eventEnd = moment.utc(event.end);
-      // Check if event falls within view range
-      if (!event.recurrence) {
-        if (eventStart.isBefore(viewEnd) && eventEnd.isAfter(viewStart)) {
-          results.push(event);
-          console.log(`Added normal event: ${event.id}`);
-        } else {
-          console.log(`Normal event ${event.id} is out of view range`);
-        }
-      } else {
-        // Recurring event handling
-        if (eventStart.isAfter(viewEnd) || eventEnd.isBefore(viewStart)) {
-          console.log(
-            `Recurring event ${event.id} does not recur within the view range`
-          );
-          return;
-        }
+    // Add calendar ID to each event
+    events = events.map(event => ({
+      ...event,
+      calendarId: event.classe
+    }));
 
-        // Set the DTSTART and UNTIL for RRule
-        const dtStart = eventStart.clone();
-        const until = viewEnd.isBefore(eventEnd)
-          ? viewEnd.clone().utc()
-          : eventEnd.clone().utc();
-
-        // Create an RRuleSet
-        const rruleset = _generateRuleset(event, dtStart, until);
-        console.log(`Generated RRuleSet for event: ${event.id}`);
-
-        // Generate the recurring dates and loop through them
-        rruleset.all().forEach((date) => {
-          const ruleDate = moment.utc(date);
-          ruleDate.subtract(ruleDate.utcOffset(), "minutes");
-
-          if (!ruleDate.isBetween(viewStart, viewEnd, "day", "[]")) {
-            console.log(`Date ${ruleDate.format()} is out of view range`);
-            return;
-          }
-          const eventInstance = {
-            id: `${event.id}_${ruleDate
-              .clone()
-              .utc()
-              .format("YYYYMMDD[T]HHmmss[Z]")}`,
-            recurringEventId: event.id,
-            isFirstInstance: event.start === ruleDate.clone().toISOString(),
-            title: event.title,
-            description: event.description,
-            start: ruleDate.toISOString(),
-            end: ruleDate.add(event.duration, "minutes").toISOString(),
-            duration: event.duration,
-            allDay: event.allDay,
-            recurrence: event.recurrence,
-          };
-
-          results.push(eventInstance);
-          console.log(`Added recurring event instance: ${eventInstance.id}`);
-        });
-      }
-    });
-
-    console.log(`Total results: ${results.length}`);
-    res.seances = results;
+    res.seances = events;
     next();
   } catch (error) {
     console.error("Error fetching seances:", error);
@@ -363,6 +362,7 @@ exports.getCalendarsPerClasses = async (req, res, next) => {
 };
 
 exports.presence = async (req, res, next) => {
+  console.log(req.body);
   let StudentId = req.payload.id;
   let classe = req.body.data.classe.toUpperCase();
   console.log(req.body);

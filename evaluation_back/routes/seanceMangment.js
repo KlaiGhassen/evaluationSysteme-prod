@@ -1,6 +1,11 @@
 require("dotenv").config();
 const express = require("express");
-const { addSeance, getSeances, presence, getCalendarsPerClasses } = require("../db/seanceMangment");
+const {
+  addSeance,
+  getSeances,
+  presence,
+  getCalendarsPerClasses,
+} = require("../db/seanceMangment");
 const storage = require("../middleware/storage");
 
 const router = express.Router();
@@ -16,9 +21,11 @@ router.get("/", getSeances, (req, res) => {
 });
 router.get("/qrcode/:nom", storage.getQrCode);
 router.get("/pdf/:nom", storage.getPdfQrCode);
-
-router.post("/presence/:mode", presence, (req, res) => {
+//TODO: CH7AB YGOUL B :MODE
+//router.post("/presence/:mode", presence, (req, res) => {
+//  res.json(res.seance_student);
+//});
+router.post("/presence", presence, (req, res) => {
   res.json(res.seance_student);
 });
-
 module.exports = router;

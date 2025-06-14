@@ -10,7 +10,6 @@ exports.up = function (knex) {
       table.string("color");
       table.string("visible");
     })
-
     .then(() => {
       return knex.schema.createTable("seance", (table) => {
         table.increments("id");
@@ -18,6 +17,7 @@ exports.up = function (knex) {
         table.string("pdfName");
         table.string("qrcode");
         table.string("description");
+        table.string("linktoscan");
         table.timestamp("start");
         table.timestamp("end");
         table.string("classe");
@@ -74,6 +74,8 @@ exports.up = function (knex) {
  */
 exports.down = function (knex) {
   return knex.schema.dropTable("seance_student").then(() => {
-    return knex.schema.dropTable("seance");
+    return knex.schema.dropTable("seance").then(() => {
+      return knex.schema.dropTable("calendars");
+    });
   });
 };

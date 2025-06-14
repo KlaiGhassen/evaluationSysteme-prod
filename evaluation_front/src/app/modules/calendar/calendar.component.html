@@ -164,17 +164,19 @@
                 </div>
 
                 <!-- FullCalendar -->
-                <div class="flex flex-col flex-auto">
+                <div class="flex flex-col flex-auto overflow-hidden">
                     <full-calendar
                         [defaultView]="view"
                         [events]="events"
                         [firstDay]="settings.startWeekOn"
                         [handleWindowResize]="true"
                         [header]="false"
-                        [timeZone]="'Africa/Tunis'"
+                        [timeZone]="'local'"
                         [height]="'parent'"
                         [plugins]="calendarPlugins"
                         [views]="views"
+                        [minTime]="'07:00:00'"
+                        [maxTime]="'18:00:00'"
                         (dateClick)="onDateClick($event)"
                         (eventClick)="onEventClick($event)"
                         (eventRender)="onEventRender($event)"
@@ -225,8 +227,8 @@
                                     <!-- Actions -->
                                     <div class="flex -mt-2 -mr-2 ml-10">
                                         <!-- Non-recurring event -->
-                                        <ng-container *ngIf="!event.recurrence">
-                                            <!-- Edit -->
+                                        <!-- <ng-container *ngIf="!event.recurrence">
+                                            Edit
                                             <button
                                                 mat-icon-button
                                                 (click)="
@@ -242,7 +244,7 @@
                                                     "
                                                 ></mat-icon>
                                             </button>
-                                            <!-- Delete -->
+                                             Delete 
                                             <button
                                                 mat-icon-button
                                                 (click)="deleteEvent(event)"
@@ -253,11 +255,11 @@
                                                     "
                                                 ></mat-icon>
                                             </button>
-                                        </ng-container>
+                                        </ng-container>-->
 
                                         <!-- Recurring event -->
-                                        <ng-container *ngIf="event.recurrence">
-                                            <!-- Edit -->
+                                        <!--   <ng-container *ngIf="event.recurrence">
+                                           Edit
                                             <button
                                                 mat-icon-button
                                                 [matMenuTriggerFor]="editMenu"
@@ -306,7 +308,7 @@
                                                     All events
                                                 </button>
                                             </mat-menu>
-                                            <!-- Delete -->
+                                            Delete 
                                             <button
                                                 mat-icon-button
                                                 [matMenuTriggerFor]="deleteMenu"
@@ -355,18 +357,26 @@
                                                     All events
                                                 </button>
                                             </mat-menu>
-                                        </ng-container>
-                                    </div>
+                                       </ng-container>
+
+                                    --></div>
                                 </div>
                             </div>
 
                             <!-- Description -->
-                            <div class="flex mt-6" *ngIf="event.description">
+                            <div
+                                class="flex mt-6"
+                                *ngIf="event.teacher_details"
+                            >
                                 <mat-icon
                                     [svgIcon]="'heroicons_outline:menu-alt-2'"
                                 ></mat-icon>
                                 <div class="flex-auto ml-6">
-                                    {{ event.description }}
+                                    {{
+                                        event.teacher_details.first_name +
+                                            " " +
+                                            event.teacher_details.last_name
+                                    }}
                                 </div>
                             </div>
 

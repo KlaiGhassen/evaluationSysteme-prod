@@ -38,6 +38,7 @@ app.use(
       "http://localhost:443",
       "https://espritmobile.ovh",
       "http://espritmobile.ovh",
+      "https://xzx9j4s1-4200.euw.devtunnels.ms",
     ],
 
     // "true" will copy the domain of the request back

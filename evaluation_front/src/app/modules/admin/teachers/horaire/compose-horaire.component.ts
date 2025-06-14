@@ -28,6 +28,7 @@ export class HorarireComposeComponent implements OnInit {
     public pageEndCount = 10;
     public totalPageCount = 0;
     public currentPage = 0;
+    public linkToScanBaseUrl: string = 'http:localhost:4200/qr-code/';
     progresDetail = 0;
     isTransaction = false;
 
@@ -116,6 +117,7 @@ export class HorarireComposeComponent implements OnInit {
 
             /* save data */
             const data = XLSX.utils.sheet_to_json(ws); // to get 2d array pass 2nd parameter as object {header: 1}
+            console.log('check here ', data);
             this.tableData = data;
             this.tableData.forEach((element) => {
                 let excelDate = element['Date Cours'];
@@ -127,7 +129,7 @@ export class HorarireComposeComponent implements OnInit {
                 element['nbrh'] = element['Nbr Heures'];
                 element['classe'] = element['Classe'];
                 let qrcode = this.generateAndSendQRCodes(
-                    'https://espritmobile.ovh/qr-code/' +
+                    this.linkToScanBaseUrl +
                         element['full_name'] +
                         '/' +
                         element['Classe'] +
@@ -136,9 +138,18 @@ export class HorarireComposeComponent implements OnInit {
                         '/' +
                         element['seance']
                 );
+                element['linktoscan'] =
+                    this.linkToScanBaseUrl +
+                    element['full_name'] +
+                    '/' +
+                    element['Classe'] +
+                    '/' +
+                    element['date_cours'] +
+                    '/' +
+                    element['seance'];
                 element['qrcode'] = qrcode;
                 this.dataStudents.push(element);
-                this.progresDetail = this.progresDetail + 20;
+                this.progresDetail = this.progresDetail + 100;
             });
         };
     }
