@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres
+    build: postgres
     restart: always
     environment:
       POSTGRES_PASSWORD: t5albiza1
@@ -9,7 +9,7 @@ services:
     volumes:
       - bdp-data:/var/lib/postgresql/data/
   front:
-    image: ./evaluationfront
+    build: ./evaluationfront
     ports:
       - "80"
     restart: always
