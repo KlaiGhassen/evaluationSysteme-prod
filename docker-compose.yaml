@@ -1,6 +1,6 @@
 services:
   db:
-    build: postgres
+    image: postgres
     restart: always
     environment:
       POSTGRES_PASSWORD: t5albiza1
@@ -16,7 +16,7 @@ services:
     depends_on:
       - back
   back:
-    image: ./evaluation_back
+    build: ./evaluation_back
     ports:
       - "3000"
     restart: always
