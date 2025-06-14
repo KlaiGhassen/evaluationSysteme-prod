@@ -5,12 +5,14 @@
 export const environment = {
     production: false,
     apiUrl: 'http://localhost:3000/api/',
+    websiteUrl: 'http://localhost:4200/',
     issuer: 'https://accounts.google.com',
     clientId:
         '830033697803-07hrq9qctj2ba61ugra0i84cl6lsdabj.apps.googleusercontent.com',
 };
 
 /*
+
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
  *

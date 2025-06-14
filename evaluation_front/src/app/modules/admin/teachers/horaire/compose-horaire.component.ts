@@ -6,6 +6,7 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import * as XLSX from 'xlsx';
 import * as QRCode from 'qrcode';
 import { ContactsService } from '../contacts.service';
+import { environment } from 'environments/environment.prod';
 @Component({
     selector: 'horaire-compose',
     templateUrl: './compose-horaire.component.html',
@@ -28,7 +29,7 @@ export class HorarireComposeComponent implements OnInit {
     public pageEndCount = 10;
     public totalPageCount = 0;
     public currentPage = 0;
-    public linkToScanBaseUrl: string = 'http:localhost:4200/qr-code/';
+    public linkToScanBaseUrl: string = (environment.websiteUrl = '/qr-code/');
     progresDetail = 0;
     isTransaction = false;
 
