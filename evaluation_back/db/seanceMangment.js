@@ -521,19 +521,37 @@ exports.getSessionAudience = async (sessionId) => {
 
 exports.getSessionAttendance = async (sessionId) => {
     try {
-        // Get all students who have scanned for this session
-        const attendance = await knex('seance_student')
+        // First get the session details to know which class it's for
+        const session = await knex('seance')
+            .where('id', sessionId)
+            .first();
+
+        if (!session) {
+            throw new Error('Session not found');
+        }
+
+        // Get all students in the class
+        const students = await knex('user')
             .select(
-                'seance_student.*',
+                'user.id as id_student',
                 'user.first_name',
                 'user.last_name',
-                'user.email'
+                'user.email',
+                knex.raw('CASE WHEN seance_student.id_student IS NOT NULL THEN true ELSE false END as present')
             )
-            .leftJoin('user', 'seance_student.id_student', 'user.id')
-            .where('seance_student.id_seance', sessionId)
-            .orderBy('seance_student.created_at', 'asc');
+            .leftJoin('seance_student', function() {
+                this.on('user.id', '=', 'seance_student.id_student')
+                    .andOn('seance_student.id_seance', '=', knex.raw('?', [sessionId]));
+            })
+            .where('user.role', 'STUDENT')
+            .where('user.student_class', function() {
+                this.select('classroom_id')
+                    .from('classroom')
+                    .where('name_class', session.classe)
+                    .first();
+            });
 
-        return attendance;
+        return students;
     } catch (error) {
         console.error('Error getting session attendance:', error);
         throw error;

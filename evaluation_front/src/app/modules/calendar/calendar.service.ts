@@ -572,10 +572,10 @@ export class CalendarService {
         );
     }
 
-    updateAttendance(sessionId: string, attendance: any[]): Observable<any> {
+    updateAttendance(sessionId: string, data: { studentId: string, present: boolean }): Observable<any> {
         return this._httpClient.post<any>(
             environment.apiUrl + 'seanceMangment/attendance/' + sessionId,
-            { attendance }
+            data  // Send the data directly, not wrapped in another object
         );
     }
 }

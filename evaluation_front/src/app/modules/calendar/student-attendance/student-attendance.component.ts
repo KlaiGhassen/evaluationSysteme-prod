@@ -80,31 +80,24 @@ export class CalendarStudentAttendanceComponent implements OnInit {
         const student = this.students.find(s => s.id_student === studentId);
         if (student) {
             student.present = !student.present;
+            
+            // Call the API to update attendance
+            this._calendarService.updateAttendance(this.sessionId, {
+                studentId: studentId,
+                present: student.present
+            }).subscribe(
+                () => {
+                    // Success - no need to do anything as the UI is already updated
+                },
+                (error) => {
+                    // Revert the toggle if there's an error
+                    student.present = !student.present;
+                    this._snackBar.open('Error updating attendance', 'Close', {
+                        duration: 3000
+                    });
+                }
+            );
         }
-    }
-
-    saveAttendance(): void {
-        this.loading = true;
-        const attendance = this.students.map(student => ({
-            id_student: student.id_student,
-            present: student.present
-        }));
-
-        this._calendarService.updateAttendance(this.sessionId, attendance).subscribe(
-            () => {
-                this.loading = false;
-                this._snackBar.open('Attendance updated successfully', 'Close', {
-                    duration: 3000
-                });
-            },
-            (error) => {
-                console.error('Error updating attendance:', error);
-                this.loading = false;
-                this._snackBar.open('Error updating attendance', 'Close', {
-                    duration: 3000
-                });
-            }
-        );
     }
 
     close(): void {

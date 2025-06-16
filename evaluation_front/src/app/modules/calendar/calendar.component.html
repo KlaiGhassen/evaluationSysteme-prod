@@ -200,175 +200,45 @@
                                     class="flex flex-auto justify-between ml-6"
                                 >
                                     <!-- Info -->
-                                    <div>
-                                        <div
-                                            class="text-3xl font-semibold tracking-tight leading-none"
-                                        >
+                                    <div class="w-full">
+                                        <div class="text-3xl font-semibold tracking-tight leading-none">
                                             {{ event.title || "(No title)" }}
                                         </div>
                                         <div class="mt-0.5 text-secondary">
-                                            {{
-                                                event.start
-                                                    | date : "EEEE, MMMM d"
-                                            }}
+                                            {{ event.start | date : "EEEE, MMMM d" }}
                                         </div>
-                                        <div>
-                                            <img [src]="event.qrcode" />
+
+                                        <!-- QR Code Section -->
+                                        <div class="mt-6 bg-gray-50 rounded-lg p-4 max-w-xs">
+                                            <div class="text-sm font-medium text-gray-700 mb-2">Session QR Code</div>
+                                            <div class="bg-white p-2 rounded-lg shadow-sm">
+                                                <img [src]="event.qrcode" class="w-full h-auto" alt="Session QR Code" />
+                                            </div>
                                         </div>
-                                        <button
-                                            (click)="downloadPdf(event.pdfName)"
-                                        >
-                                            Download Pdf
-                                        </button>
-                                        <button
-                                            mat-flat-button
-                                            color="primary"
-                                            (click)="showAttendance(event)"
-                                            class="mt-4"
-                                        >
-                                            <mat-icon [svgIcon]="'heroicons_outline:user-group'"></mat-icon>
-                                            <span class="ml-2">Show Attendance</span>
-                                        </button>
-                                        <div class="text-secondary">
+
+                                        <!-- Action Buttons -->
+                                        <div class="mt-6 flex flex-col space-y-3">
+                                            <button mat-flat-button
+                                                    color="primary"
+                                                    (click)="showAttendance(event)"
+                                                    class="flex items-center justify-center">
+                                                <mat-icon [svgIcon]="'heroicons_outline:user-group'"></mat-icon>
+                                                <span class="ml-2">Manage Attendance</span>
+                                            </button>
+
+                                            <button mat-stroked-button
+                                                    color="primary"
+                                                    (click)="downloadPdf(event.pdfName)"
+                                                    class="flex items-center justify-center">
+                                                <mat-icon [svgIcon]="'heroicons_outline:document-download'"></mat-icon>
+                                                <span class="ml-2">Download Session PDF</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="mt-4 text-secondary">
                                             {{ recurrenceStatus }}
                                         </div>
                                     </div>
-                                    <!-- Actions -->
-                                    <div class="flex -mt-2 -mr-2 ml-10">
-                                        <!-- Non-recurring event -->
-                                        <!-- <ng-container *ngIf="!event.recurrence">
-                                            Edit
-                                            <button
-                                                mat-icon-button
-                                                (click)="
-                                                    changeEventPanelMode(
-                                                        'edit',
-                                                        'single'
-                                                    )
-                                                "
-                                            >
-                                                <mat-icon
-                                                    [svgIcon]="
-                                                        'heroicons_outline:pencil-alt'
-                                                    "
-                                                ></mat-icon>
-                                            </button>
-                                             Delete 
-                                            <button
-                                                mat-icon-button
-                                                (click)="deleteEvent(event)"
-                                            >
-                                                <mat-icon
-                                                    [svgIcon]="
-                                                        'heroicons_outline:trash'
-                                                    "
-                                                ></mat-icon>
-                                            </button>
-                                        </ng-container>-->
-
-                                        <!-- Recurring event -->
-                                        <!--   <ng-container *ngIf="event.recurrence">
-                                           Edit
-                                            <button
-                                                mat-icon-button
-                                                [matMenuTriggerFor]="editMenu"
-                                            >
-                                                <mat-icon
-                                                    [svgIcon]="
-                                                        'heroicons_outline:pencil-alt'
-                                                    "
-                                                ></mat-icon>
-                                            </button>
-                                            <mat-menu #editMenu="matMenu">
-                                                <button
-                                                    mat-menu-item
-                                                    (click)="
-                                                        changeEventPanelMode(
-                                                            'edit',
-                                                            'single'
-                                                        )
-                                                    "
-                                                >
-                                                    This event
-                                                </button>
-                                                <button
-                                                    mat-menu-item
-                                                    *ngIf="
-                                                        !event.isFirstInstance
-                                                    "
-                                                    (click)="
-                                                        changeEventPanelMode(
-                                                            'edit',
-                                                            'future'
-                                                        )
-                                                    "
-                                                >
-                                                    This and following events
-                                                </button>
-                                                <button
-                                                    mat-menu-item
-                                                    (click)="
-                                                        changeEventPanelMode(
-                                                            'edit',
-                                                            'all'
-                                                        )
-                                                    "
-                                                >
-                                                    All events
-                                                </button>
-                                            </mat-menu>
-                                            Delete 
-                                            <button
-                                                mat-icon-button
-                                                [matMenuTriggerFor]="deleteMenu"
-                                            >
-                                                <mat-icon
-                                                    [svgIcon]="
-                                                        'heroicons_outline:trash'
-                                                    "
-                                                ></mat-icon>
-                                            </button>
-                                            <mat-menu #deleteMenu="matMenu">
-                                                <button
-                                                    mat-menu-item
-                                                    (click)="
-                                                        deleteEvent(
-                                                            event,
-                                                            'single'
-                                                        )
-                                                    "
-                                                >
-                                                    This event
-                                                </button>
-                                                <button
-                                                    mat-menu-item
-                                                    *ngIf="
-                                                        !event.isFirstInstance
-                                                    "
-                                                    (click)="
-                                                        deleteEvent(
-                                                            event,
-                                                            'future'
-                                                        )
-                                                    "
-                                                >
-                                                    This and following events
-                                                </button>
-                                                <button
-                                                    mat-menu-item
-                                                    (click)="
-                                                        deleteEvent(
-                                                            event,
-                                                            'all'
-                                                        )
-                                                    "
-                                                >
-                                                    All events
-                                                </button>
-                                            </mat-menu>
-                                       </ng-container>
-
-                                    --></div>
                                 </div>
                             </div>
 
