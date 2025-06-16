@@ -7,6 +7,7 @@ import {
     CalendarWeekdaysResolver,
 } from 'app/modules/calendar/calendar.resolvers';
 import { ExampleComponent } from './example/example.component';
+import { CalendarStudentAttendanceComponent } from './student-attendance/student-attendance.component';
 
 export const calendarRoutes: Route[] = [
     {
@@ -28,5 +29,9 @@ export const calendarRoutes: Route[] = [
     {
         path: 'qrScan',
         component: ExampleComponent,
+    },
+    {
+        path: 'attendance/:sessionId',
+        component: CalendarStudentAttendanceComponent,
     },
 ];

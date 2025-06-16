@@ -65,7 +65,7 @@
                     </button>
                     <button
                         mat-button
-                        *ngIf="user.role == 'ADMIN'"
+                        *ngIf="user.role === 'ADMIN'"
                         (click)="downloadPdfsOfTheDay()"
                     >
                         download pdf of the day
@@ -219,6 +219,15 @@
                                             (click)="downloadPdf(event.pdfName)"
                                         >
                                             Download Pdf
+                                        </button>
+                                        <button
+                                            mat-flat-button
+                                            color="primary"
+                                            (click)="showAttendance(event)"
+                                            class="mt-4"
+                                        >
+                                            <mat-icon [svgIcon]="'heroicons_outline:user-group'"></mat-icon>
+                                            <span class="ml-2">Show Attendance</span>
                                         </button>
                                         <div class="text-secondary">
                                             {{ recurrenceStatus }}

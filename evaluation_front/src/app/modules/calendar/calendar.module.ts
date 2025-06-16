@@ -16,6 +16,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { FuseDateRangeModule } from '@fuse/components/date-range';
 import { SharedModule } from 'app/shared/shared.module';
@@ -26,6 +28,9 @@ import { CalendarSidebarComponent } from 'app/modules/calendar/sidebar/sidebar.c
 import { calendarRoutes } from 'app/modules/calendar/calendar.routing';
 import { ExampleComponent } from './example/example.component';
 import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
+import { CalendarStudentAttendanceComponent } from './student-attendance/student-attendance.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -34,6 +39,7 @@ import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
         CalendarSettingsComponent,
         CalendarSidebarComponent,
         ExampleComponent,
+        CalendarStudentAttendanceComponent,
     ],
     imports: [
         RouterModule.forChild(calendarRoutes),
@@ -52,10 +58,14 @@ import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
         MatSelectModule,
         MatSidenavModule,
         MatTooltipModule,
+        MatSlideToggleModule,
+        MatProgressSpinnerModule,
         FullCalendarModule,
         FuseDateRangeModule,
         SharedModule,
         NgxScannerQrcodeModule,
+        MatSnackBarModule,
+        ReactiveFormsModule,
     ],
     providers: [
         {

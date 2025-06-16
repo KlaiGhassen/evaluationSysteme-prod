@@ -41,8 +41,9 @@ import {
     CalendarEventPanelMode,
     CalendarSettings,
 } from 'app/modules/calendar/calendar.types';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'app/core/user/user.service';
+import { CalendarStudentAttendanceComponent } from './student-attendance/student-attendance.component';
 
 @Component({
     selector: 'calendar',
@@ -95,7 +96,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _viewContainerRef: ViewContainerRef,
         private _router: Router,
-        private _userService: UserService
+        private _userService: UserService,
+        private _route: ActivatedRoute
     ) {
         this._userService.user$.subscribe((user) => {
             this.user = user;
@@ -1154,5 +1156,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 window.URL.revokeObjectURL(url);
                 document.body.removeChild(a);
             });
+    }
+
+    showAttendance(event: any): void {
+        this._router.navigate(['attendance', event.id], { relativeTo: this._route });
     }
 }

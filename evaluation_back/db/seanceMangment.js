@@ -485,3 +485,57 @@ function getSession() {
     return "No session";
   }
 }
+
+exports.getSessionAudience = async (sessionId) => {
+    try {
+        // Get the session details
+        const session = await knex('seance')
+            .where('id_seance', sessionId)
+            .first();
+
+        if (!session) {
+            throw new Error('Session not found');
+        }
+
+        // Get all students enrolled in the course
+        const students = await knex('student')
+            .select('student.*', knex.raw("'STUDENT' as role"))
+            .innerJoin('enrollment', 'student.id_student', 'enrollment.id_student')
+            .where('enrollment.id_course', session.id_course);
+
+        // Get the teacher of the course
+        const teacher = await knex('teacher')
+            .select('teacher.*', knex.raw("'TEACHER' as role"))
+            .innerJoin('course', 'teacher.id_teacher', 'course.id_teacher')
+            .where('course.id_course', session.id_course);
+
+        // Combine students and teacher into audience
+        const audience = [...students, ...teacher];
+
+        return audience;
+    } catch (error) {
+        console.error('Error getting session audience:', error);
+        throw error;
+    }
+};
+
+exports.getSessionAttendance = async (sessionId) => {
+    try {
+        // Get all students who have scanned for this session
+        const attendance = await knex('seance_student')
+            .select(
+                'seance_student.*',
+                'user.first_name',
+                'user.last_name',
+                'user.email'
+            )
+            .leftJoin('user', 'seance_student.id_student', 'user.id')
+            .where('seance_student.id_seance', sessionId)
+            .orderBy('seance_student.created_at', 'asc');
+
+        return attendance;
+    } catch (error) {
+        console.error('Error getting session attendance:', error);
+        throw error;
+    }
+};

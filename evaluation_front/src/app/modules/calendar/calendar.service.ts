@@ -559,4 +559,23 @@ export class CalendarService {
             }
         );
     }
+
+    getSessionAudience(sessionId: string): Observable<any> {
+        return this._httpClient.get<any>(
+            environment.apiUrl + 'seanceMangment/audience/' + sessionId
+        );
+    }
+
+    getSessionAttendance(sessionId: string): Observable<any> {
+        return this._httpClient.get<any>(
+            environment.apiUrl + 'seanceMangment/attendance/' + sessionId
+        );
+    }
+
+    updateAttendance(sessionId: string, attendance: any[]): Observable<any> {
+        return this._httpClient.post<any>(
+            environment.apiUrl + 'seanceMangment/attendance/' + sessionId,
+            { attendance }
+        );
+    }
 }
